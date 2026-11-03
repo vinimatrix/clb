@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface-variant": "#e0e3e6", "on-surface-variant": "#434652", "on-tertiary-fixed": "#001946", "tertiary": "#1c3363", "inverse-on-surface": "#eff1f4", "primary-fixed": "#d9e2ff", "surface-container-lowest": "#ffffff", "on-primary-container": "#a1bbff", "surface-container-highest": "#e0e3e6", "outline-variant": "#c3c6d4", "tertiary-container": "#354a7c", "on-primary": "#ffffff", "error-container": "#ffdad6", "on-surface": "#191c1e", "inverse-primary": "#b0c6ff", "surface-container-high": "#e6e8eb", "outline": "#737783", "inverse-surface": "#2d3133", "secondary-container": "#fd7629", "on-secondary": "#ffffff", "tertiary-fixed-dim": "#b1c6ff", "on-tertiary-fixed-variant": "#304577", "surface-container-low": "#f2f4f7", "on-primary-fixed-variant": "#00429c", "secondary": "#a04100", "tertiary-fixed": "#d9e2ff", "on-secondary-container": "#5e2300", "surface-tint": "#2b5bb5", "primary": "#003178", "primary-container": "#0d47a1", "background": "#f7f9fc", "surface-container": "#eceef1", "surface": "#f7f9fc", "on-tertiary": "#ffffff", "surface-dim": "#d8dadd", "primary-fixed-dim": "#b0c6ff", "on-primary-fixed": "#001945", "on-tertiary-container": "#a6bbf4", "error": "#ba1a1a", "on-error": "#ffffff", "surface-bright": "#f7f9fc", "on-secondary-fixed-variant": "#7a3000", "on-error-container": "#93000a", "on-secondary-fixed": "#351000", "on-background": "#191c1e", "secondary-fixed-dim": "#ffb693", "secondary-fixed": "#ffdbcc" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "gutter-tablet": "1.5rem", "margin-desktop": "2.5rem", "margin-tablet": "1.5rem", "space-lg": "1.5rem", "space-md": "1rem", "gutter-desktop": "1.75rem", "margin": "1rem", "space-xs": "0.25rem", "gutter": "1rem", "space-xl": "2rem", "space-sm": "0.5rem" }, fontFamily: { "label-xs": ["Inter"], "headline-lg": ["Montserrat"], "slogan-badge": ["Montserrat"], "body-sm": ["Inter"], "label-md": ["Inter"], "label-lg": ["Inter"], "headline-md": ["Montserrat"], "display-hero": ["Montserrat"], "headline-sm": ["Montserrat"], "display-hero-mobile": ["Montserrat"], "metric-val": ["Montserrat"], "body-lg": ["Inter"], "headline-lg-mobile": ["Montserrat"], "body-md": ["Inter"] }, fontSize: { "label-xs": ["10px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "800" }], "slogan-badge": ["16px", { "lineHeight": "20px", "letterSpacing": "0.04em", "fontWeight": "900" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }], "label-lg": ["14px", { "lineHeight": "18px", "fontWeight": "600" }], "headline-md": ["22px", { "lineHeight": "28px", "fontWeight": "700" }], "display-hero": ["48px", { "lineHeight": "54px", "letterSpacing": "-0.02em", "fontWeight": "900" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "700" }], "display-hero-mobile": ["30px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "900" }], "metric-val": ["28px", { "lineHeight": "32px", "fontWeight": "800" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "500" }], "headline-lg-mobile": ["24px", { "lineHeight": "30px", "fontWeight": "800" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }] } } } }</script><style>@layer base{html,body{width:100%;margin:0;padding:0;min-height:100%;}body{overscroll-behavior-y:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface text-on-surface antialiased flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-gutter flex items-center justify-between"><button aria-label="Volver" class="w-11 h-11 flex items-center justify-center rounded-full text-primary hover:bg-surface-variant/40 transition-colors" onclick="history.back()" type="button"><span class="material-symbols-outlined text-[24px]">arrow_back_ios_new</span></button><div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-sm"><span class="material-symbols-outlined text-on-primary text-[18px]">thumb_up</span></div><div class="flex flex-col items-start"><span class="font-headline-sm text-[13px] leading-tight font-extrabold text-primary tracking-tight">CARMEN LIGIA</span><span class="font-label-xs text-[10px] leading-none tracking-widest text-secondary font-bold">BARCELÓ</span></div></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 bg-surface px-margin"><div class="flex flex-col w-full pb-6">
+<!-- Accent Civic Ribbon -->
+<div class="flex items-center justify-center gap-1.5 my-3">
+<div class="w-8 h-1 rounded-full bg-primary"></div>
+<div class="w-3 h-1 rounded-full bg-surface-container-highest"></div>
+<div class="w-8 h-1 rounded-full bg-error"></div>
+</div>
+<!-- Content Card -->
+<div class="w-full bg-surface-container-lowest rounded-xl p-5 shadow-sm flex flex-col gap-5">
+<!-- User Avatar & Welcoming Greeting -->
+<div class="flex items-center gap-3.5">
+<div class="w-13 h-13 rounded-full bg-primary/10 flex items-center justify-center p-2.5 shrink-0 shadow-inner">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-on-primary text-[22px]" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+</div>
+<div class="flex flex-col min-w-0">
+<h1 class="font-headline-md text-headline-md font-bold text-primary tracking-tight">Bienvenido</h1>
+<p class="font-body-md text-body-md text-on-surface-variant font-medium">Inicia sesión para continuar.</p>
+</div>
+</div>
+<!-- Login Form -->
+<form class="flex flex-col gap-4 mt-1" id="loginForm" onsubmit="event.preventDefault(); handleLogin();">
+<!-- Cédula Input Field -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-lg text-label-lg font-semibold text-primary flex items-center gap-1.5" for="cedulaInput">
+<span class="material-symbols-outlined text-[18px] text-primary">badge</span>
+          Cédula de Identidad
+        </label>
+<div class="relative flex items-center">
+<input autocomplete="username" class="w-full h-12 px-3.5 bg-surface-container-low rounded-lg font-body-lg text-body-lg text-on-surface placeholder:text-outline focus:bg-surface-container-lowest focus:shadow-md transition-all outline-none" id="cedulaInput" maxlength="13" name="cedula" placeholder="001-1234567-8" required="" type="tel"/>
+<button aria-label="Escanear cédula" class="absolute right-2.5 w-8 h-8 rounded-full flex items-center justify-center text-outline hover:text-primary transition-colors" id="scanCedulaBtn" type="button">
+<span class="material-symbols-outlined text-[20px]">qr_code_scanner</span>
+</button>
+</div>
+<span class="font-label-xs text-label-xs text-on-surface-variant px-1">Formato dominicano: 11 dígitos con guiones</span>
+</div>
+<!-- Password Input Field -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-lg text-label-lg font-semibold text-primary flex items-center gap-1.5" for="passwordInput">
+<span class="material-symbols-outlined text-[18px] text-primary">lock</span>
+          Contraseña
+        </label>
+<div class="relative flex items-center">
+<input autocomplete="current-password" class="w-full h-12 pl-3.5 pr-11 bg-surface-container-low rounded-lg font-body-lg text-body-lg text-on-surface placeholder:text-outline focus:bg-surface-container-lowest focus:shadow-md transition-all outline-none" id="passwordInput" name="password" placeholder="Ingresa tu contraseña" required="" type="password"/>
+<button aria-label="Mostrar o esconder contraseña" class="absolute right-2.5 w-8 h-8 rounded-full flex items-center justify-center text-outline hover:text-primary transition-colors" id="togglePasswordBtn" type="button">
+<span class="material-symbols-outlined text-[20px]" id="passwordEyeIcon">visibility</span>
+</button>
+</div>
+</div>
+<!-- Forgot Password Link -->
+<div class="flex justify-end -mt-1">
+<a class="font-label-md text-label-md text-primary hover:text-primary-container font-semibold transition-colors py-1" href="javascript:void(0)">
+          ¿Olvidaste tu contraseña?
+        </a>
+</div>
+<!-- Primary Action Button -->
+<button class="w-full h-13 mt-1 bg-secondary-container text-on-secondary rounded-lg font-headline-sm text-headline-sm font-bold flex items-center justify-center gap-2 shadow-md hover:opacity-95 active:scale-[0.99] transition-all" id="submitBtn" type="submit">
+<span>Iniciar sesión</span>
+<span class="material-symbols-outlined text-[20px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+</button>
+</form>
+<!-- Visual Divider -->
+<div class="relative flex py-1 items-center">
+<div class="flex-grow h-px bg-surface-variant"></div>
+<span class="shrink-0 px-3 font-label-xs text-label-xs font-bold text-outline uppercase tracking-wider">O regístrate</span>
+<div class="flex-grow h-px bg-surface-variant"></div>
+</div>
+<!-- Secondary Registration Option -->
+<a class="w-full p-3.5 bg-surface-container-low hover:bg-surface-container rounded-lg flex items-center justify-between transition-all group shadow-sm active:scale-[0.99]" href="javascript:void(0)">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">person_add</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg font-bold text-primary truncate">Crear una cuenta</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Si aún no eres miembro del proyecto</span>
+</div>
+</div>
+<div class="w-8 h-8 rounded-full flex items-center justify-center text-outline group-hover:text-primary group-hover:translate-x-0.5 transition-all">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</div>
+</a>
+</div>
+<!-- Campaign Security Notice -->
+<div class="mt-4 px-2 flex items-center justify-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-primary" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<p class="font-label-xs text-label-xs text-center font-medium">
+      Plataforma Oficial de Gestión Territorial • Cifrado Seguro
+    </p>
+</div>
+</div>
+<script>
+  // Masking format for Dominican Cédula (001-1234567-8)
+  const cedulaField = document.getElementById('cedulaInput');
+  if (cedulaField) {
+    cedulaField.addEventListener('input', (e) => {
+      let value = e.target.value.replace(/\D/g, '');
+      if (value.length > 11) value = value.slice(0, 11);
+      
+      let formatted = '';
+      if (value.length > 0) {
+        formatted = value.substring(0, 3);
+        if (value.length > 3) {
+          formatted += '-' + value.substring(3, 10);
+        }
+        if (value.length > 10) {
+          formatted += '-' + value.substring(10, 11);
+        }
+      }
+      e.target.value = formatted;
+    });
+  }
+
+  // Password visibility toggle
+  const toggleBtn = document.getElementById('togglePasswordBtn');
+  const passwordInput = document.getElementById('passwordInput');
+  const eyeIcon = document.getElementById('passwordEyeIcon');
+
+  if (toggleBtn && passwordInput && eyeIcon) {
+    toggleBtn.addEventListener('click', () => {
+      const isPassword = passwordInput.getAttribute('type') === 'password';
+      passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
+      eyeIcon.textContent = isPassword ? 'visibility_off' : 'visibility';
+    });
+  }
+
+  // Subtle submission feedback
+  function handleLogin() {
+    const btn = document.getElementById('submitBtn');
+    if (!btn) return;
+    const originalText = btn.innerHTML;
+    btn.innerHTML = `<span class="material-symbols-outlined animate-spin text-[20px]">progress_activity</span><span>Verificando...</span>`;
+    btn.classList.add('opacity-80', 'pointer-events-none');
+    
+    setTimeout(() => {
+      btn.innerHTML = originalText;
+      btn.classList.remove('opacity-80', 'pointer-events-none');
+    }, 1200);
+  }
+</script></main><footer class="w-full py-space-md pb-safe bg-surface/90 backdrop-blur-xl flex flex-col items-center justify-center gap-space-xs mt-auto"><div class="flex items-center gap-1.5"><div class="w-4 h-1 rounded-full bg-primary"></div><div class="w-4 h-1 rounded-full bg-error"></div></div><p class="font-label-xs text-on-surface-variant uppercase tracking-wider text-center">TRABAJO • ORGANIZACIÓN • RESULTADOS</p></footer></body></html>

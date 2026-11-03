@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>CLB App - Unirme al Proyecto</title>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Montserrat -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: '#0E2356',
+              blue: '#0047AB',
+              accent: '#0D6EFD',
+              orange: '#FF671B',
+              orangeHover: '#EA570D',
+              grayLight: '#F4F6F9',
+              border: '#E2E8F0',
+              textMain: '#1A202C',
+              textMuted: '#64748B'
+            }
+          },
+          fontFamily: {
+            sans: ['Montserrat', 'system-ui', 'sans-serif']
+          },
+          boxShadow: {
+            'custom': '0 4px 20px -2px rgba(14, 35, 86, 0.08)',
+            'btn': '0 6px 16px -2px rgba(255, 103, 27, 0.35)'
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-layout">
+    body {
+      font-family: 'Montserrat', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    /* Estilo del notch y áreas seguras de iOS */
+    .safe-top {
+      padding-top: env(safe-area-inset-top, 20px);
+    }
+    .safe-bottom {
+      padding-bottom: env(safe-area-inset-bottom, 20px);
+    }
+    input::placeholder {
+      color: #94A3B8;
+      font-size: 0.875rem;
+    }
+  </style>
+</head>
+<body class="bg-slate-100 flex justify-center items-center min-h-screen p-0 sm:p-4 text-slate-800 antialiased">
+<!-- BEGIN: MobileDeviceFrame -->
+<div class="w-full max-w-[412px] min-h-screen sm:min-h-[844px] sm:max-h-[880px] bg-white sm:rounded-[36px] shadow-2xl flex flex-col justify-between overflow-hidden border border-slate-200/80 relative" data-purpose="mobile-viewport">
+<!-- BEGIN: TopBarAndHeader -->
+<header class="bg-white px-5 pt-3 pb-3 border-b border-slate-100 safe-top flex flex-col gap-2">
+<!-- Barra superior con botón volver y Logotipo Oficial centrado -->
+<div class="relative flex items-center justify-center min-h-[48px]">
+<!-- Botón Volver -->
+<button aria-label="Volver atrás" class="absolute left-0 p-2 -ml-2 text-brand-navy hover:text-brand-orange transition-colors flex items-center justify-center rounded-full hover:bg-slate-50" type="button">
+<svg class="h-6 w-6 stroke-[2.5]" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<!-- Logotipo Oficial: Carmen Ligia Barceló -->
+<div class="flex items-center gap-2" data-purpose="clb-logo">
+<!-- Imagotipo de Mano / Pulgar en círculo azul marino -->
+<div class="w-8 h-8 rounded-full bg-brand-navy flex items-center justify-center text-white shadow-sm ring-2 ring-brand-navy/10 flex-shrink-0">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24">
+<path d="M23 10a2 2 0 0 0-2-2h-6.32l.96-4.57c.02-.1.03-.21.03-.32a1.5 1.5 0 0 0-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10a2 2 0 0 0 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2zM1 21h4V9H1v12z"></path>
+</svg>
+</div>
+<!-- Texto del Logotipo -->
+<div class="flex flex-col text-left leading-none">
+<span class="text-[10px] font-bold text-slate-500 tracking-[0.16em] uppercase">CARMEN LIGIA</span>
+<span class="text-[15px] font-extrabold text-brand-navy tracking-tight uppercase">BARCELÓ</span>
+</div>
+</div>
+</div>
+</header>
+<!-- END: TopBarAndHeader -->
+<!-- BEGIN: MainContentArea -->
+<main class="flex-1 overflow-y-auto px-6 py-4 flex flex-col justify-between" data-purpose="registration-form-container">
+<div>
+<!-- Encabezado de la Sección -->
+<section class="mb-5 text-left" data-purpose="step-heading">
+<div class="flex items-center gap-2 mb-1">
+<span class="inline-flex items-center justify-center bg-brand-navy/10 text-brand-navy text-[11px] font-bold px-2 py-0.5 rounded-full">
+              Paso 2
+            </span>
+<span class="text-xs font-semibold text-slate-400">Registro de nuevos miembros</span>
+</div>
+<h1 class="text-2xl font-extrabold text-brand-navy tracking-tight">
+            Unirme al Proyecto
+          </h1>
+<p class="text-xs sm:text-[13px] text-brand-textMuted mt-1 leading-relaxed">
+            Completa tu información para formar parte de nuestro equipo.
+          </p>
+</section>
+<!-- Formulario de Registro -->
+<form class="space-y-3.5" data-purpose="registration-form" onsubmit="event.preventDefault();">
+<!-- Campo: Número de Cédula -->
+<div class="space-y-1">
+<label class="block text-[11.5px] font-bold tracking-wide uppercase text-slate-700" for="cedula">
+              Número de cédula <span class="text-brand-orange">*</span>
+</label>
+<div class="relative">
+<input class="w-full h-11 px-3.5 rounded-xl border border-slate-300 focus:border-brand-navy focus:ring-1 focus:ring-brand-navy text-sm font-medium text-slate-800 placeholder-slate-400 transition-all bg-slate-50/50 hover:bg-white focus:bg-white" id="cedula" inputmode="numeric" maxlength="13" name="cedula" placeholder="Ej. 00112345678" type="text"/>
+<div class="absolute inset-y-0 right-3 flex items-center pointer-events-none text-slate-400">
+<svg class="h-4 w-4" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+</div>
+<!-- Campo: Nombre -->
+<div class="space-y-1">
+<label class="block text-[11.5px] font-bold tracking-wide uppercase text-slate-700" for="nombre">
+              Nombre <span class="text-brand-orange">*</span>
+</label>
+<input class="w-full h-11 px-3.5 rounded-xl border border-slate-300 focus:border-brand-navy focus:ring-1 focus:ring-brand-navy text-sm font-medium text-slate-800 placeholder-slate-400 transition-all bg-slate-50/50 hover:bg-white focus:bg-white" id="nombre" name="nombre" placeholder="Tu nombre" type="text"/>
+</div>
+<!-- Campo: Primer Apellido -->
+<div class="space-y-1">
+<label class="block text-[11.5px] font-bold tracking-wide uppercase text-slate-700" for="primer_apellido">
+              Primer apellido <span class="text-brand-orange">*</span>
+</label>
+<input class="w-full h-11 px-3.5 rounded-xl border border-slate-300 focus:border-brand-navy focus:ring-1 focus:ring-brand-navy text-sm font-medium text-slate-800 placeholder-slate-400 transition-all bg-slate-50/50 hover:bg-white focus:bg-white" id="primer_apellido" name="primer_apellido" placeholder="Tu primer apellido" type="text"/>
+</div>
+<!-- Campo: Segundo Apellido (Opcional) -->
+<div class="space-y-1">
+<div class="flex justify-between items-center">
+<label class="block text-[11.5px] font-bold tracking-wide uppercase text-slate-700" for="segundo_apellido">
+                Segundo apellido
+              </label>
+<span class="text-[11px] font-medium text-slate-400 lowercase">(opcional)</span>
+</div>
+<input class="w-full h-11 px-3.5 rounded-xl border border-slate-300 focus:border-brand-navy focus:ring-1 focus:ring-brand-navy text-sm font-medium text-slate-800 placeholder-slate-400 transition-all bg-slate-50/50 hover:bg-white focus:bg-white" id="segundo_apellido" name="segundo_apellido" placeholder="Tu segundo apellido (opcional)" type="text"/>
+</div>
+<!-- Campo: Teléfono Celular -->
+<div class="space-y-1">
+<label class="block text-[11.5px] font-bold tracking-wide uppercase text-slate-700" for="telefono">
+              Teléfono celular <span class="text-brand-orange">*</span>
+</label>
+<div class="flex rounded-xl shadow-xs overflow-hidden border border-slate-300 focus-within:border-brand-navy focus-within:ring-1 focus-within:ring-brand-navy">
+<!-- Selector o prefijo nacional República Dominicana -->
+<div class="inline-flex items-center px-3 bg-slate-100 border-r border-slate-200 text-slate-600 gap-1.5 flex-shrink-0 select-none">
+<!-- Bandera Dominicana estilizada -->
+<span class="inline-block w-4 h-3 rounded-xs overflow-hidden shadow-xs border border-slate-300 relative bg-[#002D62]">
+<span class="absolute inset-x-0 bottom-0 top-1/2 bg-[#CE1126]"></span>
+<span class="absolute inset-0 m-auto w-[2px] h-full bg-white"></span>
+<span class="absolute inset-0 m-auto h-[2px] w-full bg-white"></span>
+</span>
+<span class="text-xs font-semibold text-slate-700">DO</span>
+</div>
+<input class="w-full h-11 px-3.5 border-0 focus:ring-0 text-sm font-medium text-slate-800 placeholder-slate-400 bg-slate-50/50 focus:bg-white transition-all" id="telefono" inputmode="tel" name="telefono" placeholder="(829) 123-4567" type="tel"/>
+</div>
+</div>
+<!-- Botón de Envío -->
+<div class="pt-3">
+<button class="w-full h-12 bg-brand-orange hover:bg-brand-orangeHover active:scale-[0.99] text-white font-bold text-sm tracking-wider uppercase rounded-xl shadow-btn transition-all duration-150 flex items-center justify-center gap-2" data-purpose="submit-continue-button" type="submit">
+<span>CONTINUAR</span>
+<svg class="h-4 w-4 stroke-[3]" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+</form>
+</div>
+<!-- Indicador o texto de asistencia -->
+<div class="text-center py-2">
+<p class="text-[11px] text-slate-400">
+          ¿Ya tienes cuenta? 
+          <a class="font-bold text-brand-navy hover:text-brand-orange underline underline-offset-2" href="#">Iniciar sesión</a>
+</p>
+</div>
+</main>
+<!-- END: MainContentArea -->
+<!-- BEGIN: Footer -->
+<footer class="bg-white border-t border-slate-100 safe-bottom pb-4 pt-3 flex flex-col items-center gap-1.5" data-purpose="app-footer">
+<!-- Franja Institucional de 3 Colores -->
+<div class="flex w-24 h-1 rounded-full overflow-hidden shadow-xs" title="Colores Nacionales e Institucionales">
+<div class="flex-1 bg-brand-navy"></div>
+<div class="flex-1 bg-white border-x border-slate-200"></div>
+<div class="flex-1 bg-brand-orange"></div>
+</div>
+<!-- Lema Institucional de la Campaña -->
+<p class="text-[9.5px] font-bold text-slate-400 tracking-wider text-center uppercase">
+        TRABAJO <span class="text-brand-orange">•</span> ORGANIZACIÓN <span class="text-brand-orange">•</span> RESULTADOS
+      </p>
+</footer>
+<!-- END: Footer -->
+</div>
+<!-- END: MobileDeviceFrame -->
+</body></html>

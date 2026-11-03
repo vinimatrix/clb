@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-slate-50" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>Paso 5: Validación de seguridad - Carmen Ligia Barceló</title>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              orange: '#FF6200',
+              'orange-hover': '#e05600',
+              blue: '#0E2F6D',
+              navy: '#061a3e',
+              soft: '#F4F7FC'
+            }
+          },
+          boxShadow: {
+            'custom-card': '0 8px 30px rgba(0, 0, 0, 0.06)',
+            'input-focus': '0 0 0 3px rgba(255, 98, 0, 0.25)'
+          }
+        }
+      }
+    }
+  </script>
+<!-- BEGIN: Custom Styles -->
+<style data-purpose="custom-layout">
+    /* iOS Safari viewport height adaptation */
+    .screen-container {
+      min-height: 100vh;
+      min-height: 100dvh;
+    }
+    /* Hide native number input arrows */
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+  </style>
+<!-- END: Custom Styles -->
+</head>
+<body class="h-full text-slate-800 antialiased font-sans flex justify-center bg-slate-100">
+<!-- BEGIN: MobileIOSContainer -->
+<!-- Container replicating the iPhone viewport from the design specs -->
+<div class="w-full max-w-md bg-white min-h-screen flex flex-col justify-between shadow-2xl relative overflow-hidden" data-purpose="ios-screen-canvas">
+<!-- BEGIN: TopBarAndHeader -->
+<header class="pt-3 px-5 pb-4 bg-white border-b border-slate-100" data-purpose="app-header">
+<!-- iOS Status Bar Placeholder -->
+<div aria-hidden="true" class="flex justify-between items-center text-xs font-semibold text-slate-900 mb-2 px-1 tracking-tight">
+<span>9:41</span>
+<div class="flex items-center space-x-1.5">
+<svg class="w-3.5 h-3.5" fill="currentColor" viewbox="0 0 20 20"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zm6-4a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zm6-3a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"></path></svg>
+<svg class="w-3.5 h-3.5" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M17.778 8.222c-4.296-4.296-11.26-4.296-15.556 0A1 1 0 01.808 6.808c5.076-5.077 13.308-5.077 18.384 0a1 1 0 01-1.414 1.414zM14.95 11.05a7 7 0 00-9.9 0 1 1 0 01-1.414-1.414 9 9 0 0112.728 0 1 1 0 01-1.414 1.414zm-2.829 2.828a3 3 0 00-4.242 0 1 1 0 01-1.415-1.414 5 5 0 017.072 0 1 1 0 01-1.415 1.414zM9 16a1 1 0 112 0 1 1 0 01-2 0z" fill-rule="evenodd"></path></svg>
+<svg class="w-5 h-2.5" fill="currentColor" viewbox="0 0 24 12"><rect fill="none" height="10" rx="3" stroke="currentColor" stroke-width="1.5" width="19" x="1" y="1"></rect><rect height="6" rx="1.5" width="13" x="3" y="3"></rect><path d="M22 4.5v3" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"></path></svg>
+</div>
+</div>
+<!-- Header Navigation & Centered Logo -->
+<div class="relative flex items-center justify-center py-2">
+<!-- Back Navigation Button -->
+<button aria-label="Volver atrás" class="absolute left-0 p-1.5 text-brand-blue hover:text-blue-900 rounded-full transition focus:outline-none focus:ring-2 focus:ring-brand-blue/30" type="button">
+<svg class="w-6 h-6 stroke-[2.5]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<!-- Official Campaign Brand Logo -->
+<div class="flex items-center space-x-2.5" data-purpose="campaign-brand">
+<div class="w-9 h-9 rounded-full bg-brand-blue flex items-center justify-center text-white border-2 border-amber-400 shadow-sm">
+<!-- Thumbs-up / Check Brand Icon -->
+<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017a2 2 0 01-1.414-.586l-4.243-4.243A2 2 0 015 14.757V10a2 2 0 012-2h2.586a1 1 0 00.707-.293l3.414-3.414a2 2 0 012.828 0l.142.142a2 2 0 01.586 1.414V10z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"></path>
+</svg>
+</div>
+<div class="flex flex-col text-left leading-tight">
+<span class="text-[12px] font-extrabold text-brand-navy tracking-tight uppercase">CARMEN LIGIA</span>
+<span class="text-[16px] font-black text-brand-blue tracking-wider uppercase -mt-0.5">BARCELÓ</span>
+</div>
+</div>
+</div>
+</header>
+<!-- END: TopBarAndHeader -->
+<!-- BEGIN: MainContent -->
+<main class="flex-1 px-6 pt-7 pb-4 flex flex-col items-center text-center justify-start" data-purpose="verification-form-section">
+<!-- Step Indicator Badge -->
+<div class="mb-4 inline-flex items-center gap-1.5 px-3 py-1 bg-blue-50 border border-blue-100 rounded-full text-brand-blue text-xs font-semibold">
+<span class="w-2 h-2 rounded-full bg-brand-orange animate-pulse"></span>
+<span>Paso 5 de 7: Validación de seguridad</span>
+</div>
+<!-- Section Title & Instructions -->
+<h1 class="text-2xl font-black text-brand-navy mb-2 tracking-tight">
+        Validación de seguridad
+      </h1>
+<p class="text-sm text-slate-600 max-w-xs leading-relaxed mb-8">
+        Te hemos enviado un código de verificación por SMS al número 
+        <span class="font-bold text-slate-900 block mt-0.5 text-base tracking-wide">(829) 123-4567</span>
+</p>
+<!-- BEGIN: OTPInputs -->
+<!-- 5-Box SMS Code Input as specified in Step 5 -->
+<form class="w-full max-w-xs" id="otp-form" onsubmit="event.preventDefault();">
+<div class="flex justify-between items-center gap-2.5 mb-8" data-purpose="otp-input-boxes">
+<input autofocus="" class="otp-field w-12 h-14 text-center text-2xl font-extrabold text-brand-navy bg-slate-50 border-2 border-brand-orange rounded-xl shadow-sm focus:border-brand-orange focus:ring-4 focus:ring-orange-100 focus:bg-white outline-none transition-all" id="otp-1" inputmode="numeric" maxlength="1" pattern="[0-9]*" required="" type="number" value="8"/>
+<input class="otp-field w-12 h-14 text-center text-2xl font-extrabold text-brand-navy bg-slate-50 border-2 border-slate-200 rounded-xl shadow-sm focus:border-brand-orange focus:ring-4 focus:ring-orange-100 focus:bg-white outline-none transition-all" id="otp-2" inputmode="numeric" maxlength="1" pattern="[0-9]*" placeholder="—" required="" type="number"/>
+<input class="otp-field w-12 h-14 text-center text-2xl font-extrabold text-brand-navy bg-slate-50 border-2 border-slate-200 rounded-xl shadow-sm focus:border-brand-orange focus:ring-4 focus:ring-orange-100 focus:bg-white outline-none transition-all" id="otp-3" inputmode="numeric" maxlength="1" pattern="[0-9]*" placeholder="—" required="" type="number"/>
+<input class="otp-field w-12 h-14 text-center text-2xl font-extrabold text-brand-navy bg-slate-50 border-2 border-slate-200 rounded-xl shadow-sm focus:border-brand-orange focus:ring-4 focus:ring-orange-100 focus:bg-white outline-none transition-all" id="otp-4" inputmode="numeric" maxlength="1" pattern="[0-9]*" placeholder="—" required="" type="number"/>
+<input class="otp-field w-12 h-14 text-center text-2xl font-extrabold text-brand-navy bg-slate-50 border-2 border-slate-200 rounded-xl shadow-sm focus:border-brand-orange focus:ring-4 focus:ring-orange-100 focus:bg-white outline-none transition-all" id="otp-5" inputmode="numeric" maxlength="1" pattern="[0-9]*" placeholder="—" required="" type="number"/>
+</div>
+<!-- Resend Code Area -->
+<div class="text-center space-y-1.5" data-purpose="resend-timer-block">
+<p class="text-xs text-slate-500 font-medium">¿No recibiste el código?</p>
+<button class="text-sm font-bold text-brand-blue hover:text-blue-800 hover:underline transition inline-flex items-center gap-1 focus:outline-none" id="resend-btn" type="button">
+<span>Reenviar código</span>
+<span class="text-xs text-slate-400 font-normal" id="countdown-timer">(00:54)</span>
+</button>
+</div>
+</form>
+<!-- END: OTPInputs -->
+<!-- Security Guarantee Microcopy -->
+<div class="mt-8 flex items-center justify-center text-slate-400 text-xs gap-1.5 bg-slate-50/80 py-2 px-3.5 rounded-lg border border-slate-100">
+<svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewbox="0 0 20 20">
+<path clip-rule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944zM11 14a1 1 0 11-2 0 1 1 0 012 0zm0-7a1 1 0 10-2 0v3a1 1 0 102 0V7z" fill-rule="evenodd"></path>
+</svg>
+<span>Código SMS seguro y encriptado</span>
+</div>
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: FooterActionArea -->
+<footer class="p-6 pt-2 pb-6 bg-white border-t border-slate-50 flex flex-col items-center gap-4" data-purpose="footer-action">
+<!-- Main Action Button (Orange #FF6200 as displayed in Step 5) -->
+<button class="w-full py-4 px-6 bg-brand-orange hover:bg-brand-orange-hover active:scale-[0.99] text-white font-extrabold text-base tracking-wider rounded-xl shadow-lg shadow-orange-500/30 transition-all uppercase flex items-center justify-center gap-2" data-purpose="submit-continue-button" form="otp-form" type="submit">
+<span>CONTINUAR</span>
+<svg class="w-5 h-5 stroke-[2.5]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M13 7l5 5m0 0l-5 5m5-5H6" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<!-- Institutional Footer Note -->
+<div class="text-center" data-purpose="institutional-motto">
+<p class="text-[11px] font-semibold text-slate-400 uppercase tracking-widest">
+          TRABAJO • ORGANIZACIÓN • RESULTADOS
+        </p>
+</div>
+<!-- Home Indicator bar (iOS) -->
+<div aria-hidden="true" class="w-32 h-1 bg-slate-300 rounded-full -mb-2 mt-1"></div>
+</footer>
+<!-- END: FooterActionArea -->
+</div>
+<!-- END: MobileIOSContainer -->
+<!-- BEGIN: InteractiveScripts -->
+<script data-purpose="otp-input-behavior">
+    // Logic for auto-focusing between 5 OTP boxes
+    document.addEventListener('DOMContentLoaded', () => {
+      const inputs = document.querySelectorAll('.otp-field');
+
+      inputs.forEach((input, index) => {
+        // Focus next when a digit is entered
+        input.addEventListener('input', (e) => {
+          if (input.value.length === 1 && index < inputs.length - 1) {
+            inputs[index + 1].focus();
+            inputs[index + 1].select();
+          }
+        });
+
+        // Handle backspace to focus previous box
+        input.addEventListener('keydown', (e) => {
+          if (e.key === 'Backspace' && !input.value && index > 0) {
+            inputs[index - 1].focus();
+          }
+        });
+
+        // Paste whole code handling
+        input.addEventListener('paste', (e) => {
+          e.preventDefault();
+          const pasteData = e.clipboardData.getData('text').trim();
+          if (/^\d+$/.test(pasteData)) {
+            pasteData.split('').slice(0, inputs.length).forEach((char, i) => {
+              inputs[i].value = char;
+            });
+            const nextIdx = Math.min(pasteData.length, inputs.length - 1);
+            inputs[nextIdx].focus();
+          }
+        });
+      });
+    });
+  </script>
+<script data-purpose="countdown-timer-behavior">
+    // Subtle countdown for SMS resend
+    let timeLeft = 54;
+    const timerElem = document.getElementById('countdown-timer');
+
+    if (timerElem) {
+      const countdownInterval = setInterval(() => {
+        timeLeft--;
+        if (timeLeft <= 0) {
+          clearInterval(countdownInterval);
+          timerElem.textContent = '(Disponible)';
+        } else {
+          const formatted = timeLeft < 10 ? `0${timeLeft}` : timeLeft;
+          timerElem.textContent = `(00:${formatted})`;
+        }
+      }, 1000);
+    }
+  </script>
+<!-- END: InteractiveScripts -->
+</body></html>

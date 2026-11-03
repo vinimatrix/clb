@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;background-color:#f7f9fc;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-error-container": "#93000a", "on-secondary-container": "#5e2300", "tertiary-fixed-dim": "#b1c6ff", "secondary": "#a04100", "surface-variant": "#e0e3e6", "surface-bright": "#f7f9fc", "inverse-surface": "#2d3133", "on-secondary": "#ffffff", "on-primary-fixed": "#001945", "surface-container-high": "#e6e8eb", "surface-dim": "#d8dadd", "surface-container-lowest": "#ffffff", "surface-container": "#eceef1", "error": "#ba1a1a", "on-error": "#ffffff", "on-primary": "#ffffff", "inverse-primary": "#b0c6ff", "on-tertiary-fixed": "#001946", "surface-container-highest": "#e0e3e6", "on-surface": "#191c1e", "on-primary-container": "#a1bbff", "primary-fixed": "#d9e2ff", "on-secondary-fixed-variant": "#7a3000", "on-secondary-fixed": "#351000", "secondary-container": "#fd7629", "on-tertiary-fixed-variant": "#304577", "tertiary": "#1c3363", "on-primary-fixed-variant": "#00429c", "primary": "#003178", "surface-container-low": "#f2f4f7", "error-container": "#ffdad6", "on-background": "#191c1e", "surface-tint": "#2b5bb5", "surface": "#f7f9fc", "primary-fixed-dim": "#b0c6ff", "outline-variant": "#c3c6d4", "on-tertiary": "#ffffff", "on-surface-variant": "#434652", "background": "#f7f9fc", "primary-container": "#0d47a1", "inverse-on-surface": "#eff1f4", "secondary-fixed": "#ffdbcc", "tertiary-fixed": "#d9e2ff", "outline": "#737783", "secondary-fixed-dim": "#ffb693", "on-tertiary-container": "#a6bbf4", "tertiary-container": "#354a7c" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "margin": "1rem", "margin-tablet": "1.5rem", "space-md": "1rem", "space-xs": "0.25rem", "space-xl": "2rem", "gutter-tablet": "1.5rem", "space-sm": "0.5rem", "gutter-desktop": "1.75rem", "gutter": "1rem", "margin-desktop": "2.5rem", "space-lg": "1.5rem" }, fontFamily: { "headline-sm": ["Montserrat"], "display-hero-mobile": ["Montserrat"], "headline-lg-mobile": ["Montserrat"], "label-md": ["Inter"], "body-lg": ["Inter"], "headline-md": ["Montserrat"], "label-xs": ["Inter"], "headline-lg": ["Montserrat"], "metric-val": ["Montserrat"], "display-hero": ["Montserrat"], "body-md": ["Inter"], "label-lg": ["Inter"], "slogan-badge": ["Montserrat"], "body-sm": ["Inter"] }, fontSize: { "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "700" }], "display-hero-mobile": ["30px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "900" }], "headline-lg-mobile": ["24px", { "lineHeight": "30px", "fontWeight": "800" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "500" }], "headline-md": ["22px", { "lineHeight": "28px", "fontWeight": "700" }], "label-xs": ["10px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "800" }], "metric-val": ["28px", { "lineHeight": "32px", "fontWeight": "800" }], "display-hero": ["48px", { "lineHeight": "54px", "letterSpacing": "-0.02em", "fontWeight": "900" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "label-lg": ["14px", { "lineHeight": "18px", "fontWeight": "600" }], "slogan-badge": ["16px", { "lineHeight": "20px", "letterSpacing": "0.04em", "fontWeight": "900" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-gutter flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-on-primary font-headline-sm text-headline-sm shadow-md"><span class="tracking-tighter">CLB</span></div><div class="flex flex-col"><div class="flex items-center gap-1.5"><div class="w-2.5 h-1 bg-primary rounded-full"></div><div class="w-2.5 h-1 bg-secondary rounded-full"></div><span class="font-label-xs text-label-xs uppercase tracking-wider text-on-surface-variant font-bold">Territorio</span></div><span class="font-headline-sm text-headline-sm text-primary tracking-tight leading-none">Carmen Ligia Barceló</span></div></div><div class="flex items-center gap-space-sm"><button aria-label="Notificaciones" class="relative w-11 h-11 flex items-center justify-center rounded-full text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-2.5 right-2.5 w-2 h-2 rounded-full bg-secondary-container ring-2 ring-surface"></span></button><div class="flex items-center gap-2 pl-1"><div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed font-label-md text-label-md ring-2 ring-primary/20"><span class="tracking-tight">JP</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-primary/20" src="https://lh3.googleusercontent.com/aida/AEtjO1XWq8vGMoHVJLeOeGU3SKyzFN4881GNAOvya2QL-Gxk9wdRwNtmE8Bg2J1vpJgPVJfVjfGqTWhM_gn3Kdffk-8YxmRXJC3HS76JBywN0dbzmscTFV8_G_k43ZTpLuUZatzVsaYvYQkwJEdvudyUsmytgylqC6hY0Wp4BcayDThw4Oj5UpHkdz8YjO4aHA3fXFT_kQY-H9poIIVIziowzGUF228kWqWhZrV7IyIzoEh7UpHfTz95gYAf7OE"/></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-20 bg-surface"><div class="flex flex-col w-full">
+<!-- Status & Welcome Section -->
+<div class="px-gutter pt-space-sm pb-space-xs flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary-fixed text-on-primary-fixed">
+<span class="w-2 h-2 rounded-full bg-secondary-container animate-pulse"></span>
+<span class="font-label-xs text-label-xs uppercase tracking-wider font-bold">Territorio Activo</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-xs text-label-xs">
+<span class="material-symbols-outlined text-[16px] text-primary">calendar_today</span>
+<span>10 Sept 2024</span>
+</div>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md text-primary tracking-tight">¡Hola, Juan Pérez!</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Gracias por liderar este proyecto. Resumen ejecutivo de la jornada.</p>
+</div>
+</div>
+<!-- Campaign Hero Mini-Banner -->
+<div class="px-gutter my-space-sm">
+<div class="relative overflow-hidden rounded-xl bg-gradient-to-r from-primary to-primary-container text-on-primary shadow-sm p-4 flex items-center justify-between gap-3">
+<!-- Decorative Backdrop Ribbon Glow -->
+<div class="absolute -right-8 -bottom-8 w-32 h-32 rounded-full bg-secondary-container/20 blur-xl pointer-events-none"></div>
+<div class="flex-1 flex flex-col gap-1 z-10">
+<div class="flex items-center gap-1">
+<div class="w-3.5 h-1 bg-secondary-container rounded-full"></div>
+<div class="w-3.5 h-1 bg-surface-container-lowest rounded-full"></div>
+<span class="font-label-xs text-label-xs text-on-primary-container tracking-wider font-bold uppercase ml-1">Campaña 2024–2028</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm uppercase text-on-primary leading-tight tracking-tight">
+          ¡Trabajemos juntos por un mejor futuro!
+        </h2>
+<p class="font-body-sm text-body-sm text-on-primary-container italic font-medium">Gente organizada, un mejor futuro.</p>
+</div>
+<div class="relative flex-shrink-0 z-10">
+<div class="w-16 h-16 rounded-full overflow-hidden bg-primary-fixed p-0.5 shadow-md flex items-center justify-center">
+<img class="w-full h-full object-cover rounded-full" data-alt="Professional political portrait photo of Carmen Ligia Barcelo smiling warmly with glasses, blonde hair, wearing a white collared formal shirt against an electric royal blue campaign backdrop with high contrast studio lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFa_EfeoB3DciISGNGoQJ7e4Jjp5OhDnx-oQMrg_QLo_h850ixo6VThxnGJ8qkglS_F5FzC2lAFIQS07Cnq-5txr-sEq-1uhcO7rjt_Bm5nMPK5Uu3YiiXdEnKALpzZiq9jCpAll4jj6ZnE8vUm-TF53jjiEenV7Ux-g-DL5fBKHhgHskJAtULCqrB83ys8T6HvGmX6Z96IsSzq-kKBc313hFU8PB3OGQbLExccUU"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Executive KPIs Strip (2x2 Grid) -->
+<div class="px-gutter flex flex-col gap-2 mb-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-primary">monitoring</span>
+<span class="font-label-md text-label-md text-primary font-bold uppercase tracking-wider">Métricas Clave</span>
+</div>
+<span class="font-label-xs text-label-xs text-on-surface-variant font-medium">Actualizado 09:30 AM</span>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<!-- Card 1: INSCRITOS -->
+<div class="bg-surface-container-lowest p-3.5 rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div class="w-8 h-8 rounded-lg bg-primary-fixed text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">how_to_reg</span>
+</div>
+<span class="inline-flex items-center font-label-xs text-label-xs px-1.5 py-0.5 rounded-full bg-surface-container text-primary font-bold">+12%</span>
+</div>
+<div class="mt-3">
+<span class="font-headline-sm text-headline-sm text-primary tracking-tight block">245,678</span>
+<div class="flex flex-col">
+<span class="font-label-xs text-label-xs uppercase font-bold text-on-surface">Inscritos</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Padrón validado</span>
+</div>
+</div>
+</div>
+<!-- Card 2: CBA -->
+<div class="bg-surface-container-lowest p-3.5 rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div class="w-8 h-8 rounded-lg bg-secondary-fixed text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">diversity_3</span>
+</div>
+<span class="inline-flex items-center font-label-xs text-label-xs px-1.5 py-0.5 rounded-full bg-secondary-fixed-dim text-on-secondary-fixed font-bold">+5%</span>
+</div>
+<div class="mt-3">
+<span class="font-headline-sm text-headline-sm text-secondary tracking-tight block">18,430</span>
+<div class="flex flex-col">
+<span class="font-label-xs text-label-xs uppercase font-bold text-on-surface">CBA</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Comités afectivos</span>
+</div>
+</div>
+</div>
+<!-- Card 3: CBE -->
+<div class="bg-surface-container-lowest p-3.5 rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div class="w-8 h-8 rounded-lg bg-tertiary-fixed text-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">ballot</span>
+</div>
+<span class="inline-flex items-center font-label-xs text-label-xs px-1.5 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-bold">+0%</span>
+</div>
+<div class="mt-3">
+<span class="font-headline-sm text-headline-sm text-primary tracking-tight block">12,650</span>
+<div class="flex flex-col">
+<span class="font-label-xs text-label-xs uppercase font-bold text-on-surface">CBE</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Comités electorales</span>
+</div>
+</div>
+</div>
+<!-- Card 4: FIDELIZADOS -->
+<div class="bg-surface-container-lowest p-3.5 rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div class="w-8 h-8 rounded-lg bg-secondary-fixed text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">loyalty</span>
+</div>
+<span class="inline-flex items-center font-label-xs text-label-xs px-1.5 py-0.5 rounded-full bg-secondary-fixed-dim text-on-secondary-fixed font-bold">+16%</span>
+</div>
+<div class="mt-3">
+<span class="font-headline-sm text-headline-sm text-secondary tracking-tight block">98,320</span>
+<div class="flex flex-col">
+<span class="font-label-xs text-label-xs uppercase font-bold text-on-surface">Fidelizados</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Voto seguro</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Panel: Mercado Electoral -->
+<div class="px-gutter mb-space-md">
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm flex flex-col gap-3">
+<div class="flex flex-col">
+<div class="flex items-center gap-1 mb-1">
+<div class="w-3 h-1 bg-primary rounded-full"></div>
+<div class="w-3 h-1 bg-secondary-container rounded-full"></div>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Mercado Electoral</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Distribución del padrón total frente a la meta PRM</p>
+</div>
+<!-- Donut Chart & Radial Visualizer -->
+<div class="flex items-center justify-center py-2">
+<div class="relative w-40 h-40 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 120 120">
+<!-- Background circle -->
+<circle class="text-surface-container" cx="60" cy="60" fill="transparent" r="48" stroke="currentColor" stroke-width="12"></circle>
+<!-- PRM segment (14.35%) -> circumference = 2 * PI * 48 ≈ 301.6; 14.35% = 43.3 -->
+<circle class="text-secondary-container" cx="60" cy="60" fill="transparent" r="48" stroke="currentColor" stroke-dasharray="43.3 258.3" stroke-linecap="round" stroke-width="12"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+<span class="font-headline-sm text-headline-sm text-primary leading-none font-bold">14.35%</span>
+<span class="font-label-xs text-label-xs uppercase tracking-wider text-secondary-container font-extrabold mt-0.5">Meta PRM</span>
+</div>
+</div>
+</div>
+<!-- Segment breakdown list -->
+<div class="flex flex-col gap-2 pt-1">
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-2">
+<div class="w-2.5 h-2.5 rounded-full bg-primary"></div>
+<span class="font-body-sm text-body-sm font-medium text-on-surface">Total General</span>
+</div>
+<span class="font-label-lg text-label-lg font-bold text-primary">8,873,889</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded-lg bg-secondary-fixed/40">
+<div class="flex items-center gap-2">
+<div class="w-2.5 h-2.5 rounded-full bg-secondary-container"></div>
+<span class="font-body-sm text-body-sm font-semibold text-on-secondary-fixed">PRM</span>
+</div>
+<span class="font-label-lg text-label-lg font-bold text-secondary">1,273,350</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-2">
+<div class="w-2.5 h-2.5 rounded-full bg-outline"></div>
+<span class="font-body-sm text-body-sm font-medium text-on-surface-variant">Otros Partidos</span>
+</div>
+<span class="font-label-lg text-label-lg font-bold text-on-surface-variant">7,600,539</span>
+</div>
+</div>
+<button class="w-full py-2.5 mt-1 rounded-lg bg-surface-container flex items-center justify-center gap-2 text-primary font-label-md text-label-md hover:bg-surface-container-high transition-colors">
+<span>PADRÓN JCE OFICIAL • Ver desglose por municipio</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Panel: Cobertura de Gestión -->
+<div class="px-gutter mb-space-md">
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<h3 class="font-headline-sm text-headline-sm text-primary">Cobertura de Gestión</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Avance territorial respecto al objetivo fijado</p>
+</div>
+<div class="w-8 h-8 rounded-lg bg-primary-fixed text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">target</span>
+</div>
+</div>
+<div class="flex flex-col gap-3.5 pt-1">
+<!-- Progress 1: Inscritos -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-center text-on-surface">
+<span class="font-body-sm text-body-sm font-medium">Inscritos</span>
+<span class="font-label-md text-label-md font-bold text-primary">27.7%</span>
+</div>
+<div class="w-full h-2.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-500" style="width: 27.7%"></div>
+</div>
+</div>
+<!-- Progress 2: CBA -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-center text-on-surface">
+<span class="font-body-sm text-body-sm font-medium">Comités Afectivos (CBA)</span>
+<span class="font-label-md text-label-md font-bold text-secondary">1.4%</span>
+</div>
+<div class="w-full h-2.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary-container rounded-full transition-all duration-500" style="width: 1.4%"></div>
+</div>
+</div>
+<!-- Progress 3: CBE -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-center text-on-surface">
+<span class="font-body-sm text-body-sm font-medium">Comités Electorales (CBE)</span>
+<span class="font-label-md text-label-md font-bold text-primary">1.4%</span>
+</div>
+<div class="w-full h-2.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-tertiary rounded-full transition-all duration-500" style="width: 1.4%"></div>
+</div>
+</div>
+<!-- Progress 4: Fidelizados -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-center text-on-surface">
+<span class="font-body-sm text-body-sm font-medium">Fidelizados</span>
+<span class="font-label-md text-label-md font-bold text-secondary">11.1%</span>
+</div>
+<div class="w-full h-2.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary-container rounded-full transition-all duration-500" style="width: 11.1%"></div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2">
+<span class="font-label-xs text-label-xs uppercase text-on-surface-variant font-bold">Meta Territorial Fijada</span>
+<button class="inline-flex items-center gap-1 text-secondary font-label-md text-label-md hover:underline font-bold">
+<span>Actualizar metas</span>
+<span class="material-symbols-outlined text-[14px]">tune</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Quick Access Action Modules Grid -->
+<div class="px-gutter mb-space-lg flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-primary font-bold uppercase tracking-wider">Herramientas Operativas</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant font-semibold">Accesos Rápidos</span>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<!-- Action 1: Inscripción -->
+<button class="bg-surface-container-lowest hover:bg-surface-container p-3 rounded-xl shadow-sm flex flex-col items-center text-center gap-2 transition-transform active:scale-95">
+<div class="w-10 h-10 rounded-full bg-primary-fixed text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+</div>
+<span class="font-label-md text-label-md font-bold text-on-surface leading-tight">Inscripción</span>
+</button>
+<!-- Action 2: Mi Recinto -->
+<button class="bg-surface-container-lowest hover:bg-surface-container p-3 rounded-xl shadow-sm flex flex-col items-center text-center gap-2 transition-transform active:scale-95">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">location_on</span>
+</div>
+<span class="font-label-md text-label-md font-bold text-on-surface leading-tight">Mi Recinto</span>
+</button>
+<!-- Action 3: Mi Carpeta -->
+<button class="bg-surface-container-lowest hover:bg-surface-container p-3 rounded-xl shadow-sm flex flex-col items-center text-center gap-2 transition-transform active:scale-95">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed text-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">folder_shared</span>
+</div>
+<span class="font-label-md text-label-md font-bold text-on-surface leading-tight">Mi Carpeta</span>
+</button>
+</div>
+</div>
+<!-- Interactive script for feedback clicks -->
+<script>
+    document.querySelectorAll('button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.classList.add('opacity-80');
+        setTimeout(() => btn.classList.remove('opacity-80'), 150);
+      });
+    });
+  </script>
+</div></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/95 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.04)]" data-active-classes="text-primary font-bold"><div class="flex justify-around items-center h-16 px-space-xs"><a aria-current="page" class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] gap-1 transition-all text-primary font-bold" data-path="inicio" href="#"><span class="material-symbols-outlined text-[24px]">dashboard</span><span class="font-label-xs text-label-xs">Inicio</span></a><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] gap-1 text-on-surface-variant hover:text-primary transition-all" data-path="reportes" href="#"><span class="material-symbols-outlined text-[24px]">assignment</span><span class="font-label-xs text-label-xs">Reportes</span></a><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] gap-1 text-on-surface-variant hover:text-primary transition-all" data-path="metricas-electoral" href="#"><span class="material-symbols-outlined text-[24px]">how_to_vote</span><span class="font-label-xs text-label-xs">Métricas</span></a><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] gap-1 text-on-surface-variant hover:text-primary transition-all" data-path="perfil" href="#"><span class="material-symbols-outlined text-[24px]">person</span><span class="font-label-xs text-label-xs">Perfil</span></a></div></nav></body></html>

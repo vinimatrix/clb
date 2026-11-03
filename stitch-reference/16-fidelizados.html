@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+
+<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "outline": "#737783", "surface-bright": "#f7f9fc", "inverse-surface": "#2d3133", "tertiary-fixed": "#d9e2ff", "on-primary-fixed": "#001945", "on-background": "#191c1e", "on-tertiary-fixed": "#001946", "on-secondary-fixed": "#351000", "surface-container-high": "#e6e8eb", "on-primary-fixed-variant": "#00429c", "tertiary": "#1c3363", "inverse-on-surface": "#eff1f4", "secondary-container": "#fd7629", "on-tertiary-container": "#a6bbf4", "on-tertiary-fixed-variant": "#304577", "primary-fixed": "#d9e2ff", "primary": "#003178", "on-surface": "#191c1e", "primary-container": "#0d47a1", "secondary-fixed": "#ffdbcc", "error": "#ba1a1a", "on-primary": "#ffffff", "tertiary-fixed-dim": "#b1c6ff", "inverse-primary": "#b0c6ff", "surface-tint": "#2b5bb5", "on-tertiary": "#ffffff", "background": "#f7f9fc", "surface": "#f7f9fc", "surface-container-highest": "#e0e3e6", "on-error-container": "#93000a", "surface-container-low": "#f2f4f7", "on-surface-variant": "#434652", "outline-variant": "#c3c6d4", "on-primary-container": "#a1bbff", "primary-fixed-dim": "#b0c6ff", "surface-container": "#eceef1", "surface-container-lowest": "#ffffff", "tertiary-container": "#354a7c", "surface-dim": "#d8dadd", "error-container": "#ffdad6", "on-secondary-container": "#5e2300", "secondary-fixed-dim": "#ffb693", "on-secondary-fixed-variant": "#7a3000", "surface-variant": "#e0e3e6", "on-error": "#ffffff", "on-secondary": "#ffffff", "secondary": "#a04100" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-md": "1rem", "gutter-desktop": "1.75rem", "space-xl": "2rem", "space-lg": "1.5rem", "gutter-tablet": "1.5rem", "space-sm": "0.5rem", "space-xs": "0.25rem", "margin-desktop": "2.5rem", "margin": "1rem", "margin-tablet": "1.5rem", "gutter": "1rem" }, fontFamily: { "display-hero": ["Montserrat"], "headline-sm": ["Montserrat"], "display-hero-mobile": ["Montserrat"], "headline-lg-mobile": ["Montserrat"], "body-sm": ["Inter"], "headline-md": ["Montserrat"], "label-lg": ["Inter"], "slogan-badge": ["Montserrat"], "headline-lg": ["Montserrat"], "label-xs": ["Inter"], "body-lg": ["Inter"], "label-md": ["Inter"], "body-md": ["Inter"], "metric-val": ["Montserrat"] }, fontSize: { "display-hero": ["48px", { "lineHeight": "54px", "letterSpacing": "-0.02em", "fontWeight": "900" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "700" }], "display-hero-mobile": ["30px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "900" }], "headline-lg-mobile": ["24px", { "lineHeight": "30px", "fontWeight": "800" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "headline-md": ["22px", { "lineHeight": "28px", "fontWeight": "700" }], "label-lg": ["14px", { "lineHeight": "18px", "fontWeight": "600" }], "slogan-badge": ["16px", { "lineHeight": "20px", "letterSpacing": "0.04em", "fontWeight": "900" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "800" }], "label-xs": ["10px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "500" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "metric-val": ["28px", { "lineHeight": "32px", "fontWeight": "800" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-space-md flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="flex items-center justify-center w-11 h-11 rounded-lg bg-primary-container text-on-primary font-headline-sm text-headline-sm select-none">CLB</div><div class="flex flex-col justify-center"><div class="flex items-center gap-1.5"><div class="flex items-center gap-0.5"><span class="w-2 h-1 rounded-full bg-primary"></span><span class="w-2 h-1 rounded-full bg-error"></span></div><span class="font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider">Militancia Activa</span></div><h1 class="font-headline-sm text-headline-sm text-on-surface leading-tight">Fidelizados</h1></div></div><div class="flex items-center gap-space-xs"><div class="flex items-center gap-1 bg-surface-container-low px-2 py-1 rounded-full text-on-surface-variant"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span><span class="material-symbols-outlined text-[16px] text-primary">sync</span><span class="font-label-xs text-label-xs font-semibold">SYNC</span></div><button aria-label="Notificaciones" class="w-11 h-11 flex items-center justify-center rounded-lg text-on-surface hover:bg-surface-container active:bg-surface-container-high transition-colors relative" type="button"><span class="material-symbols-outlined text-[24px]">notifications</span><span class="absolute top-2.5 right-2.5 w-2 h-2 rounded-full bg-secondary-container ring-2 ring-surface"></span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-sm select-none"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-16 bg-surface pb-28"><div class="flex flex-col w-full">
+<!-- Dynamic Notification / Top Status Banner -->
+<div class="px-space-md pt-space-xs pb-space-sm">
+<div class="bg-primary-container text-on-primary rounded-xl p-3.5 shadow-md flex items-center justify-between relative overflow-hidden">
+<div class="absolute -right-4 -bottom-6 w-24 h-24 rounded-full bg-secondary-container/20 pointer-events-none"></div>
+<div class="flex items-center gap-3 relative z-10">
+<div class="w-10 h-10 rounded-lg bg-surface-container-lowest/15 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary-fixed text-[24px]">flag</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-1 rounded-full bg-on-primary"></span>
+<span class="w-2 h-1 rounded-full bg-error"></span>
+<span class="font-label-xs text-label-xs uppercase tracking-wider text-on-primary-container">Estrategia Electoral CLB</span>
+</div>
+<p class="font-headline-sm text-headline-sm text-on-primary truncate">Red de Fidelizados CLB</p>
+<p class="font-body-sm text-body-sm text-on-primary-container truncate">Hato Mayor del Rey • Circunscripción 01</p>
+</div>
+</div>
+<div class="shrink-0 flex flex-col items-end">
+<span class="font-label-xs text-label-xs px-2 py-0.5 rounded-full bg-secondary text-on-secondary font-bold uppercase tracking-wider">Activo</span>
+<span class="font-label-xs text-label-xs text-on-primary-container mt-1">Día D: -18 días</span>
+</div>
+</div>
+</div>
+<!-- Key Metrics Matrix -->
+<div class="px-space-md grid grid-cols-2 gap-space-sm mb-space-md">
+<!-- Metric 1: Total Fidelizados -->
+<div class="col-span-2 bg-surface-container-lowest p-3.5 rounded-xl shadow-sm">
+<div class="flex items-center justify-between mb-1.5">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-lg bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">groups</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant font-semibold">Total Fidelizados</span>
+</div>
+<span class="font-label-xs text-label-xs px-2 py-0.5 rounded-full bg-surface-container text-primary font-bold">Meta 1,800</span>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-metric-val text-metric-val text-primary leading-tight">1,420</span>
+<span class="font-label-md text-label-md text-secondary font-bold">78.9% alcanzado</span>
+</div>
+<!-- Progress Bar -->
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden mt-2">
+<div class="bg-secondary-container h-full rounded-full transition-all duration-500" style="width: 78.9%"></div>
+</div>
+</div>
+<!-- Metric 2: Voto Seguro -->
+<div class="bg-surface-container-lowest p-3 rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center gap-2 mb-1">
+<div class="w-6 h-6 rounded-md bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">how_to_vote</span>
+</div>
+<span class="font-label-xs text-label-xs text-on-surface-variant font-semibold">Voto Seguro</span>
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm text-on-surface font-extrabold">1,150</p>
+<div class="flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-secondary-container text-[14px]">check_circle</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">81.0% del padrón</p>
+</div>
+</div>
+</div>
+<!-- Metric 3: Por Revalidar -->
+<div class="bg-surface-container-lowest p-3 rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center gap-2 mb-1">
+<div class="w-6 h-6 rounded-md bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">phone_in_talk</span>
+</div>
+<span class="font-label-xs text-label-xs text-on-surface-variant font-semibold">Por Revalidar</span>
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm text-error font-extrabold">270</p>
+<div class="flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-error text-[14px]">pending_actions</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Visita o llamada</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Toolbar & Quick Actions -->
+<div class="px-space-md flex flex-col gap-2.5 mb-space-md">
+<button class="w-full h-12 bg-secondary-container text-on-primary rounded-xl font-headline-sm text-label-lg flex items-center justify-center gap-2 shadow-md active:bg-secondary transition-all" type="button">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+<span>+ Registrar Fidelizado</span>
+</button>
+<div class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
+<button class="shrink-0 h-8 px-3 rounded-full bg-surface-container-low text-primary flex items-center gap-1.5 font-label-xs text-label-xs active:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified</span>
+<span>Verificación Día D</span>
+</button>
+<button class="shrink-0 h-8 px-3 rounded-full bg-surface-container-low text-primary flex items-center gap-1.5 font-label-xs text-label-xs active:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px] text-primary">call</span>
+<span>Reconfirmar (12 hoy)</span>
+<span class="w-4 h-4 rounded-full bg-error text-on-error flex items-center justify-center text-[9px] font-bold">12</span>
+</button>
+<button class="shrink-0 h-8 px-3 rounded-full bg-surface-container-low text-primary flex items-center gap-1.5 font-label-xs text-label-xs active:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px] text-primary">map</span>
+<span>Rutas de Transporte</span>
+</button>
+</div>
+</div>
+<!-- Search & Interactive Segment Tabs -->
+<div class="px-space-md flex flex-col gap-3 mb-space-md">
+<!-- Search Field -->
+<div class="relative w-full">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="w-full h-11 pl-10 pr-10 rounded-xl bg-surface-container-lowest text-on-surface placeholder:text-outline font-body-md text-body-md shadow-sm outline-none focus:bg-surface-bright focus:text-primary transition-all" id="voterSearchInput" placeholder="Buscar por Cédula, nombre o recinto..." type="text"/>
+<button class="hidden absolute inset-y-0 right-0 pr-3.5 flex items-center text-outline" id="clearSearchBtn" type="button">
+<span class="material-symbols-outlined text-[18px]">cancel</span>
+</button>
+</div>
+<!-- Segmented Filter Pills -->
+<div class="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none" id="segmentPillsContainer">
+<button class="filter-tab shrink-0 px-3 py-1.5 rounded-full font-label-xs text-label-xs bg-primary text-on-primary font-bold shadow-sm transition-all" data-filter="all" type="button">
+        Todos (1,420)
+      </button>
+<button class="filter-tab shrink-0 px-3 py-1.5 rounded-full font-label-xs text-label-xs bg-surface-container-low text-on-surface-variant font-medium transition-all" data-filter="voto-seguro" type="button">
+        Voto Seguro (1,150)
+      </button>
+<button class="filter-tab shrink-0 px-3 py-1.5 rounded-full font-label-xs text-label-xs bg-surface-container-low text-on-surface-variant font-medium transition-all" data-filter="simpatizantes" type="button">
+        Simpatizantes (270)
+      </button>
+<button class="filter-tab shrink-0 px-3 py-1.5 rounded-full font-label-xs text-label-xs bg-surface-container-low text-on-surface-variant font-medium transition-all" data-filter="logistica" type="button">
+        Logística Día D (380)
+      </button>
+</div>
+</div>
+<!-- Fidelizados Directory Cards -->
+<div class="px-space-md flex flex-col gap-3" id="votersList">
+<!-- Card 1: Mercedes Altagracia Peña -->
+<div class="voter-card bg-surface-container-lowest rounded-xl p-3.5 shadow-sm transition-all relative overflow-hidden" data-category="voto-seguro logistica" data-keywords="mercedes altagracia peña 027-0019284-3 liceo bernardo pichardo cba-04">
+<div class="absolute top-0 left-0 w-1.5 h-full bg-secondary-container"></div>
+<div class="pl-1">
+<div class="flex items-start justify-between gap-2">
+<div class="min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<h2 class="font-headline-sm text-headline-sm text-on-surface truncate">Mercedes Altagracia Peña</h2>
+<span class="font-label-xs text-label-xs bg-secondary-fixed text-on-secondary-fixed font-bold px-2 py-0.5 rounded-full flex items-center gap-1 shrink-0">
+<span class="material-symbols-outlined text-[13px] text-secondary">star</span>
+                Voto Duro • Nivel 3
+              </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+              Cédula: <strong class="text-on-surface">027-0019284-3</strong> • 34 años • Multiplicador
+            </p>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-container-low flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+</div>
+</div>
+<!-- Electoral Details -->
+<div class="mt-2.5 pt-2.5 bg-surface-container-low/70 rounded-lg p-2.5 flex flex-col gap-1.5">
+<div class="flex items-center justify-between text-body-sm">
+<div class="flex items-center gap-1 text-on-surface-variant min-w-0">
+<span class="material-symbols-outlined text-[16px] text-primary shrink-0">school</span>
+<span class="truncate">Liceo Bernardo Pichardo</span>
+</div>
+<span class="font-label-xs text-label-xs font-semibold px-1.5 py-0.5 rounded bg-surface-container text-on-surface shrink-0">Mesa 0012A (#042)</span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-tertiary-container shrink-0">location_on</span>
+<span>CBA-04 Ondina</span>
+</div>
+<div class="flex items-center gap-1 text-secondary font-medium font-label-xs text-label-xs">
+<span class="material-symbols-outlined text-[14px]">directions_car</span>
+<span>Transporte Propio</span>
+</div>
+</div>
+</div>
+<!-- Action Row -->
+<div class="mt-3 flex items-center justify-between gap-2">
+<div class="flex items-center gap-2">
+<a class="w-9 h-9 rounded-lg bg-surface-container-low text-primary flex items-center justify-center hover:bg-surface-container transition-colors" href="https://wa.me/18295550192" title="WhatsApp directo">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+</a>
+<a class="w-9 h-9 rounded-lg bg-surface-container-low text-primary flex items-center justify-center hover:bg-surface-container transition-colors" href="tel:8295550192" title="Llamar">
+<span class="material-symbols-outlined text-[18px]">call</span>
+</a>
+<button class="h-9 px-2.5 rounded-lg bg-surface-container-low text-on-surface-variant text-label-xs font-label-xs flex items-center gap-1 hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">notes</span>
+<span>Bitácora</span>
+</button>
+</div>
+<button class="h-9 px-3 rounded-lg bg-primary-container text-on-primary font-label-xs text-label-xs font-semibold flex items-center gap-1 active:bg-primary transition-colors" type="button">
+<span>Ver Ficha</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 2: Carlos Manuel Rosario Díaz -->
+<div class="voter-card bg-surface-container-lowest rounded-xl p-3.5 shadow-sm transition-all relative overflow-hidden" data-category="voto-seguro logistica" data-keywords="carlos manuel rosario diaz 027-0045129-8 escuela juan jimenez">
+<div class="absolute top-0 left-0 w-1.5 h-full bg-primary-container"></div>
+<div class="pl-1">
+<div class="flex items-start justify-between gap-2">
+<div class="min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<h2 class="font-headline-sm text-headline-sm text-on-surface truncate">Carlos Manuel Rosario Díaz</h2>
+<span class="font-label-xs text-label-xs bg-tertiary-fixed text-on-tertiary-fixed font-bold px-2 py-0.5 rounded-full flex items-center gap-1 shrink-0">
+<span class="material-symbols-outlined text-[13px] text-tertiary">check_circle</span>
+                Voto Seguro • Nivel 2
+              </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+              Cédula: <strong class="text-on-surface">027-0045129-8</strong> • 48 años
+            </p>
+</div>
+<div class="w-8 h-8 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[18px]">commute</span>
+</div>
+</div>
+<!-- Electoral Details -->
+<div class="mt-2.5 pt-2.5 bg-surface-container-low/70 rounded-lg p-2.5 flex flex-col gap-1.5">
+<div class="flex items-center justify-between text-body-sm">
+<div class="flex items-center gap-1 text-on-surface-variant min-w-0">
+<span class="material-symbols-outlined text-[16px] text-primary shrink-0">school</span>
+<span class="truncate">Escuela Juan Jiménez</span>
+</div>
+<span class="font-label-xs text-label-xs font-semibold px-1.5 py-0.5 rounded bg-surface-container text-on-surface shrink-0">Mesa 0008B (#115)</span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<div class="flex items-center gap-1 text-secondary font-medium">
+<span class="material-symbols-outlined text-[16px] text-secondary">schedule</span>
+<span>Req. Transporte: 10:00 AM</span>
+</div>
+<span class="font-label-xs text-label-xs px-1.5 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-bold">Ruta B-3</span>
+</div>
+</div>
+<!-- Action Row -->
+<div class="mt-3 flex items-center justify-between gap-2">
+<div class="flex items-center gap-2">
+<a class="w-9 h-9 rounded-lg bg-surface-container-low text-primary flex items-center justify-center hover:bg-surface-container transition-colors" href="https://wa.me/18095551298">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+</a>
+<a class="w-9 h-9 rounded-lg bg-surface-container-low text-primary flex items-center justify-center hover:bg-surface-container transition-colors" href="tel:8095551298">
+<span class="material-symbols-outlined text-[18px]">call</span>
+</a>
+</div>
+<button class="h-9 px-3 rounded-lg bg-secondary-container text-on-primary font-label-xs text-label-xs font-bold flex items-center gap-1 active:bg-secondary transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px]">touch_app</span>
+<span>Reconfirmar Voto</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 3: Yessica Altagracia Mota -->
+<div class="voter-card bg-surface-container-lowest rounded-xl p-3.5 shadow-sm transition-all relative overflow-hidden" data-category="voto-seguro" data-keywords="yessica altagracia mota 027-0028491-3 liceo bernardo pichardo lider de manzana">
+<div class="absolute top-0 left-0 w-1.5 h-full bg-secondary"></div>
+<div class="pl-1">
+<div class="flex items-start justify-between gap-2">
+<div class="min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<h2 class="font-headline-sm text-headline-sm text-on-surface truncate">Yessica Altagracia Mota</h2>
+<span class="font-label-xs text-label-xs bg-secondary-fixed text-on-secondary-fixed font-bold px-2 py-0.5 rounded-full flex items-center gap-1 shrink-0">
+<span class="material-symbols-outlined text-[13px] text-secondary">workspace_premium</span>
+                Líder de Manzana
+              </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+              Cédula: <strong class="text-on-surface">027-0028491-3</strong> • 33 años • 5 votos coord.
+            </p>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-container-low text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[18px]">diversity_3</span>
+</div>
+</div>
+<!-- Electoral Details -->
+<div class="mt-2.5 pt-2.5 bg-surface-container-low/70 rounded-lg p-2.5 flex flex-col gap-1.5">
+<div class="flex items-center justify-between text-body-sm">
+<div class="flex items-center gap-1 text-on-surface-variant min-w-0">
+<span class="material-symbols-outlined text-[16px] text-primary shrink-0">school</span>
+<span class="truncate">Liceo Bernardo Pichardo</span>
+</div>
+<span class="font-label-xs text-label-xs font-semibold px-1.5 py-0.5 rounded bg-surface-container text-on-surface shrink-0">Mesa 0012B</span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-primary shrink-0">group_add</span>
+<span>5 familiares asignados</span>
+</div>
+<span class="font-label-xs text-label-xs text-secondary font-bold">100% Revalidados</span>
+</div>
+</div>
+<!-- Action Row -->
+<div class="mt-3 flex items-center justify-between gap-2">
+<div class="flex items-center gap-2">
+<a class="w-9 h-9 rounded-lg bg-surface-container-low text-primary flex items-center justify-center hover:bg-surface-container transition-colors" href="https://wa.me/18295552849">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+</a>
+<a class="w-9 h-9 rounded-lg bg-surface-container-low text-primary flex items-center justify-center hover:bg-surface-container transition-colors" href="tel:8295552849">
+<span class="material-symbols-outlined text-[18px]">call</span>
+</a>
+<button class="h-9 px-2.5 rounded-lg bg-surface-container-low text-on-surface-variant text-label-xs font-label-xs flex items-center gap-1 hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">assignment</span>
+<span>Ver Núcleo</span>
+</button>
+</div>
+<button class="h-9 px-3 rounded-lg bg-primary-container text-on-primary font-label-xs text-label-xs font-semibold flex items-center gap-1 active:bg-primary transition-colors" type="button">
+<span>Ficha</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 4: José Ramón Castillo -->
+<div class="voter-card bg-surface-container-lowest rounded-xl p-3.5 shadow-sm transition-all relative overflow-hidden" data-category="simpatizantes" data-keywords="jose ramon castillo 027-0045129-8 pendiente visita">
+<div class="absolute top-0 left-0 w-1.5 h-full bg-outline-variant"></div>
+<div class="pl-1">
+<div class="flex items-start justify-between gap-2">
+<div class="min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<h2 class="font-headline-sm text-headline-sm text-on-surface truncate">José Ramón Castillo</h2>
+<span class="font-label-xs text-label-xs bg-surface-container-high text-on-surface-variant font-bold px-2 py-0.5 rounded-full flex items-center gap-1 shrink-0">
+<span class="material-symbols-outlined text-[13px] text-outline">hourglass_top</span>
+                En Fidelización • Nivel 1
+              </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+              Cédula: <strong class="text-on-surface">027-0045129-8</strong> • 54 años
+            </p>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-container-low text-on-surface-variant flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[18px]">person_outline</span>
+</div>
+</div>
+<!-- Electoral Details -->
+<div class="mt-2.5 pt-2.5 bg-surface-container-low/70 rounded-lg p-2.5 flex flex-col gap-1.5">
+<div class="flex items-center justify-between text-body-sm">
+<div class="flex items-center gap-1 text-on-surface-variant min-w-0">
+<span class="material-symbols-outlined text-[16px] text-primary shrink-0">pin_drop</span>
+<span class="truncate">Sector Las Malvinas</span>
+</div>
+<span class="font-label-xs text-label-xs font-semibold px-1.5 py-0.5 rounded bg-surface-container text-on-surface shrink-0">Mesa por definir</span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<div class="flex items-center gap-1 text-error font-medium">
+<span class="material-symbols-outlined text-[16px] text-error">assignment_late</span>
+<span>Visita realizada • Req. 2da llamada</span>
+</div>
+<span class="font-label-xs text-label-xs text-on-surface-variant">Ayer</span>
+</div>
+</div>
+<!-- Action Row -->
+<div class="mt-3 flex items-center justify-between gap-2">
+<div class="flex items-center gap-2">
+<a class="w-9 h-9 rounded-lg bg-surface-container-low text-primary flex items-center justify-center hover:bg-surface-container transition-colors" href="https://wa.me/18095554512">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+</a>
+<a class="w-9 h-9 rounded-lg bg-surface-container-low text-primary flex items-center justify-center hover:bg-surface-container transition-colors" href="tel:8095554512">
+<span class="material-symbols-outlined text-[18px]">call</span>
+</a>
+</div>
+<button class="h-9 px-3 rounded-lg bg-primary-container text-on-primary font-label-xs text-label-xs font-semibold flex items-center gap-1 active:bg-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">call_made</span>
+<span>Completar Ficha</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive Quick-Sync Bottom Floating Capsule -->
+<div class="px-space-md mt-space-md mb-2">
+<div class="bg-surface-container-high rounded-xl p-3 flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-2.5 min-w-0">
+<div class="w-8 h-8 rounded-lg bg-secondary-container text-on-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[18px]">campaign</span>
+</div>
+<div class="min-w-0">
+<p class="font-label-xs text-label-xs text-on-surface font-bold truncate">Campaña Día D: Faltan 18 días</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">88% de contactos con WhatsApp activo</p>
+</div>
+</div>
+<button class="shrink-0 px-2.5 py-1 rounded bg-surface-container-lowest text-primary font-label-xs text-label-xs font-bold hover:bg-surface-bright transition-colors shadow-sm" type="button">
+        Sincronizar
+      </button>
+</div>
+</div>
+<!-- Script for Search & Tab Filter Interactivity -->
+<script>
+    (function() {
+      const searchInput = document.getElementById('voterSearchInput');
+      const clearBtn = document.getElementById('clearSearchBtn');
+      const cards = document.querySelectorAll('.voter-card');
+      const tabs = document.querySelectorAll('.filter-tab');
+      let currentFilter = 'all';
+
+      function applyFilterAndSearch() {
+        const query = searchInput.value.toLowerCase().trim();
+        clearBtn.classList.toggle('hidden', query.length === 0);
+
+        cards.forEach(card => {
+          const keywords = card.getAttribute('data-keywords') || '';
+          const category = card.getAttribute('data-category') || '';
+          
+          const matchesCategory = currentFilter === 'all' || category.includes(currentFilter);
+          const matchesSearch = query === '' || keywords.toLowerCase().includes(query);
+
+          if (matchesCategory && matchesSearch) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      }
+
+      searchInput.addEventListener('input', applyFilterAndSearch);
+
+      clearBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        applyFilterAndSearch();
+        searchInput.focus();
+      });
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => {
+            t.classList.remove('bg-primary', 'text-on-primary', 'font-bold', 'shadow-sm');
+            t.classList.add('bg-surface-container-low', 'text-on-surface-variant', 'font-medium');
+          });
+          tab.classList.remove('bg-surface-container-low', 'text-on-surface-variant', 'font-medium');
+          tab.classList.add('bg-primary', 'text-on-primary', 'font-bold', 'shadow-sm');
+
+          currentFilter = tab.getAttribute('data-filter');
+          applyFilterAndSearch();
+        });
+      });
+    })();
+  </script>
+</div></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.05)]" data-active-classes="text-primary-container font-semibold"><div class="grid grid-cols-5 items-center h-16 px-space-xs"><a class="flex flex-col items-center justify-center gap-0.5 h-full text-on-surface-variant hover:text-on-surface transition-colors" data-path="inicio" href="#"><span class="material-symbols-outlined text-[22px]">home</span><span class="font-label-xs text-label-xs tracking-tight">Inicio</span></a><a class="flex flex-col items-center justify-center gap-0.5 h-full text-on-surface-variant hover:text-on-surface transition-colors" data-path="inscripcion" href="#"><span class="material-symbols-outlined text-[22px]">person_add</span><span class="font-label-xs text-label-xs tracking-tight">Inscripción</span></a><a class="flex flex-col items-center justify-center gap-0.5 h-full text-on-surface-variant hover:text-on-surface transition-colors" data-path="mi-recinto" href="#"><span class="material-symbols-outlined text-[22px]">how_to_vote</span><span class="font-label-xs text-label-xs tracking-tight">Recinto</span></a><a class="flex flex-col items-center justify-center gap-0.5 h-full text-on-surface-variant hover:text-on-surface transition-colors" data-path="mi-carpeta" href="#"><span class="material-symbols-outlined text-[22px]">folder_shared</span><span class="font-label-xs text-label-xs tracking-tight">Carpeta</span></a><a aria-current="page" class="flex flex-col items-center justify-center gap-0.5 h-full transition-colors text-primary-container font-semibold" data-path="fidelizados" href="#"><span class="material-symbols-outlined text-[22px]">group</span><span class="font-label-xs text-label-xs tracking-tight">Fidelizados</span></a></div></nav></body></html>

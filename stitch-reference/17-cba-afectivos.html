@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+
+<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-error-container": "#93000a", "tertiary": "#1c3363", "surface-tint": "#2b5bb5", "secondary": "#a04100", "secondary-fixed": "#ffdbcc", "surface-container-lowest": "#ffffff", "primary-fixed": "#d9e2ff", "on-secondary-container": "#5e2300", "on-surface-variant": "#434652", "on-tertiary-fixed-variant": "#304577", "error": "#ba1a1a", "on-primary-container": "#a1bbff", "tertiary-fixed": "#d9e2ff", "inverse-surface": "#2d3133", "on-secondary-fixed-variant": "#7a3000", "primary": "#003178", "on-tertiary-fixed": "#001946", "inverse-on-surface": "#eff1f4", "inverse-primary": "#b0c6ff", "tertiary-fixed-dim": "#b1c6ff", "surface-container-low": "#f2f4f7", "secondary-fixed-dim": "#ffb693", "on-surface": "#191c1e", "on-primary-fixed": "#001945", "surface-container-high": "#e6e8eb", "surface-container": "#eceef1", "on-background": "#191c1e", "outline": "#737783", "on-primary": "#ffffff", "surface": "#f7f9fc", "tertiary-container": "#354a7c", "outline-variant": "#c3c6d4", "on-tertiary-container": "#a6bbf4", "primary-fixed-dim": "#b0c6ff", "surface-dim": "#d8dadd", "on-error": "#ffffff", "on-tertiary": "#ffffff", "background": "#f7f9fc", "surface-bright": "#f7f9fc", "on-secondary": "#ffffff", "error-container": "#ffdad6", "on-secondary-fixed": "#351000", "on-primary-fixed-variant": "#00429c", "surface-container-highest": "#e0e3e6", "surface-variant": "#e0e3e6", "primary-container": "#0d47a1", "secondary-container": "#fd7629" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-md": "1rem", "margin-tablet": "1.5rem", "gutter-tablet": "1.5rem", "gutter-desktop": "1.75rem", "margin-desktop": "2.5rem", "margin": "1rem", "space-xs": "0.25rem", "space-xl": "2rem", "space-lg": "1.5rem", "gutter": "1rem", "space-sm": "0.5rem" }, fontFamily: { "body-md": ["Inter"], "headline-sm": ["Montserrat"], "display-hero": ["Montserrat"], "label-md": ["Inter"], "headline-lg-mobile": ["Montserrat"], "body-lg": ["Inter"], "label-lg": ["Inter"], "label-xs": ["Inter"], "headline-lg": ["Montserrat"], "display-hero-mobile": ["Montserrat"], "slogan-badge": ["Montserrat"], "metric-val": ["Montserrat"], "headline-md": ["Montserrat"], "body-sm": ["Inter"] }, fontSize: { "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "700" }], "display-hero": ["48px", { "lineHeight": "54px", "letterSpacing": "-0.02em", "fontWeight": "900" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }], "headline-lg-mobile": ["24px", { "lineHeight": "30px", "fontWeight": "800" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "500" }], "label-lg": ["14px", { "lineHeight": "18px", "fontWeight": "600" }], "label-xs": ["10px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "800" }], "display-hero-mobile": ["30px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "900" }], "slogan-badge": ["16px", { "lineHeight": "20px", "letterSpacing": "0.04em", "fontWeight": "900" }], "metric-val": ["28px", { "lineHeight": "32px", "fontWeight": "800" }], "headline-md": ["22px", { "lineHeight": "28px", "fontWeight": "700" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-surface/90 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-space-md flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="flex items-center gap-1.5"><div class="w-9 h-9 rounded-xl bg-primary text-on-primary flex items-center justify-center font-headline-sm text-headline-sm font-extrabold tracking-tight">CLB</div><div class="flex flex-col"><div class="flex items-center gap-1"><span class="font-headline-sm text-label-lg font-bold text-primary tracking-tight leading-none">Carmen Ligia</span><div class="flex gap-0.5 items-center pl-1"><span class="w-1.5 h-2.5 bg-primary rounded-full"></span><span class="w-1.5 h-2.5 bg-secondary rounded-full"></span></div></div><span class="font-label-xs text-label-xs font-semibold text-secondary leading-none uppercase tracking-wider">Barceló • Diputada</span></div></div></div><div class="flex items-center gap-space-sm"><div class="flex items-center gap-1.5 px-2 py-1 rounded-full bg-surface-container-low"><span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span></span><span class="font-label-xs text-label-xs font-semibold text-on-surface-variant hidden xs:inline">En Línea</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-16 pb-24 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<!-- Patriotic Ribbon Accent -->
+<div class="flex items-center gap-1 px-space-md pt-2 pb-1">
+<span class="w-4 h-1 bg-primary rounded-full"></span>
+<span class="w-4 h-1 bg-secondary-container rounded-full"></span>
+<span class="font-label-xs text-label-xs font-bold text-on-surface-variant uppercase tracking-widest pl-1">Territorio Hato Mayor</span>
+</div>
+<!-- Hero Territorial Hub -->
+<section class="px-space-md py-space-xs">
+<div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-primary via-primary to-tertiary text-on-primary p-space-md shadow-lg">
+<div class="absolute -right-6 -bottom-6 w-36 h-36 rounded-full bg-secondary-container/15 blur-2xl pointer-events-none"></div>
+<div class="flex items-center justify-between gap-space-sm mb-3">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-lowest/15 backdrop-blur-md">
+<span class="material-symbols-outlined text-secondary-fixed text-[16px]" style="font-variation-settings: 'FILL' 1;">groups</span>
+<span class="font-label-xs text-label-xs font-bold text-surface tracking-wider uppercase">Células Afectivas Activas</span>
+</div>
+<span class="font-label-xs text-label-xs font-semibold px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary">6 CBA</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-extrabold text-surface tracking-tight mb-1">
+        Comités de Base Afectivos
+      </h1>
+<p class="font-body-sm text-body-sm text-primary-fixed-dim font-medium mb-4">
+        Hato Mayor del Rey • Red familiar y vecinal de confianza
+      </p>
+<!-- Progress Card Inset -->
+<div class="rounded-lg bg-surface-container-lowest/10 backdrop-blur-md p-3">
+<div class="flex items-end justify-between mb-1.5">
+<div>
+<span class="font-label-xs text-label-xs text-surface/80 block uppercase tracking-wider font-semibold">Fidelización Electoral</span>
+<span class="font-headline-sm text-headline-sm font-black text-surface">82% <span class="font-body-sm text-body-sm font-normal text-surface/70">Asegurado</span></span>
+</div>
+<div class="text-right">
+<span class="font-label-xs text-label-xs text-secondary-fixed font-bold">Meta: 100% Día D</span>
+<span class="font-body-sm text-body-sm block text-surface/90 font-semibold">48 Electores</span>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="w-full h-2.5 bg-surface-container-lowest/20 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-secondary-container to-secondary-fixed rounded-full" style="width: 82%;"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Compact Operational KPIs -->
+<section class="px-space-md py-space-xs grid grid-cols-2 gap-space-sm">
+<div class="rounded-xl bg-surface-container-lowest p-3 shadow-sm flex flex-col justify-between">
+<div class="flex items-center gap-2 mb-2">
+<div class="w-7 h-7 rounded-lg bg-primary-fixed text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">how_to_vote</span>
+</div>
+<span class="font-label-xs text-label-xs font-bold text-on-surface-variant uppercase">Voto Seguro</span>
+</div>
+<div>
+<div class="font-metric-val text-metric-val text-primary leading-none">39</div>
+<div class="flex items-center justify-between mt-1">
+<span class="font-body-sm text-body-sm font-semibold text-on-surface">81.2% fidelizado</span>
+<span class="material-symbols-outlined text-emerald-600 text-[16px]">verified</span>
+</div>
+</div>
+</div>
+<div class="rounded-xl bg-surface-container-lowest p-3 shadow-sm flex flex-col justify-between">
+<div class="flex items-center gap-2 mb-2">
+<div class="w-7 h-7 rounded-lg bg-secondary-fixed text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+</div>
+<span class="font-label-xs text-label-xs font-bold text-on-surface-variant uppercase">Por Visitar</span>
+</div>
+<div>
+<div class="font-metric-val text-metric-val text-secondary leading-none">09</div>
+<div class="flex items-center justify-between mt-1">
+<span class="font-body-sm text-body-sm font-semibold text-on-surface">2 comités pendientes</span>
+<span class="material-symbols-outlined text-secondary text-[16px]">priority_high</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Quick Actions Panel -->
+<section class="px-space-md py-space-xs flex flex-col gap-2">
+<button class="w-full h-12 bg-secondary-container hover:bg-secondary text-on-secondary rounded-lg font-label-lg text-label-lg font-bold shadow-md flex items-center justify-center gap-2 transition-all active:scale-[0.98]" id="btnCreateCba">
+<span class="material-symbols-outlined text-[20px]">group_add</span>
+<span>+ Crear Nuevo CBA</span>
+</button>
+<div class="grid grid-cols-2 gap-2">
+<button class="h-10 bg-surface-container-low hover:bg-surface-container text-primary rounded-lg font-label-md text-label-md font-semibold flex items-center justify-center gap-1.5 transition-colors">
+<span class="material-symbols-outlined text-[18px]">rule</span>
+<span>Auditar Célula</span>
+</button>
+<button class="h-10 bg-primary hover:bg-primary-container text-on-primary rounded-lg font-label-md text-label-md font-semibold flex items-center justify-center gap-1.5 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">near_me</span>
+<span>Ruta Hoy (3)</span>
+</button>
+</div>
+</section>
+<!-- Filter & Predictive Search Bar -->
+<section class="px-space-md pt-2 pb-space-xs">
+<div class="relative w-full mb-3">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">search</span>
+<input class="w-full h-11 pl-10 pr-9 rounded-lg bg-surface-container-lowest text-on-surface placeholder:text-outline font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest shadow-sm" id="cbaSearchInput" placeholder="Buscar comité, líder de familia o sector..." type="text"/>
+<button class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-outline hover:text-on-surface p-1" id="clearSearchBtn">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+<!-- Segment Horizontal Filter Chips -->
+<div class="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar">
+<button class="filter-chip active flex-shrink-0 px-3.5 py-1.5 rounded-full font-label-xs text-label-xs font-bold transition-all bg-primary text-on-primary" data-status="all">
+        Todos (6)
+      </button>
+<button class="filter-chip flex-shrink-0 px-3.5 py-1.5 rounded-full font-label-xs text-label-xs font-semibold transition-all bg-surface-container-high text-on-surface-variant hover:bg-surface-container" data-status="100">
+        100% Confirmados (3)
+      </button>
+<button class="filter-chip flex-shrink-0 px-3.5 py-1.5 rounded-full font-label-xs text-label-xs font-semibold transition-all bg-surface-container-high text-on-surface-variant hover:bg-surface-container" data-status="process">
+        En Proceso (2)
+      </button>
+<button class="filter-chip flex-shrink-0 px-3.5 py-1.5 rounded-full font-label-xs text-label-xs font-semibold transition-all bg-surface-container-high text-on-surface-variant hover:bg-surface-container" data-status="priority">
+        Prioridad Visita (1)
+      </button>
+</div>
+</section>
+<!-- CBA Cards List -->
+<section class="px-space-md py-space-xs flex flex-col gap-3" id="cbaCardsContainer">
+<!-- Tarjeta 1: Destacado 100% Blindado -->
+<article class="cba-card rounded-xl bg-surface-container-lowest p-space-md shadow-sm transition-all" data-search="peña mota yessica altagracia malvinas bernardo pichardo" data-status="100">
+<!-- Card Header -->
+<div class="flex items-start justify-between gap-2 mb-2.5">
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">CBA-048</span>
+<span class="font-label-md text-label-md font-bold text-primary">• Familia Peña Mota</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Líder: Yessica A. Mota Peña</span>
+</div>
+</div>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-label-xs text-label-xs font-bold whitespace-nowrap">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">shield</span>
+          100% Blindado
+        </span>
+</div>
+<!-- Precinct & Sector Badge -->
+<div class="rounded-lg bg-surface-container-low p-2.5 mb-3 flex flex-col gap-1">
+<div class="flex items-center gap-1.5 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">pin_drop</span>
+<span class="font-semibold text-on-surface">Las Malvinas</span>
+<span>•</span>
+<span class="truncate">Liceo Bernardo Pichardo (Mesa 0041)</span>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-label-xs text-label-xs pt-0.5">
+<span>Cédula Líder: 027-0028491-3</span>
+<span class="font-bold text-emerald-700">8 de 8 Votos Seguros</span>
+</div>
+</div>
+<!-- Micro Tags -->
+<div class="flex flex-wrap gap-1.5 mb-3">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-surface-container text-on-surface-variant font-label-xs text-label-xs font-semibold">
+<span class="material-symbols-outlined text-[13px]">directions_car</span>
+          Transporte Propio
+        </span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-surface-container text-on-surface-variant font-label-xs text-label-xs font-semibold">
+<span class="material-symbols-outlined text-[13px] text-emerald-600">check_circle</span>
+          Reunión Semanal Lista
+        </span>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-2 pt-1">
+<a class="w-10 h-10 rounded-lg bg-surface-container-high hover:bg-surface-container text-primary flex items-center justify-center transition-colors" href="tel:8095550148" title="Llamar Líder">
+<span class="material-symbols-outlined text-[18px]">call</span>
+</a>
+<a class="w-10 h-10 rounded-lg bg-emerald-600 text-white flex items-center justify-center transition-colors shadow-sm" href="https://wa.me/18095550148" title="WhatsApp Grupo">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+</a>
+<button class="flex-1 h-10 bg-primary hover:bg-primary-container text-on-primary rounded-lg font-label-md text-label-md font-bold flex items-center justify-center gap-1 transition-colors">
+<span>Ver Integrantes (8)</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</article>
+<!-- Tarjeta 2: En Proceso (85%) -->
+<article class="cba-card rounded-xl bg-surface-container-lowest p-space-md shadow-sm transition-all" data-search="barceló hm ramon antonio castillo ondina juan jimenez" data-status="process">
+<div class="flex items-start justify-between gap-2 mb-2.5">
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 rounded-full bg-primary-fixed text-primary flex items-center justify-center flex-shrink-0 font-headline-sm font-bold text-headline-sm">
+            012
+          </div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">CBA-012</span>
+<span class="font-label-md text-label-md font-bold text-primary">• Familia Barceló HM</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Líder: Ramón Antonio Castillo</span>
+</div>
+</div>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary-fixed text-primary font-label-xs text-label-xs font-bold whitespace-nowrap">
+          85% Asegurado
+        </span>
+</div>
+<div class="rounded-lg bg-surface-container-low p-2.5 mb-3 flex flex-col gap-1">
+<div class="flex items-center gap-1.5 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">pin_drop</span>
+<span class="font-semibold text-on-surface">Barrio Ondina</span>
+<span>•</span>
+<span class="truncate">Escuela Juan Jiménez (Mesa 0018)</span>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-label-xs text-label-xs pt-0.5">
+<span>Cédula Líder: 027-0019284-8</span>
+<span class="font-bold text-primary">5 Votos Seguros • 1 Simpatizante</span>
+</div>
+</div>
+<!-- Action buttons -->
+<div class="flex items-center gap-2 pt-1">
+<a class="w-10 h-10 rounded-lg bg-surface-container-high hover:bg-surface-container text-primary flex items-center justify-center transition-colors" href="tel:8095550212">
+<span class="material-symbols-outlined text-[18px]">call</span>
+</a>
+<a class="w-10 h-10 rounded-lg bg-emerald-600 text-white flex items-center justify-center transition-colors shadow-sm" href="https://wa.me/18095550212">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+</a>
+<button class="flex-1 h-10 bg-secondary-fixed text-on-secondary-fixed-variant hover:bg-secondary-fixed-dim rounded-lg font-label-md text-label-md font-bold flex items-center justify-center gap-1.5 transition-colors">
+<span class="material-symbols-outlined text-[16px]">sync</span>
+<span>Revalidar Simpatizante</span>
+</button>
+</div>
+</article>
+<!-- Tarjeta 3: Prioridad Visita Requerida -->
+<article class="cba-card rounded-xl bg-surface-container-lowest p-space-md shadow-sm transition-all" data-search="sabana sur deyanira mercedes silvestre sabana de la mar andres bello" data-status="priority">
+<div class="flex items-start justify-between gap-2 mb-2.5">
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed text-secondary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">notifications_active</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">CBA-091</span>
+<span class="font-label-md text-label-md font-bold text-primary">• Núcleo Sabana Sur</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Líder: Deyanira M. Silvestre</span>
+</div>
+</div>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-container font-label-xs text-label-xs font-bold whitespace-nowrap">
+          Visita Requerida
+        </span>
+</div>
+<div class="rounded-lg bg-surface-container-low p-2.5 mb-2.5 flex flex-col gap-1">
+<div class="flex items-center gap-1.5 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">pin_drop</span>
+<span class="font-semibold text-on-surface">Sabana de la Mar</span>
+<span>•</span>
+<span class="truncate">Escuela Andrés Bello</span>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-label-xs text-label-xs pt-0.5">
+<span>Cédula: 027-0056192-0</span>
+<span class="font-bold text-secondary">4 Seguros • 3 Seguimiento</span>
+</div>
+</div>
+<!-- Territorial Urgent Alert Banner -->
+<div class="rounded-lg bg-error-container/40 p-2 mb-3 flex items-start gap-2">
+<span class="material-symbols-outlined text-error text-[18px] mt-0.5 flex-shrink-0">warning</span>
+<p class="font-label-xs text-label-xs text-on-error-container font-semibold leading-tight">
+          Alerta: Pendiente reconfirmar ruta de transporte para el Día D antes del viernes.
+        </p>
+</div>
+<!-- Action buttons -->
+<div class="flex items-center gap-2 pt-1">
+<a class="w-10 h-10 rounded-lg bg-surface-container-high hover:bg-surface-container text-primary flex items-center justify-center transition-colors" href="tel:8095550391">
+<span class="material-symbols-outlined text-[18px]">call</span>
+</a>
+<button class="flex-1 h-10 bg-secondary-container hover:bg-secondary text-on-secondary rounded-lg font-label-md text-label-md font-bold flex items-center justify-center gap-1.5 shadow-sm transition-colors">
+<span class="material-symbols-outlined text-[18px]">fact_check</span>
+<span>Completar Auditoría Familiar</span>
+</button>
+</div>
+</article>
+<!-- Empty State Fallback -->
+<div class="hidden flex-col items-center justify-center py-8 px-space-md text-center rounded-xl bg-surface-container-low" id="cbaEmptyState">
+<div class="w-12 h-12 rounded-full bg-surface-container-high text-outline flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-[26px]">manage_search</span>
+</div>
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">No se encontraron comités</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 max-w-xs">
+        Prueba con otro sector, nombre del líder de familia o restablece los filtros.
+      </p>
+<button class="mt-3 px-4 py-2 rounded-lg bg-primary text-on-primary font-label-md text-label-md font-bold" id="resetSearchBtn">
+        Restablecer Búsqueda
+      </button>
+</div>
+</section>
+<!-- Motivational Campaign Card (Carmen Ligia) -->
+<section class="px-space-md pt-2 pb-space-md">
+<div class="rounded-xl bg-surface-container-lowest p-space-md shadow-sm relative overflow-hidden">
+<div class="flex items-center gap-3 mb-3">
+<div class="relative w-12 h-12 rounded-full overflow-hidden flex-shrink-0 bg-primary-fixed">
+<img class="w-full h-full object-cover" data-alt="Close up warm portrait of Carmen Ligia Barceló, candidate for congress, smiling genuinely in a blue business casual campaign blouse with Dominican flag accents in the sunny Dominican Republic background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAb3rHI11PH9i6iuOIqgeSf1yL-MFQx2OnlzE5mXRzWcDpKzTXS19t_DcSL6goqwjsCA7C4KojlgesW5YNcX9Nt1kKtvOoxPh-xUFFEhoJgz1Qx7UbYCBjKj7PukRa1SqaXwU6fGDBfnUW-WehBh22FqmdSrErj19B9_3i7ajITFpsVeLVhzZ2guMphoKQE8Dr1k_JGbIkmtOK93oQc6q_m5SPTnJVARFdD94ku45w"/>
+</div>
+<div>
+<span class="font-headline-sm text-label-lg font-extrabold text-primary block leading-tight">Carmen Ligia Barceló</span>
+<span class="font-label-xs text-label-xs font-semibold text-secondary uppercase tracking-wider">Compromiso con Hato Mayor</span>
+</div>
+</div>
+<blockquote class="font-body-md text-body-md text-on-surface italic leading-relaxed mb-3">
+        “La fuerza de nuestra victoria nace en el corazón de cada familia de Hato Mayor. Cuidar cada voto de tu comité afectivo es defender nuestro propio futuro.”
+      </blockquote>
+<button class="w-full h-11 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-label-md text-label-md font-bold flex items-center justify-center gap-2 transition-colors shadow-sm" id="btnShareFamilyMsg">
+<span class="material-symbols-outlined text-[18px]">share</span>
+<span>Enviar Mensaje Familiar por WhatsApp</span>
+</button>
+</div>
+</section>
+</div>
+<script>
+  (function() {
+    const searchInput = document.getElementById('cbaSearchInput');
+    const clearBtn = document.getElementById('clearSearchBtn');
+    const resetBtn = document.getElementById('resetSearchBtn');
+    const filterChips = document.querySelectorAll('.filter-chip');
+    const cards = document.querySelectorAll('.cba-card');
+    const emptyState = document.getElementById('cbaEmptyState');
+
+    let currentFilter = 'all';
+    let searchQuery = '';
+
+    function applyFilterAndSearch() {
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const cardStatus = card.getAttribute('data-status');
+        const cardSearchText = card.getAttribute('data-search') || '';
+
+        const matchesFilter = (currentFilter === 'all') || (cardStatus === currentFilter);
+        const matchesSearch = !searchQuery || cardSearchText.toLowerCase().includes(searchQuery.toLowerCase());
+
+        if (matchesFilter && matchesSearch) {
+          card.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      if (visibleCount === 0) {
+        emptyState.classList.remove('hidden');
+        emptyState.classList.add('flex');
+      } else {
+        emptyState.classList.add('hidden');
+        emptyState.classList.remove('flex');
+      }
+    }
+
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value.trim();
+        if (searchQuery.length > 0) {
+          clearBtn.classList.remove('hidden');
+        } else {
+          clearBtn.classList.add('hidden');
+        }
+        applyFilterAndSearch();
+      });
+    }
+
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        searchQuery = '';
+        clearBtn.classList.add('hidden');
+        applyFilterAndSearch();
+        searchInput.focus();
+      });
+    }
+
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        if (searchInput) {
+          searchInput.value = '';
+          searchQuery = '';
+          clearBtn.classList.add('hidden');
+        }
+        currentFilter = 'all';
+        filterChips.forEach(c => {
+          c.classList.remove('bg-primary', 'text-on-primary');
+          c.classList.add('bg-surface-container-high', 'text-on-surface-variant');
+        });
+        const allChip = document.querySelector('[data-status="all"]');
+        if (allChip) {
+          allChip.classList.add('bg-primary', 'text-on-primary');
+          allChip.classList.remove('bg-surface-container-high', 'text-on-surface-variant');
+        }
+        applyFilterAndSearch();
+      });
+    }
+
+    filterChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        filterChips.forEach(c => {
+          c.classList.remove('bg-primary', 'text-on-primary');
+          c.classList.add('bg-surface-container-high', 'text-on-surface-variant');
+        });
+        chip.classList.add('bg-primary', 'text-on-primary');
+        chip.classList.remove('bg-surface-container-high', 'text-on-surface-variant');
+
+        currentFilter = chip.getAttribute('data-status');
+        applyFilterAndSearch();
+      });
+    });
+
+    const shareBtn = document.getElementById('btnShareFamilyMsg');
+    if (shareBtn) {
+      shareBtn.addEventListener('click', () => {
+        const text = encodeURIComponent("¡Hola familia! Seguimos firmes y organizados junto a Carmen Ligia Barceló para asegurar el progreso de Hato Mayor del Rey. ¡Contamos contigo!");
+        window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+      });
+    }
+  })();
+</script></main><nav class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface-container-lowest/95 backdrop-blur-xl shadow-[0_-4px_16px_rgba(7,34,82,0.06)]" data-active-classes="text-secondary-container font-semibold"><div class="flex justify-between items-center h-16 px-space-xs"><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] py-1 text-on-surface-variant hover:text-primary transition-colors" data-path="inicio" href="#"><span class="material-symbols-outlined text-[22px]">home</span><span class="font-label-xs text-label-xs font-medium mt-0.5">Inicio</span></a><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] py-1 text-on-surface-variant hover:text-primary transition-colors" data-path="inscripcion" href="#"><span class="material-symbols-outlined text-[22px]">person_add</span><span class="font-label-xs text-label-xs font-medium mt-0.5">Inscripción</span></a><a aria-current="page" class="flex flex-col items-center justify-center min-w-[60px] min-h-[44px] -mt-3 transition-colors text-secondary-container font-semibold" data-path="cba" href="#"><div class="w-12 h-12 rounded-full bg-secondary-container text-on-secondary shadow-[0_4px_12px_rgba(253,118,41,0.35)] flex items-center justify-center"><span class="material-symbols-outlined text-[24px]">how_to_reg</span></div><span class="font-label-xs text-label-xs font-bold mt-1 text-secondary">CBA</span></a><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] py-1 text-on-surface-variant hover:text-primary transition-colors" data-path="mi-carpeta" href="#"><span class="material-symbols-outlined text-[22px]">folder_shared</span><span class="font-label-xs text-label-xs font-medium mt-0.5">Mi Carpeta</span></a><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] py-1 text-on-surface-variant hover:text-primary transition-colors" data-path="fidelizados" href="#"><span class="material-symbols-outlined text-[22px]">verified</span><span class="font-label-xs text-label-xs font-medium mt-0.5">Fidelizados</span></a></div></nav></body></html>

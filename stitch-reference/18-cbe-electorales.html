@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+
+<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "primary-fixed-dim": "#b0c6ff", "surface-bright": "#f7f9fc", "surface-container-low": "#f2f4f7", "on-primary": "#ffffff", "error-container": "#ffdad6", "inverse-on-surface": "#eff1f4", "primary": "#003178", "outline-variant": "#c3c6d4", "on-tertiary-fixed-variant": "#304577", "surface-container-highest": "#e0e3e6", "on-error": "#ffffff", "on-secondary-fixed-variant": "#7a3000", "on-primary-fixed-variant": "#00429c", "background": "#f7f9fc", "outline": "#737783", "on-secondary-container": "#5e2300", "tertiary-fixed": "#d9e2ff", "surface-variant": "#e0e3e6", "surface-tint": "#2b5bb5", "surface-dim": "#d8dadd", "tertiary-container": "#354a7c", "on-tertiary-container": "#a6bbf4", "error": "#ba1a1a", "secondary-fixed-dim": "#ffb693", "on-error-container": "#93000a", "secondary-container": "#fd7629", "inverse-surface": "#2d3133", "secondary-fixed": "#ffdbcc", "primary-container": "#0d47a1", "on-secondary-fixed": "#351000", "on-background": "#191c1e", "on-tertiary": "#ffffff", "on-primary-fixed": "#001945", "surface-container-lowest": "#ffffff", "tertiary": "#1c3363", "surface-container": "#eceef1", "secondary": "#a04100", "primary-fixed": "#d9e2ff", "surface-container-high": "#e6e8eb", "inverse-primary": "#b0c6ff", "on-primary-container": "#a1bbff", "on-surface-variant": "#434652", "tertiary-fixed-dim": "#b1c6ff", "on-secondary": "#ffffff", "on-tertiary-fixed": "#001946", "surface": "#f7f9fc", "on-surface": "#191c1e" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-md": "1rem", "margin-tablet": "1.5rem", "space-sm": "0.5rem", "space-lg": "1.5rem", "gutter": "1rem", "space-xl": "2rem", "margin-desktop": "2.5rem", "gutter-tablet": "1.5rem", "gutter-desktop": "1.75rem", "space-xs": "0.25rem", "margin": "1rem" }, fontFamily: { "slogan-badge": ["Montserrat"], "body-md": ["Inter"], "headline-lg": ["Montserrat"], "metric-val": ["Montserrat"], "label-lg": ["Inter"], "headline-md": ["Montserrat"], "body-sm": ["Inter"], "label-xs": ["Inter"], "headline-lg-mobile": ["Montserrat"], "label-md": ["Inter"], "display-hero-mobile": ["Montserrat"], "display-hero": ["Montserrat"], "headline-sm": ["Montserrat"], "body-lg": ["Inter"] }, fontSize: { "slogan-badge": ["16px", { lineHeight: "20px", letterSpacing: "0.04em", fontWeight: "900" }], "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }], "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "800" }], "metric-val": ["28px", { lineHeight: "32px", fontWeight: "800" }], "label-lg": ["14px", { lineHeight: "18px", fontWeight: "600" }], "headline-md": ["22px", { lineHeight: "28px", fontWeight: "700" }], "body-sm": ["12px", { lineHeight: "16px", fontWeight: "400" }], "label-xs": ["10px", { lineHeight: "14px", letterSpacing: "0.05em", fontWeight: "700" }], "headline-lg-mobile": ["24px", { lineHeight: "30px", fontWeight: "800" }], "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.02em", fontWeight: "600" }], "display-hero-mobile": ["30px", { lineHeight: "36px", letterSpacing: "-0.01em", fontWeight: "900" }], "display-hero": ["48px", { lineHeight: "54px", letterSpacing: "-0.02em", fontWeight: "900" }], "headline-sm": ["18px", { lineHeight: "24px", fontWeight: "700" }], "body-lg": ["16px", { lineHeight: "24px", fontWeight: "500" }] } } } };</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-background font-body-md text-body-md text-on-surface flex flex-col min-h-screen antialiased"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-space-md flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0 flex-1"><div class="flex items-center justify-center w-10 h-10 rounded-lg bg-primary text-on-primary font-headline-sm text-headline-sm tracking-tight flex-shrink-0">CLB</div><div class="flex flex-col min-w-0"><div class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse flex-shrink-0"></span><span class="font-label-xs text-label-xs uppercase tracking-wider text-outline truncate">Militancia Electoral • CBE</span></div><h1 class="font-headline-sm text-headline-sm text-on-surface truncate leading-tight">Cbe</h1></div></div><div class="flex items-center gap-space-sm flex-shrink-0"><button aria-label="Notificaciones" class="w-11 h-11 flex items-center justify-center rounded-full text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[22px]">notifications</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-16 pb-20 bg-background min-h-screen"><div class="flex flex-col w-full">
+<!-- Ribbon Tricolor Dominicano / PRM Accent -->
+<div class="w-full flex h-1.5 mb-space-sm">
+<div class="flex-1 bg-primary"></div>
+<div class="w-2 bg-surface-container-lowest"></div>
+<div class="flex-1 bg-secondary-container"></div>
+</div>
+<!-- Header de Contexto Territorial y Resumen CBE -->
+<section class="px-space-md mb-space-md">
+<div class="flex items-center justify-between mb-1">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[16px]">how_to_vote</span>
+<span class="font-label-xs text-label-xs uppercase tracking-wider text-primary font-bold">
+          CIRCUNSCRIPCIÓN 01 • HATO MAYOR DEL REY
+        </span>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-xs text-label-xs">
+        12 CBE Asignados
+      </span>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface tracking-tight mb-1">
+      Comités de Base Electorales
+    </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-sm">
+      Estructura orgánica por mesa de votación JCE y defensa del voto formal.
+    </p>
+<!-- Meta de Cobertura y Acreditación -->
+<div class="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm flex flex-col gap-2">
+<div class="flex items-center justify-between text-body-sm font-label-md">
+<span class="flex items-center gap-1.5 text-on-surface">
+<span class="material-symbols-outlined text-secondary-container text-[18px]">verified_user</span>
+          Meta de Cobertura de Mesas
+        </span>
+<span class="text-secondary font-bold">92% Lista</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-2.5 overflow-hidden">
+<div class="bg-secondary-container h-full rounded-full transition-all duration-500" style="width: 91.6%;"></div>
+</div>
+<div class="flex justify-between items-center font-label-xs text-label-xs text-on-surface-variant">
+<span>11 de 12 Mesas Cubiertas</span>
+<span class="text-secondary font-semibold">1 Mesa Crítica</span>
+</div>
+</div>
+</section>
+<!-- Métricas Operativas Clave (Twin Cards) -->
+<section class="px-space-md grid grid-cols-2 gap-space-sm mb-space-md">
+<!-- Card 1: Delegados Listos -->
+<div class="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-2">
+<div class="w-9 h-9 rounded-lg bg-primary-fixed text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">badge</span>
+</div>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-label-xs text-label-xs font-bold">
+          91.6%
+        </span>
+</div>
+<div>
+<div class="font-metric-val text-metric-val text-primary leading-none mb-1">
+          22<span class="text-outline text-base font-normal">/24</span>
+</div>
+<span class="font-label-xs text-label-xs uppercase tracking-wider text-outline font-bold block">
+          Delegados Listos
+        </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[11px] leading-tight block mt-0.5">
+          Titulares y suplentes JCE
+        </span>
+</div>
+</div>
+<!-- Card 2: Voto Duro CBE -->
+<div class="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-2">
+<div class="w-9 h-9 rounded-lg bg-secondary-fixed text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">how_to_reg</span>
+</div>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-xs text-label-xs font-bold">
+          85.3%
+        </span>
+</div>
+<div>
+<div class="font-metric-val text-metric-val text-secondary leading-none mb-1">
+          640
+        </div>
+<span class="font-label-xs text-label-xs uppercase tracking-wider text-outline font-bold block">
+          Voto Duro CBE
+        </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[11px] leading-tight block mt-0.5">
+          Organizados en 12 mesas
+        </span>
+</div>
+</div>
+</section>
+<!-- Acciones Operativas Rápidas -->
+<section class="px-space-md flex flex-col gap-space-xs mb-space-md">
+<!-- Botón Principal -->
+<button class="w-full h-12 bg-secondary-container text-on-primary rounded-xl font-label-lg text-label-lg flex items-center justify-center gap-2 shadow-sm active:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined text-[20px]">group_add</span>
+<span>+ Crear Nuevo Comité CBE</span>
+</button>
+<!-- Fila de Botones Secundarios -->
+<div class="grid grid-cols-2 gap-space-xs">
+<button class="h-11 bg-primary text-on-primary rounded-xl font-label-md text-label-md flex items-center justify-center gap-1.5 shadow-sm active:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>Validar Delegados</span>
+</button>
+<button class="h-11 bg-surface-container-highest text-primary rounded-xl font-label-md text-label-md flex items-center justify-center gap-1.5 shadow-sm active:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined text-[18px]">fact_check</span>
+<span>Simulacro Mesa</span>
+</button>
+</div>
+</section>
+<!-- Buscador y Filtros Segmentados -->
+<section class="px-space-md mb-space-md">
+<!-- Input de Búsqueda -->
+<div class="relative w-full mb-space-sm">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">search</span>
+<input class="w-full h-11 pl-10 pr-4 bg-surface-container-lowest text-on-surface placeholder:text-outline text-body-sm rounded-xl outline-none focus:bg-surface-container-low transition-colors shadow-sm" placeholder="Buscar CBE por código, presidente o mesa..." type="search"/>
+</div>
+<!-- Chips de Filtro Horizontal -->
+<div class="flex items-center gap-2 overflow-x-auto pb-1 -mx-space-md px-space-md" style="-webkit-overflow-scrolling: touch;">
+<button class="px-3 py-1.5 rounded-full bg-primary text-on-primary font-label-xs text-label-xs whitespace-nowrap shadow-sm flex items-center gap-1">
+<span>Todos</span>
+<span class="px-1.5 py-0.2 rounded-full bg-white/20 text-white font-bold">12</span>
+</button>
+<button class="px-3 py-1.5 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-xs text-label-xs whitespace-nowrap shadow-sm hover:text-on-surface flex items-center gap-1">
+<span>Blindados 100%</span>
+<span class="px-1.5 py-0.2 rounded-full bg-surface-container text-on-surface-variant font-bold">9</span>
+</button>
+<button class="px-3 py-1.5 rounded-full bg-surface-container-lowest text-secondary font-label-xs text-label-xs whitespace-nowrap shadow-sm hover:text-on-surface flex items-center gap-1">
+<span>Falta Suplente</span>
+<span class="px-1.5 py-0.2 rounded-full bg-secondary-fixed text-on-secondary-fixed font-bold">2</span>
+</button>
+<button class="px-3 py-1.5 rounded-full bg-surface-container-lowest text-error font-label-xs text-label-xs whitespace-nowrap shadow-sm hover:text-on-surface flex items-center gap-1">
+<span>Por Validar</span>
+<span class="px-1.5 py-0.2 rounded-full bg-error-container text-on-error-container font-bold">1</span>
+</button>
+</div>
+</section>
+<!-- Lista de Comités CBE Asignados -->
+<section class="px-space-md flex flex-col gap-space-sm mb-space-lg">
+<div class="flex items-center justify-between mb-0.5">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Comités en Territorio</h3>
+<span class="font-label-xs text-label-xs text-outline">Actualizado hoy 08:30 AM</span>
+</div>
+<!-- TARJETA 1: Blindada 100% -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+<!-- Encabezado Tarjeta -->
+<div class="flex items-start justify-between gap-2">
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="px-2 py-0.5 rounded bg-primary text-on-primary font-label-xs text-label-xs font-bold">CBE-014</span>
+<span class="font-headline-sm text-headline-sm text-on-surface truncate">Comité Pedro Santana</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+            Preside: <strong class="text-on-surface">Dr. Franklin Mercedes</strong>
+</p>
+<span class="font-label-xs text-label-xs text-outline">Cédula: 027-0019284-3</span>
+</div>
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-emerald-100 text-emerald-800 font-label-xs text-label-xs font-bold flex-shrink-0">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+          100% Blindado
+        </span>
+</div>
+<!-- Recinto y Mesa Context -->
+<div class="bg-surface-container-low p-2.5 rounded-lg flex flex-col gap-1.5 text-body-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">school</span>
+<span class="font-label-md text-label-md text-on-surface truncate">Liceo Bernardo Pichardo</span>
+</div>
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant font-label-xs">
+<span>Mesa JCE: <strong class="text-on-surface">0012A</strong></span>
+<span>Padrón Mesa: <strong class="text-on-surface">450 electores</strong></span>
+</div>
+</div>
+<!-- Delegados Acreditados -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between font-label-xs text-label-xs text-outline">
+<span class="uppercase">Delegados Electorales JCE</span>
+<span class="text-emerald-700 font-semibold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">verified</span> Credenciales listas
+          </span>
+</div>
+<div class="grid grid-cols-2 gap-2 text-body-sm">
+<div class="p-2 rounded bg-surface-container-low flex flex-col">
+<span class="font-label-xs text-label-xs text-outline">Titular</span>
+<span class="font-label-md text-label-md text-on-surface truncate">Marcos Peña</span>
+</div>
+<div class="p-2 rounded bg-surface-container-low flex flex-col">
+<span class="font-label-xs text-label-xs text-outline">Suplente</span>
+<span class="font-label-md text-label-md text-on-surface truncate">Rosa Gómez</span>
+</div>
+</div>
+</div>
+<!-- Barra de Cumplimiento Voto Duro -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between font-label-xs text-label-xs">
+<span class="text-on-surface-variant">Voto Comprometido CBE:</span>
+<span class="text-primary font-bold">58 / 60 electores (96%)</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 96.6%;"></div>
+</div>
+</div>
+<!-- Botones de Acción -->
+<div class="flex items-center gap-2 pt-1">
+<a aria-label="Llamar Presidente" class="w-10 h-10 rounded-lg bg-surface-container-high text-primary flex items-center justify-center flex-shrink-0 active:scale-95 transition-transform" href="tel:8290019284">
+<span class="material-symbols-outlined text-[20px]">call</span>
+</a>
+<a aria-label="WhatsApp Presidente" class="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center flex-shrink-0 active:scale-95 transition-transform" href="https://wa.me/18290019284">
+<span class="material-symbols-outlined text-[20px]">chat</span>
+</a>
+<button class="flex-1 h-10 bg-primary-fixed text-on-primary-fixed rounded-lg font-label-md text-label-md flex items-center justify-center gap-1 active:scale-[0.98] transition-transform">
+<span>Ver Directiva (6)</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- TARJETA 2: Alerta - Falta Suplente -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm border-l-4 border-l-secondary-container">
+<!-- Encabezado Tarjeta -->
+<div class="flex items-start justify-between gap-2">
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="px-2 py-0.5 rounded bg-secondary-container text-on-primary font-label-xs text-label-xs font-bold">CBE-028</span>
+<span class="font-headline-sm text-headline-sm text-on-surface truncate">Comité Gregorio Luperón</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+            Preside: <strong class="text-on-surface">Lic. Mariana Sosa</strong>
+</p>
+<span class="font-label-xs text-label-xs text-outline">Cédula: 027-0044512-4</span>
+</div>
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-xs text-label-xs font-bold flex-shrink-0">
+<span class="material-symbols-outlined text-[13px]">warning</span>
+          Falta Suplente
+        </span>
+</div>
+<!-- Recinto y Mesa Context -->
+<div class="bg-surface-container-low p-2.5 rounded-lg flex flex-col gap-1.5 text-body-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">account_balance</span>
+<span class="font-label-md text-label-md text-on-surface truncate">Escuela Juan Jiménez</span>
+</div>
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant font-label-xs">
+<span>Mesa JCE: <strong class="text-on-surface">0018</strong></span>
+<span>Padrón Mesa: <strong class="text-on-surface">512 electores</strong></span>
+</div>
+</div>
+<!-- Delegados Electorales con Alerta en Suplente -->
+<div class="flex flex-col gap-1">
+<span class="font-label-xs text-label-xs text-outline uppercase">Delegados Electorales JCE</span>
+<div class="grid grid-cols-2 gap-2 text-body-sm">
+<div class="p-2 rounded bg-surface-container-low flex flex-col">
+<span class="font-label-xs text-label-xs text-outline">Titular</span>
+<span class="font-label-md text-label-md text-on-surface truncate">Yomaly Santana</span>
+</div>
+<div class="p-2 rounded bg-error-container text-on-error-container flex flex-col">
+<span class="font-label-xs text-label-xs text-error font-bold">Suplente</span>
+<span class="font-label-md text-label-md text-error truncate font-bold">Sin Designar</span>
+</div>
+</div>
+</div>
+<!-- Callout suave de urgencia electoral -->
+<div class="p-2 rounded-lg bg-secondary-fixed/50 text-on-secondary-fixed flex items-start gap-2 text-body-sm">
+<span class="material-symbols-outlined text-secondary text-[18px] flex-shrink-0 mt-0.5">schedule</span>
+<span class="text-[12px] leading-tight font-medium">
+          Pendiente acreditar suplente de mesa para cierre del padrón JCE este viernes.
+        </span>
+</div>
+<!-- Botones de Acción Crítica -->
+<div class="flex items-center gap-2 pt-1">
+<a aria-label="Llamar Presidenta" class="w-10 h-10 rounded-lg bg-surface-container-high text-primary flex items-center justify-center flex-shrink-0 active:scale-95 transition-transform" href="tel:8290044512">
+<span class="material-symbols-outlined text-[20px]">call</span>
+</a>
+<a aria-label="WhatsApp Presidenta" class="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center flex-shrink-0 active:scale-95 transition-transform" href="https://wa.me/18290044512">
+<span class="material-symbols-outlined text-[20px]">chat</span>
+</a>
+<button class="flex-1 h-10 bg-secondary-container text-on-primary rounded-lg font-label-md text-label-md flex items-center justify-center gap-1 active:scale-[0.98] transition-transform shadow-sm">
+<span class="material-symbols-outlined text-[18px]">person_add</span>
+<span>Asignar Suplente</span>
+</button>
+</div>
+</div>
+<!-- TARJETA 3: Blindada 100% -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+<!-- Encabezado Tarjeta -->
+<div class="flex items-start justify-between gap-2">
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="px-2 py-0.5 rounded bg-primary text-on-primary font-label-xs text-label-xs font-bold">CBE-042</span>
+<span class="font-headline-sm text-headline-sm text-on-surface truncate">Comité Duarte Centro</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+            Preside: <strong class="text-on-surface">Edwin Rodríguez Peña</strong>
+</p>
+<span class="font-label-xs text-label-xs text-outline">Cédula: 027-0056192-0</span>
+</div>
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-emerald-100 text-emerald-800 font-label-xs text-label-xs font-bold flex-shrink-0">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+          100% Blindado
+        </span>
+</div>
+<!-- Recinto y Mesa Context -->
+<div class="bg-surface-container-low p-2.5 rounded-lg flex flex-col gap-1.5 text-body-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">location_on</span>
+<span class="font-label-md text-label-md text-on-surface truncate">Escuela Andrés Bello</span>
+</div>
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant font-label-xs">
+<span>Mesa JCE: <strong class="text-on-surface">0005</strong></span>
+<span>Padrón Mesa: <strong class="text-on-surface">390 electores</strong></span>
+</div>
+</div>
+<!-- Delegados Acreditados -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between font-label-xs text-label-xs text-outline">
+<span class="uppercase">Delegados Electorales JCE</span>
+<span class="text-emerald-700 font-semibold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">verified</span> Credenciales listas
+          </span>
+</div>
+<div class="grid grid-cols-2 gap-2 text-body-sm">
+<div class="p-2 rounded bg-surface-container-low flex flex-col">
+<span class="font-label-xs text-label-xs text-outline">Titular</span>
+<span class="font-label-md text-label-md text-on-surface truncate">Carlos Rijo</span>
+</div>
+<div class="p-2 rounded bg-surface-container-low flex flex-col">
+<span class="font-label-xs text-label-xs text-outline">Suplente</span>
+<span class="font-label-md text-label-md text-on-surface truncate">Elena Peguero</span>
+</div>
+</div>
+</div>
+<!-- Barra de Cumplimiento Voto Duro -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between font-label-xs text-label-xs">
+<span class="text-on-surface-variant">Voto Comprometido CBE:</span>
+<span class="text-emerald-700 font-bold">52 / 50 electores (104%) ⭐</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-emerald-600 h-full rounded-full" style="width: 100%;"></div>
+</div>
+</div>
+<!-- Botones de Acción -->
+<div class="flex items-center gap-2 pt-1">
+<a aria-label="Llamar Presidente" class="w-10 h-10 rounded-lg bg-surface-container-high text-primary flex items-center justify-center flex-shrink-0 active:scale-95 transition-transform" href="tel:8290056192">
+<span class="material-symbols-outlined text-[20px]">call</span>
+</a>
+<a aria-label="WhatsApp Presidente" class="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center flex-shrink-0 active:scale-95 transition-transform" href="https://wa.me/18290056192">
+<span class="material-symbols-outlined text-[20px]">chat</span>
+</a>
+<button class="flex-1 h-10 bg-primary-fixed text-on-primary-fixed rounded-lg font-label-md text-label-md flex items-center justify-center gap-1 active:scale-[0.98] transition-transform">
+<span>Ver Directiva (6)</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Banner Operativo de Capacitación Electoral y Movilización -->
+<section class="px-space-md pb-space-lg">
+<div class="bg-gradient-to-br from-tertiary via-primary-container to-primary text-on-primary rounded-xl p-space-md shadow-md flex flex-col gap-space-sm relative overflow-hidden">
+<!-- Decoración de fondo -->
+<div class="absolute -right-6 -bottom-6 w-32 h-32 rounded-full bg-white/5 pointer-events-none"></div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-primary font-label-xs text-label-xs font-bold uppercase">
+          Taller Presencial
+        </span>
+<span class="font-label-xs text-label-xs text-on-primary/80">Sábado • 10:00 AM</span>
+</div>
+<div class="flex flex-col gap-1">
+<h4 class="font-headline-sm text-headline-sm text-on-primary leading-tight">
+          Acreditación & Defensa del Voto JCE
+        </h4>
+<p class="font-body-sm text-body-sm text-on-primary/85 leading-snug">
+          Local Municipal PRM, Hato Mayor del Rey. Revisión de actas, impugnaciones y entrega oficial de credenciales.
+        </p>
+</div>
+<div class="p-2.5 rounded-lg bg-white/10 backdrop-blur-sm border border-white/10 flex items-center gap-2">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-primary-fixed flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Retrato profesional de Carmen Ligia Barcelo sonriendo con blusa blanca y lentes, candidata a diputada de Hato Mayor por el PRM con iluminacion calida institucional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2QNL9jZhcyKSjFoNjCbafWAjqV0cW59rRwk5pm2DyeMyoEzDNCwYVqlMmO5UzqW_SCcl5vWvjr69VVpWSTTKu26EjsK22WoA4jMM6vrEZB_H1LV5UKlWpqq1CJuFfSXrMGAOmLjUnxqIQ2cY5VqZlYH0W0Mpvhc2VIv1boWroL4FX12L6k1npZBsnFm-7iEjwUBgQ_ba4e1-ZM6aVrhzaBuHOVa_Zc2xSTAF34NI"/>
+</div>
+<p class="font-body-sm text-body-sm italic text-on-primary/95 text-[11px] leading-tight">
+          "Nuestros delegados son los guardianes de la voluntad popular." — <span class="font-bold">Carmen Ligia Barceló</span>
+</p>
+</div>
+<a class="w-full h-11 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg font-label-md text-label-md flex items-center justify-center gap-2 shadow transition-colors active:scale-[0.98]" href="https://wa.me/18095532024?text=Hola,%20confirmo%20mi%20asistencia%20al%20Taller%20de%20Delegados%20CBE" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[20px]">chat</span>
+<span>Confirmar Asistencia por WhatsApp</span>
+</a>
+</div>
+</section>
+</div></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.05)]" data-active-classes="text-secondary font-semibold"><div class="flex items-center justify-around h-16 px-space-xs"><a class="flex flex-col items-center justify-center flex-1 h-full min-w-[44px] gap-1 text-on-surface-variant hover:text-on-surface transition-colors" data-path="inicio" href="#"><span class="material-symbols-outlined text-[22px]">home</span><span class="font-label-xs text-label-xs">Inicio</span></a><a class="flex flex-col items-center justify-center flex-1 h-full min-w-[44px] gap-1 text-on-surface-variant hover:text-on-surface transition-colors" data-path="inscripcion" href="#"><span class="material-symbols-outlined text-[22px]">how_to_reg</span><span class="font-label-xs text-label-xs">Inscripción</span></a><a class="flex flex-col items-center justify-center flex-1 h-full min-w-[44px] gap-1 text-on-surface-variant hover:text-on-surface transition-colors" data-path="recinto" href="#"><span class="material-symbols-outlined text-[22px]">location_city</span><span class="font-label-xs text-label-xs">Recinto</span></a><a aria-current="page" class="flex flex-col items-center justify-center flex-1 h-full min-w-[44px] gap-1 transition-colors text-secondary font-semibold" data-path="cbe" href="#"><span class="material-symbols-outlined text-[22px]">groups_2</span><span class="font-label-xs text-label-xs">CBE</span></a><a class="flex flex-col items-center justify-center flex-1 h-full min-w-[44px] gap-1 text-on-surface-variant hover:text-on-surface transition-colors" data-path="mi-carpeta" href="#"><span class="material-symbols-outlined text-[22px]">folder_shared</span><span class="font-label-xs text-label-xs">Mi Carpeta</span></a></div></nav></body></html>
