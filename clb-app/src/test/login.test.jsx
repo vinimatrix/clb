@@ -57,7 +57,7 @@ describe('Login (Paso 8)', () => {
     avanza(6000)
     expect(screen.getByTestId('page-dashboard')).toBeInTheDocument()
     expect(load('clb.session', null).username).toBe('clbarcelo2026')
-    expect(load('clb.session', null).role).toBe('Miembro')
+    expect(load('clb.session', null).role).toBe('dirigente')
   })
 
   it('"O regístrate" → Crear una cuenta navega a /registro', () => {
@@ -70,7 +70,7 @@ describe('Login (Paso 8)', () => {
   it('con sesión previa, /login redirige a /app', () => {
     const seed = buildSeed()
     save('clb.users', seed.users)
-    save('clb.session', { cedula: '402-1234567-8', username: 'clbarcelo2026', role: 'Miembro', nombres: 'Juan', apellidos: 'Pérez' })
+    save('clb.session', { cedula: '402-1234567-8', username: 'clbarcelo2026', role: 'dirigente', nombres: 'Juan', apellidos: 'Pérez' })
     render(<AppRouter initialEntries={['/login']} />)
     expect(screen.getByTestId('page-dashboard')).toBeInTheDocument()
   })

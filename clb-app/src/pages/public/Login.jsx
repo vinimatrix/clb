@@ -174,7 +174,7 @@ export default function Login() {
                 <span className="material-symbols-outlined text-[14px]">lightbulb</span>
                 <span>
                   Demo:{' '}
-                  <span data-testid="demo-ced">402-1234567-8</span> / <span>ClbSegura2026@</span>
+                  <span data-testid="demo-ced">402-1234567-8</span> / <span>ClbSegura2026@</span> / <span>Rol: Dirigente</span>
                 </span>
               </p>
             </div>
