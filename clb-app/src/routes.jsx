@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import { useAppState } from './store/AppContext.jsx'
 import Portada from './pages/public/Portada.jsx'
 import Unirme from './pages/public/Unirme.jsx'
@@ -14,12 +14,30 @@ import Dashboard from './pages/app/Dashboard.jsx'
 import MiRecinto from './pages/app/MiRecinto.jsx'
 import Padron from './pages/app/Padron.jsx'
 import Inscripcion from './pages/app/Inscripcion.jsx'
+import MiCarpeta from './pages/app/MiCarpeta.jsx'
+import Perfil from './pages/app/Perfil.jsx'
+import Mas from './pages/app/Mas.jsx'
 import Placeholder from './pages/Placeholder.jsx'
+
+/**
+ * Permite saltar el guard una vez: lo usa la salida de sesión deliberada
+ * (Perfil) para que el guard rancio no reemplace la navegación a '/' por /login.
+ */
+let saltoGuardPendiente = false
+export function saltarGuardUnaVez() {
+  saltoGuardPendiente = true
+}
 
 /** Guarda: las rutas /app/* exigen sesión activa. */
 function RequireAuth({ children }) {
   const { session } = useAppState()
-  if (!session) return <Navigate to="/login" replace />
+  if (!session) {
+    if (saltoGuardPendiente) {
+      saltoGuardPendiente = false
+      return children
+    }
+    return <Navigate to="/login" replace />
+  }
   return children
 }
 
@@ -39,17 +57,17 @@ export function Rutas() {
       <Route path="/validando" element={<Validando />} />
       {/* App (protegidas, con layout compartido) */}
       <Route element={<RequireAuth><AppLayout /></RequireAuth>}>
-        <Route path="/app" element={<Dashboard />} />
-        <Route path="/app/recinto" element={<MiRecinto />} />
-        <Route path="/app/padron" element={<Padron />} />
-        <Route path="/app/inscripcion" element={<Inscripcion />} />
-        <Route path="/app/carpeta" element={<Placeholder testId="page-carpeta" nombre="Mi Carpeta" />} />
         <Route path="/app/fidelizados" element={<Placeholder testId="page-fidelizados" nombre="Fidelizados" />} />
         <Route path="/app/cba" element={<Placeholder testId="page-cba" nombre="CBA" />} />
         <Route path="/app/cbe" element={<Placeholder testId="page-cbe" nombre="CBE" />} />
         <Route path="/app/callcenter" element={<Placeholder testId="page-callcenter" nombre="Call Center" />} />
-        <Route path="/app/perfil" element={<Placeholder testId="page-perfil" nombre="Perfil" />} />
-        <Route path="/app/mas" element={<Placeholder testId="page-mas" nombre="Más" />} />
+        <Route path="/app" element={<Dashboard />} />
+        <Route path="/app/recinto" element={<MiRecinto />} />
+        <Route path="/app/padron" element={<Padron />} />
+        <Route path="/app/inscripcion" element={<Inscripcion />} />
+        <Route path="/app/carpeta" element={<MiCarpeta />} />
+        <Route path="/app/perfil" element={<Perfil />} />
+        <Route path="/app/mas" element={<Mas />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
