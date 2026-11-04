@@ -21,6 +21,7 @@ function initialState() {
     llamadas: load('clb.llamadas', seed.llamadas),
     incidencias: load('clb.incidencias', seed.incidencias),
     recinto: load('clb.recinto', seed.recinto),
+    permisos: load('clb.permisos', seed.permisos),
   }
 }
 

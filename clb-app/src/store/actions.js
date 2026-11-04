@@ -20,6 +20,7 @@ const SLICE_KEYS = {
   llamadas: 'clb.llamadas',
   incidencias: 'clb.incidencias',
   recinto: 'clb.recinto',
+  permisos: 'clb.permisos',
 }
 
 const passwordOk = (pw) =>
@@ -297,6 +298,20 @@ export function createStoreLogic(initialState, persist = true) {
     resetDemo() {
       const seed = buildSeed()
       commit({ ...seed, users: state.users, session: null, registro: null, otp: null })
+    },
+
+    // ——— Permisos y Roles ———
+    actualizarPermiso(rol, modulo, valor) {
+      const permisos = {
+        ...state.permisos,
+        [rol]: { ...state.permisos[rol], [modulo]: valor },
+      }
+      commit({ ...state, permisos })
+    },
+
+    tienePermiso(modulo) {
+      const role = state.session?.role ?? 'dirigente'
+      return state.permisos?.[role]?.[modulo] ?? false
     },
   }
 
