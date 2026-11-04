@@ -20,6 +20,7 @@ import Cba from './pages/app/Cba.jsx'
 import Cbe from './pages/app/Cbe.jsx'
 import Perfil from './pages/app/Perfil.jsx'
 import Mas from './pages/app/Mas.jsx'
+import CallCenter from './pages/app/CallCenter.jsx'
 import Placeholder from './pages/Placeholder.jsx'
 
 /**
@@ -63,7 +64,7 @@ export function Rutas() {
         <Route path="/app/fidelizados" element={<Fidelizados />} />
         <Route path="/app/cba" element={<Cba />} />
         <Route path="/app/cbe" element={<Cbe />} />
-        <Route path="/app/callcenter" element={<Placeholder testId="page-callcenter" nombre="Call Center" />} />
+        <Route path="/app/callcenter" element={<CallCenter />} />
         <Route path="/app" element={<Dashboard />} />
         <Route path="/app/recinto" element={<MiRecinto />} />
         <Route path="/app/padron" element={<Padron />} />
