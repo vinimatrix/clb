@@ -314,7 +314,8 @@ export function createStoreLogic(initialState, persist = true) {
 
     tienePermiso(modulo, roleOverride) {
       const role = roleOverride ?? state.session?.role ?? 'dirigente'
-      const mappedRole = role === 'Miembro' ? 'dirigente' : role
+      const normalizedRole = role.toLowerCase()
+      const mappedRole = normalizedRole === 'miembro' ? 'dirigente' : normalizedRole
       return state.permisos?.[mappedRole]?.[modulo] ?? false
     },
   }

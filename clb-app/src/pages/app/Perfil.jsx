@@ -1,3 +1,4 @@
+import { flushSync } from 'react-dom'
 import { useNavigate } from 'react-router-dom'
 import { Avatar } from '../../components/index.js'
 import { iniciales, maskCedula } from '../../lib/format.js'
@@ -20,11 +21,13 @@ export default function Perfil() {
   const totalTareas = electores.filter((e) => e.asignadoA === session.username).length
 
   function cerrarSesion() {
-    // Logout primero, luego navegar con pequeño delay para que el guard
-    // procese la sesión null y el flag saltoGuardUnaVez() antes de la transición.
+    // flushSync: fuerza la actualización síncrona del estado (logout)
+    // antes de navegar, para que el guard procese session=null
     saltarGuardUnaVez()
-    logout()
-    setTimeout(() => navigate('/', { replace: true }), 0)
+    flushSync(() => {
+      logout()
+    })
+    navigate('/', { replace: true })
   }
 
   function restablecer() {

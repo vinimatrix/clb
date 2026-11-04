@@ -6,8 +6,9 @@ describe('buildSeed', () => {
   const seed = buildSeed()
 
   it('siembra la cuenta demo con hash de contraseña', () => {
-    expect(seed.users).toHaveLength(1)
-    const demo = seed.users[0]
+    expect(seed.users).toHaveLength(2)
+    const demo = seed.users.find(u => u.username === 'clbarcelo2026')
+    expect(demo).toBeTruthy()
     expect(demo.cedula).toBe('402-1234567-8')
     expect(demo.username).toBe('clbarcelo2026')
     expect(verifyPassword('ClbSegura2026@', demo.passwordHash)).toBe(true)
