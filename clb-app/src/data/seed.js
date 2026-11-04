@@ -225,11 +225,13 @@ export function buildSeed() {
   ]
   const codigosCbe = ['003', '007', '015', '021', '026', '030', '034', '041', '051']
   codigosCbe.forEach((cod, i) => {
+    // Distribución del mock: 9 blindados / 2 falta-suplente / 1 por validar (12 en total).
+    const estado = i === 1 ? 'falta-suplente' : i === 2 ? 'por-validar' : 'blindado'
     comites.push(
       cbe(4 + i, cod, `Comité ${SECTORES[(i + 2) % SECTORES.length]}`, `Pres. ${NOMBRES[(i + 13) % NOMBRES.length]} ${APELLIDOS[(i + 5) % APELLIDOS.length]}`,
         cedulaUnica(70 + i), Object.values(RECINTOS)[i % 6], MESAS[(i + 3) % MESAS.length],
-        380 + i * 15, `Del. ${APELLIDOS[(i + 2) % APELLIDOS.length]}`, `Sup. ${NOMBRES[(i + 8) % NOMBRES.length]}`,
-        'blindado', { actual: 40 + i, meta: 45 + i }),
+        380 + i * 15, `Del. ${APELLIDOS[(i + 2) % APELLIDOS.length]}`, i === 1 ? 'Sin Designar' : `Sup. ${NOMBRES[(i + 8) % NOMBRES.length]}`,
+        estado, { actual: 40 + i, meta: 45 + i }),
     )
   })
 

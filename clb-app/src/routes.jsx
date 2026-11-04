@@ -15,6 +15,9 @@ import MiRecinto from './pages/app/MiRecinto.jsx'
 import Padron from './pages/app/Padron.jsx'
 import Inscripcion from './pages/app/Inscripcion.jsx'
 import MiCarpeta from './pages/app/MiCarpeta.jsx'
+import Fidelizados from './pages/app/Fidelizados.jsx'
+import Cba from './pages/app/Cba.jsx'
+import Cbe from './pages/app/Cbe.jsx'
 import Perfil from './pages/app/Perfil.jsx'
 import Mas from './pages/app/Mas.jsx'
 import Placeholder from './pages/Placeholder.jsx'
@@ -57,9 +60,9 @@ export function Rutas() {
       <Route path="/validando" element={<Validando />} />
       {/* App (protegidas, con layout compartido) */}
       <Route element={<RequireAuth><AppLayout /></RequireAuth>}>
-        <Route path="/app/fidelizados" element={<Placeholder testId="page-fidelizados" nombre="Fidelizados" />} />
-        <Route path="/app/cba" element={<Placeholder testId="page-cba" nombre="CBA" />} />
-        <Route path="/app/cbe" element={<Placeholder testId="page-cbe" nombre="CBE" />} />
+        <Route path="/app/fidelizados" element={<Fidelizados />} />
+        <Route path="/app/cba" element={<Cba />} />
+        <Route path="/app/cbe" element={<Cbe />} />
         <Route path="/app/callcenter" element={<Placeholder testId="page-callcenter" nombre="Call Center" />} />
         <Route path="/app" element={<Dashboard />} />
         <Route path="/app/recinto" element={<MiRecinto />} />
