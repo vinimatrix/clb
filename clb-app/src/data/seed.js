@@ -312,5 +312,13 @@ export function buildSeed() {
         { id: 'c3', nombre: 'José David Mercedes', motivo: 'confirmar', detalle: 'Simpatizante • Sector Las Malvinas', recinto: 'Mesa 0014' },
       ],
     },
+    roles: [
+      { id: 'coordinador', nombre: 'Coordinador', descripcion: 'Acceso a inscripción y panel de administración' },
+      { id: 'dirigente', nombre: 'Dirigente', descripcion: 'Acceso a inscripción, mi recinto, mi carpeta' },
+    ],
+    permisos: {
+      coordinador: { inscripcion: true, miRecinto: false, miCarpeta: false, cba: false, cbe: false },
+      dirigente: { inscripcion: true, miRecinto: true, miCarpeta: true, cba: false, cbe: false },
+    },
   }
 }

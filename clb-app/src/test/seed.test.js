@@ -92,4 +92,14 @@ describe('buildSeed', () => {
   it('es serializable a JSON', () => {
     expect(() => JSON.parse(JSON.stringify(seed))).not.toThrow()
   })
+
+  it('siembra roles y permisos por defecto', () => {
+    expect(seed.roles).toHaveLength(2)
+    expect(seed.roles.map(r => r.id)).toEqual(['coordinador', 'dirigente'])
+    expect(seed.permisos.coordinador.inscripcion).toBe(true)
+    expect(seed.permisos.dirigente.miRecinto).toBe(true)
+    expect(seed.permisos.dirigente.miCarpeta).toBe(true)
+    expect(seed.permisos.dirigente.cba).toBe(false)
+    expect(seed.permisos.dirigente.cbe).toBe(false)
+  })
 })
