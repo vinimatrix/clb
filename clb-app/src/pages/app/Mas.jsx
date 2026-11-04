@@ -55,6 +55,24 @@ export default function Mas() {
         ))}
       </section>
 
+      {/* Tarjeta de Administración - solo visible para Coordinador */}
+      {tienePermiso('admin') && (
+        <button
+          type="button"
+          onClick={() => navigate('/app/admin')}
+          className="flex flex-col items-start gap-2 rounded-xl bg-white p-4 text-left shadow-card transition-transform active:scale-[0.98] hover:bg-slate-50"
+        >
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-clb-orangeLight text-clb-orange">
+            <span className="material-symbols-outlined text-[20px]">admin_panel_settings</span>
+          </div>
+          <div className="flex flex-col">
+            <span className="text-sm font-bold text-clb-ink">Administración</span>
+            <span className="text-[11px] leading-tight text-slate-600">Panel de permisos por rol</span>
+          </div>
+          <span className="material-symbols-outlined mt-auto self-end text-[18px] text-slate-400">chevron_right</span>
+        </button>
+      )}
+
       <button
         type="button"
         onClick={() => navigate('/app/perfil')}

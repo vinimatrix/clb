@@ -317,8 +317,8 @@ export function buildSeed() {
       { id: 'dirigente', nombre: 'Dirigente', descripcion: 'Acceso a inscripción, mi recinto, mi carpeta' },
     ],
     permisos: {
-      coordinador: { inscripcion: true, miRecinto: false, miCarpeta: false, cba: false, cbe: false, callcenter: false },
-      dirigente: { inscripcion: true, miRecinto: true, miCarpeta: true, cba: false, cbe: false, callcenter: true },
+      coordinador: { inscripcion: true, miRecinto: false, miCarpeta: false, cba: false, cbe: false, callcenter: false, admin: true },
+      dirigente: { inscripcion: true, miRecinto: true, miCarpeta: true, cba: false, cbe: false, callcenter: true, admin: false },
     },
   }
 }
