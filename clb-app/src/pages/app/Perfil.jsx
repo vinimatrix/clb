@@ -20,10 +20,11 @@ export default function Perfil() {
   const totalTareas = electores.filter((e) => e.asignadoA === session.username).length
 
   function cerrarSesion() {
-    // La salida es deliberada: el guard no debe rellenar /login por nosotros.
+    // Logout primero, luego navegar con pequeño delay para que el guard
+    // procese la sesión null y el flag saltoGuardUnaVez() antes de la transición.
     saltarGuardUnaVez()
-    navigate('/', { replace: true })
     logout()
+    setTimeout(() => navigate('/', { replace: true }), 0)
   }
 
   function restablecer() {

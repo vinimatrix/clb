@@ -1,0 +1,18 @@
+import { chromium } from 'playwright'
+
+const browser = await chromium.launch()
+const page = await (await browser.newContext({ viewport: { width: 440, height: 930 } })).newPage()
+await page.goto('http://localhost:5173/login', { waitUntil: 'networkidle' })
+await page.getByLabel(/cédula de identidad/i).fill('402-1234567-8')
+await page.locator('input[type="password"]').first().fill('ClbSegura2026@')
+await page.getByRole('button', { name: /Iniciar sesión/i }).click()
+await page.getByTestId('page-dashboard').waitFor({ timeout: 20000 })
+await page.goto('http://localhost:5173/app/perfil', { waitUntil: 'networkidle' })
+await page.getByTestId('page-perfil').waitFor()
+console.log('En perfil, URL:', page.url())
+await page.getByRole('button', { name: /Cerrar sesión/ }).click()
+await page.waitForTimeout(2000)
+console.log('Post-logout URL:', page.url())
+console.log('Portada visible?', await page.getByTestId('portada').isVisible().catch(() => false))
+console.log('Login visible?', await page.getByTestId('page-login').isVisible().catch(() => false))
+await browser.close()

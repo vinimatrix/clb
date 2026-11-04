@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { MemoryRouter } from 'react-router-dom'
 import { buildSeed } from '../data/seed.js'
@@ -101,10 +101,10 @@ describe('Perfil', () => {
     expect(screen.getByRole('button', { name: /Restablecer datos demo/ })).toBeInTheDocument()
   })
 
-  it('Cerrar sesión borra la sesión y regresa a la portada', () => {
+  it('Cerrar sesión borra la sesión y regresa a la portada', async () => {
     render(<PerfilRisoPage />)
     fireEvent.click(screen.getByRole('button', { name: /Cerrar sesión/ }))
-    expect(screen.getByTestId('portada')).toBeInTheDocument()
+    await waitFor(() => expect(screen.getByTestId('portada')).toBeInTheDocument())
     expect(load('clb.session', null)).toBeNull()
   })
 })
