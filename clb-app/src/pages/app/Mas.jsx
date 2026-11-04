@@ -1,17 +1,21 @@
 import { useNavigate } from 'react-router-dom'
 import { useToast } from '../../components/Toast.jsx'
+import { useApp } from '../../store/AppContext.jsx'
 
 const ACCESOS = [
-  { id: 'fidelizados', icon: 'loyalty', label: 'Fidelizados', sub: 'Electores con voto seguro', tone: 'orange', ruta: '/app/fidelizados' },
-  { id: 'cba', icon: 'groups', label: 'CBA', sub: 'Comités de base afectivos', tone: 'blue', ruta: '/app/cba' },
-  { id: 'cbe', icon: 'ballot', label: 'CBE', sub: 'Comités electorales', tone: 'navy', ruta: '/app/cbe' },
-  { id: 'callcenter', icon: 'call', label: 'Call Center', sub: 'Llamadas y bitácora del día', tone: 'orange', ruta: '/app/callcenter' },
+  { id: 'fidelizados', modulo: 'fidelizados', icon: 'loyalty', label: 'Fidelizados', sub: 'Electores con voto seguro', tone: 'orange', ruta: '/app/fidelizados' },
+  { id: 'cba', modulo: 'cba', icon: 'groups', label: 'CBA', sub: 'Comités de base afectivos', tone: 'blue', ruta: '/app/cba' },
+  { id: 'cbe', modulo: 'cbe', icon: 'ballot', label: 'CBE', sub: 'Comités electorales', tone: 'navy', ruta: '/app/cbe' },
+  { id: 'callcenter', modulo: 'callcenter', icon: 'call', label: 'Call Center', sub: 'Llamadas y bitácora del día', tone: 'orange', ruta: '/app/callcenter' },
 ]
 
-/** Centro Más (Task 13): grilla de accesos sin elementos muertos. */
+/** Centro Más (Task 13): grilla de accesos sin elementos muertos, filtrada por permisos. */
 export default function Mas() {
   const navigate = useNavigate()
   const toast = useToast()
+  const { tienePermiso } = useApp().actions
+
+  const accesosVisibles = ACCESOS.filter((a) => tienePermiso(a.modulo))
 
   return (
     <div data-testid="page-mas" className="flex flex-col gap-4 px-4 pb-2 pt-3">
@@ -28,7 +32,7 @@ export default function Mas() {
       </section>
 
       <section aria-label="Accesos del proyecto" className="grid grid-cols-2 gap-2.5">
-        {ACCESOS.map((a) => (
+        {accesosVisibles.map((a) => (
           <button
             key={a.id}
             type="button"

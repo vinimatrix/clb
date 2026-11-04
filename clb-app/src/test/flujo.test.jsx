@@ -41,6 +41,16 @@ describe('flujo integral de la app', () => {
   })
 
   it('desde Más acceso a Fidelizados, CBA y CBE, y el logout regresa a la portada', async () => {
+    // Usar Coordinador con permisos habilitados para Fidelizados, CBA, CBE
+    const seed = buildSeed()
+    const permisosModificados = {
+      ...seed.permisos,
+      coordinador: { ...seed.permisos.coordinador, fidelizados: true, cba: true, cbe: true }
+    }
+    localStorage.setItem('clb.permisos', JSON.stringify(permisosModificados))
+    save('clb.users', seed.users)
+    save('clb.session', { cedula: '402-1234567-9', username: 'coord1', role: 'coordinador', nombres: 'Ana', apellidos: 'García' })
+    
     render(<AppRouter initialEntries={['/app/mas']} />)
     expect(screen.getByTestId('page-mas')).toBeInTheDocument()
 
