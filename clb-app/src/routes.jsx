@@ -7,6 +7,8 @@ import CrearUsuario from './pages/public/CrearUsuario.jsx'
 import Otp from './pages/public/Otp.jsx'
 import Contrasena from './pages/public/Contrasena.jsx'
 import Exito from './pages/public/Exito.jsx'
+import Login from './pages/public/Login.jsx'
+import Validando from './pages/public/Validando.jsx'
 import Placeholder from './pages/Placeholder.jsx'
 
 /** Guarda: las rutas /app/* exigen sesión activa. */
@@ -28,8 +30,8 @@ export function Rutas() {
       <Route path="/registro/otp" element={<Otp />} />
       <Route path="/registro/contrasena" element={<Contrasena />} />
       <Route path="/registro/exito" element={<Exito />} />
-      <Route path="/login" element={<Placeholder testId="page-login" nombre="Iniciar sesión — Paso 8" />} />
-      <Route path="/validando" element={<Placeholder testId="page-validando" nombre="Validación de acceso — Paso 9" />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/validando" element={<Validando />} />
       {/* App (protegidas) */}
       <Route path="/app" element={<RequireAuth><Placeholder testId="page-dashboard" nombre="Dashboard" /></RequireAuth>} />
       <Route path="/app/recinto" element={<RequireAuth><Placeholder testId="page-recinto" nombre="Mi Recinto" /></RequireAuth>} />
