@@ -13,6 +13,7 @@ import { AppLayout } from './components/AppLayout.jsx'
 import Dashboard from './pages/app/Dashboard.jsx'
 import MiRecinto from './pages/app/MiRecinto.jsx'
 import Padron from './pages/app/Padron.jsx'
+import Inscripcion from './pages/app/Inscripcion.jsx'
 import Placeholder from './pages/Placeholder.jsx'
 
 /** Guarda: las rutas /app/* exigen sesión activa. */
@@ -41,7 +42,7 @@ export function Rutas() {
         <Route path="/app" element={<Dashboard />} />
         <Route path="/app/recinto" element={<MiRecinto />} />
         <Route path="/app/padron" element={<Padron />} />
-        <Route path="/app/inscripcion" element={<Placeholder testId="page-inscripcion" nombre="Inscripción" />} />
+        <Route path="/app/inscripcion" element={<Inscripcion />} />
         <Route path="/app/carpeta" element={<Placeholder testId="page-carpeta" nombre="Mi Carpeta" />} />
         <Route path="/app/fidelizados" element={<Placeholder testId="page-fidelizados" nombre="Fidelizados" />} />
         <Route path="/app/cba" element={<Placeholder testId="page-cba" nombre="CBA" />} />
