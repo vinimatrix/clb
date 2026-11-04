@@ -1,6 +1,9 @@
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { useAppState } from './store/AppContext.jsx'
 import Portada from './pages/public/Portada.jsx'
+import Unirme from './pages/public/Unirme.jsx'
+import Confirmacion from './pages/public/Confirmacion.jsx'
+import CrearUsuario from './pages/public/CrearUsuario.jsx'
 import Placeholder from './pages/Placeholder.jsx'
 
 /** Guarda: las rutas /app/* exigen sesión activa. */
@@ -16,9 +19,9 @@ export function Rutas() {
     <Routes>
       {/* Público */}
       <Route path="/" element={<Portada />} />
-      <Route path="/registro" element={<Placeholder testId="page-registro" nombre="Registro — Paso 2" />} />
-      <Route path="/registro/confirmacion" element={<Placeholder testId="page-confirmacion" nombre="Registro — Paso 3" />} />
-      <Route path="/registro/usuario" element={<Placeholder testId="page-usuario" nombre="Registro — Paso 4" />} />
+      <Route path="/registro" element={<Unirme />} />
+      <Route path="/registro/confirmacion" element={<Confirmacion />} />
+      <Route path="/registro/usuario" element={<CrearUsuario />} />
       <Route path="/registro/otp" element={<Placeholder testId="page-otp" nombre="Registro — Paso 5" />} />
       <Route path="/registro/contrasena" element={<Placeholder testId="page-contrasena" nombre="Registro — Paso 6" />} />
       <Route path="/registro/exito" element={<Placeholder testId="page-exito" nombre="Registro — Paso 7" />} />

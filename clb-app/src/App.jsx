@@ -17,11 +17,11 @@ export default function App() {
 }
 
 /** App en memoria (para pruebas). */
-export function AppRouter({ initialEntries = ['/'] }) {
+export function AppRouter({ initialEntries = ['/'], index }) {
   return (
     <AppProvider>
       <ToastProvider>
-        <MemoryRouter initialEntries={initialEntries}>
+        <MemoryRouter initialEntries={initialEntries} initialIndex={index}>
           <Rutas />
         </MemoryRouter>
       </ToastProvider>
