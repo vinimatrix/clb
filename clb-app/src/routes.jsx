@@ -11,6 +11,8 @@ import Login from './pages/public/Login.jsx'
 import Validando from './pages/public/Validando.jsx'
 import { AppLayout } from './components/AppLayout.jsx'
 import Dashboard from './pages/app/Dashboard.jsx'
+import MiRecinto from './pages/app/MiRecinto.jsx'
+import Padron from './pages/app/Padron.jsx'
 import Placeholder from './pages/Placeholder.jsx'
 
 /** Guarda: las rutas /app/* exigen sesión activa. */
@@ -37,8 +39,8 @@ export function Rutas() {
       {/* App (protegidas, con layout compartido) */}
       <Route element={<RequireAuth><AppLayout /></RequireAuth>}>
         <Route path="/app" element={<Dashboard />} />
-        <Route path="/app/recinto" element={<Placeholder testId="page-recinto" nombre="Mi Recinto" />} />
-        <Route path="/app/padron" element={<Placeholder testId="page-padron" nombre="Padrón de Recinto" />} />
+        <Route path="/app/recinto" element={<MiRecinto />} />
+        <Route path="/app/padron" element={<Padron />} />
         <Route path="/app/inscripcion" element={<Placeholder testId="page-inscripcion" nombre="Inscripción" />} />
         <Route path="/app/carpeta" element={<Placeholder testId="page-carpeta" nombre="Mi Carpeta" />} />
         <Route path="/app/fidelizados" element={<Placeholder testId="page-fidelizados" nombre="Fidelizados" />} />
