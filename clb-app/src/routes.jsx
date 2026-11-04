@@ -21,7 +21,6 @@ import Cbe from './pages/app/Cbe.jsx'
 import Perfil from './pages/app/Perfil.jsx'
 import Mas from './pages/app/Mas.jsx'
 import CallCenter from './pages/app/CallCenter.jsx'
-import Placeholder from './pages/Placeholder.jsx'
 
 /**
  * Permite saltar el guard una vez: lo usa la salida de sesión deliberada
