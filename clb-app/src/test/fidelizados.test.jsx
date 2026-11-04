@@ -12,7 +12,7 @@ beforeEach(() => {
   localStorage.clear()
   const seed = buildSeed()
   save('clb.users', seed.users)
-  save('clb.session', { cedula: '402-1234567-8', username: 'clbarcelo2026', role: 'Miembro', nombres: 'Juan', apellidos: 'Pérez' })
+  save('clb.session', { cedula: '402-1234567-8', username: 'clbarcelo2026', role: 'dirigente', nombres: 'Juan', apellidos: 'Pérez' })
 })
 
 function Page() {

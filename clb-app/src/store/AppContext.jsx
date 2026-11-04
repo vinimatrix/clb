@@ -46,14 +46,20 @@ export function AppProvider({ children }) {
     }
     const getSnapshot = () => versionRef.current
 
-    // Proxy de actions: notifica a los suscriptores tras cada llamada.
+    // Proxy de actions: notifica a los suscriptores tras cada llamada MUTANTE.
+    // Funciones de solo lectura (tienePermiso) no disparan notify.
+    const READ_ONLY_ACTIONS = new Set(['tienePermiso'])
     const actions = {}
     for (const [name, fn] of Object.entries(store)) {
       if (typeof fn !== 'function' || name === 'getState') continue
-      actions[name] = (...args) => {
-        const result = fn.apply(store, args)
-        notify()
-        return result
+      if (READ_ONLY_ACTIONS.has(name)) {
+        actions[name] = fn.bind(store)
+      } else {
+        actions[name] = (...args) => {
+          const result = fn.apply(store, args)
+          notify()
+          return result
+        }
       }
     }
     return { actions, subscribe, getSnapshot, getState: store.getState }

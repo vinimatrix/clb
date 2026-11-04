@@ -1,5 +1,5 @@
-import { Navigate, Route, Routes } from 'react-router-dom'
-import { useAppState } from './store/AppContext.jsx'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import { useAppState, useApp } from './store/AppContext.jsx'
 import Portada from './pages/public/Portada.jsx'
 import Unirme from './pages/public/Unirme.jsx'
 import Confirmacion from './pages/public/Confirmacion.jsx'
@@ -44,6 +44,19 @@ function RequireAuth({ children }) {
   return children
 }
 
+/** Guarda: verifica que el usuario tenga permiso para el módulo. */
+function RequirePermiso({ children, modulo }) {
+  const { session } = useAppState()
+  const { tienePermiso } = useApp().actions
+  if (!session) return <Navigate to="/login" replace />
+  // Mapear roles legados al sistema de permisos
+  const role = session.role === 'Miembro' ? 'dirigente' : session.role
+  if (!tienePermiso(modulo, role)) {
+    return <Navigate to="/app" replace />
+  }
+  return children
+}
+
 /** Tabla de rutas de la app (referencia única). */
 export function Rutas() {
   return (
@@ -60,15 +73,15 @@ export function Rutas() {
       <Route path="/validando" element={<Validando />} />
       {/* App (protegidas, con layout compartido) */}
       <Route element={<RequireAuth><AppLayout /></RequireAuth>}>
-        <Route path="/app/fidelizados" element={<Fidelizados />} />
-        <Route path="/app/cba" element={<Cba />} />
-        <Route path="/app/cbe" element={<Cbe />} />
-        <Route path="/app/callcenter" element={<CallCenter />} />
+        <Route element={<RequirePermiso modulo="inscripcion"><Inscripcion /></RequirePermiso>} path="/app/inscripcion" />
+        <Route element={<RequirePermiso modulo="miRecinto"><MiRecinto /></RequirePermiso>} path="/app/recinto" />
+        <Route element={<RequirePermiso modulo="miCarpeta"><MiCarpeta /></RequirePermiso>} path="/app/carpeta" />
+        <Route element={<RequirePermiso modulo="cba"><Cba /></RequirePermiso>} path="/app/cba" />
+        <Route element={<RequirePermiso modulo="cbe"><Cbe /></RequirePermiso>} path="/app/cbe" />
+        <Route element={<RequirePermiso modulo="callcenter"><CallCenter /></RequirePermiso>} path="/app/callcenter" />
+        <Route element={<Fidelizados />} path="/app/fidelizados" />
         <Route path="/app" element={<Dashboard />} />
-        <Route path="/app/recinto" element={<MiRecinto />} />
         <Route path="/app/padron" element={<Padron />} />
-        <Route path="/app/inscripcion" element={<Inscripcion />} />
-        <Route path="/app/carpeta" element={<MiCarpeta />} />
         <Route path="/app/perfil" element={<Perfil />} />
         <Route path="/app/mas" element={<Mas />} />
       </Route>

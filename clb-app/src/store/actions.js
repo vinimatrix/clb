@@ -309,9 +309,10 @@ export function createStoreLogic(initialState, persist = true) {
       commit({ ...state, permisos })
     },
 
-    tienePermiso(modulo) {
-      const role = state.session?.role ?? 'dirigente'
-      return state.permisos?.[role]?.[modulo] ?? false
+    tienePermiso(modulo, roleOverride) {
+      const role = roleOverride ?? state.session?.role ?? 'dirigente'
+      const mappedRole = role === 'Miembro' ? 'dirigente' : role
+      return state.permisos?.[mappedRole]?.[modulo] ?? false
     },
   }
 
