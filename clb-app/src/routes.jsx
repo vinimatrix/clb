@@ -4,6 +4,9 @@ import Portada from './pages/public/Portada.jsx'
 import Unirme from './pages/public/Unirme.jsx'
 import Confirmacion from './pages/public/Confirmacion.jsx'
 import CrearUsuario from './pages/public/CrearUsuario.jsx'
+import Otp from './pages/public/Otp.jsx'
+import Contrasena from './pages/public/Contrasena.jsx'
+import Exito from './pages/public/Exito.jsx'
 import Placeholder from './pages/Placeholder.jsx'
 
 /** Guarda: las rutas /app/* exigen sesión activa. */
@@ -22,9 +25,9 @@ export function Rutas() {
       <Route path="/registro" element={<Unirme />} />
       <Route path="/registro/confirmacion" element={<Confirmacion />} />
       <Route path="/registro/usuario" element={<CrearUsuario />} />
-      <Route path="/registro/otp" element={<Placeholder testId="page-otp" nombre="Registro — Paso 5" />} />
-      <Route path="/registro/contrasena" element={<Placeholder testId="page-contrasena" nombre="Registro — Paso 6" />} />
-      <Route path="/registro/exito" element={<Placeholder testId="page-exito" nombre="Registro — Paso 7" />} />
+      <Route path="/registro/otp" element={<Otp />} />
+      <Route path="/registro/contrasena" element={<Contrasena />} />
+      <Route path="/registro/exito" element={<Exito />} />
       <Route path="/login" element={<Placeholder testId="page-login" nombre="Iniciar sesión — Paso 8" />} />
       <Route path="/validando" element={<Placeholder testId="page-validando" nombre="Validación de acceso — Paso 9" />} />
       {/* App (protegidas) */}
