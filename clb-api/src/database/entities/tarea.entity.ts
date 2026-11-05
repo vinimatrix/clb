@@ -1,25 +1,33 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  Index,
+} from 'typeorm';
 
 @Entity('tareas')
+@Index('IX_tareas_electorId', ['electorId'])
+@Index('IX_tareas_estado', ['estado'])
+@Index('IX_tareas_vencimiento', ['vencimiento'])
 export class Tarea {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column('varchar', { length: 100 })
   electorId: string;
 
-  @Column()
+  @Column('varchar', { length: 50 })
   tipo: string;
 
-  @Column({ default: 'pendiente' })
+  @Column('varchar', { length: 30, default: 'pendiente' })
   estado: string;
 
-  @Column({ nullable: true })
-  vencimiento: string;
+  @Column('varchar', { length: 50, nullable: true })
+  vencimiento: string | null;
 
-  @Column({ default: () => 'CURRENT_TIMESTAMP' })
-  creadoEn: string;
+  @Column('datetime2', { default: () => 'CURRENT_TIMESTAMP' })
+  creadoEn: Date;
 
-  @Column({ nullable: true })
-  completadoEn: string;
+  @Column('datetime2', { nullable: true })
+  completadoEn: Date | null;
 }

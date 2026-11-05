@@ -1,31 +1,39 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  Index,
+} from 'typeorm';
 
 @Entity('llamadas')
+@Index('IX_llamadas_estado', ['estado'])
+@Index('IX_llamadas_recinto', ['recinto'])
+@Index('IX_llamadas_creadoEn', ['creadoEn'])
 export class Llamada {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column('varchar', { length: 200 })
   nombre: string;
 
-  @Column()
+  @Column('varchar', { length: 200 })
   motivo: string;
 
-  @Column({ nullable: true })
-  detalle: string;
+  @Column('nvarchar', { length: 'max', nullable: true })
+  detalle: string | null;
 
-  @Column({ nullable: true })
-  recinto: string;
+  @Column('varchar', { length: 100, nullable: true })
+  recinto: string | null;
 
-  @Column({ default: 'pendiente' })
+  @Column('varchar', { length: 30, default: 'pendiente' })
   estado: string;
 
-  @Column({ default: 0 })
-  completado: number;
+  @Column('bit', { default: 0 })
+  completado: boolean;
 
-  @Column({ nullable: true })
-  completadoAt: string;
+  @Column('datetime2', { nullable: true })
+  completadoAt: Date | null;
 
-  @Column({ default: () => 'CURRENT_TIMESTAMP' })
-  creadoEn: string;
+  @Column('datetime2', { default: () => 'CURRENT_TIMESTAMP' })
+  creadoEn: Date;
 }

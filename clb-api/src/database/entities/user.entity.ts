@@ -1,34 +1,42 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  Index,
+} from 'typeorm';
 
 @Entity('users')
+@Index('IX_users_cedula', ['cedula'], { unique: true })
+@Index('IX_users_username', ['username'], { unique: true })
+@Index('IX_users_role', ['role'])
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ unique: true })
+  @Column('varchar', { length: 20, unique: true })
   cedula: string;
 
-  @Column({ unique: true })
+  @Column('varchar', { length: 50, unique: true })
   username: string;
 
-  @Column()
+  @Column('varchar', { length: 255 })
   passwordHash: string;
 
-  @Column()
+  @Column('varchar', { length: 100 })
   nombres: string;
 
-  @Column()
+  @Column('varchar', { length: 100 })
   apellidos: string;
 
-  @Column({ nullable: true })
-  telefono: string;
+  @Column('varchar', { length: 20, nullable: true })
+  telefono: string | null;
 
-  @Column({ default: 'coordinador' })
+  @Column('varchar', { length: 30, default: 'coordinador' })
   role: string;
 
-  @Column({ default: () => 'CURRENT_TIMESTAMP' })
-  createdAt: string;
+  @Column('datetime2', { default: () => 'CURRENT_TIMESTAMP' })
+  createdAt: Date;
 
-  @Column({ default: () => 'CURRENT_TIMESTAMP' })
-  updatedAt: string;
+  @Column('datetime2', { default: () => 'CURRENT_TIMESTAMP' })
+  updatedAt: Date;
 }
