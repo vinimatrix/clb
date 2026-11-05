@@ -1,12 +1,12 @@
+import { maskCedula } from './format.js';
+
 const API_BASE_URL = 'http://localhost:3001/api';
 const USE_API = true;
 
-async function apiRequest(method, endpoint, data = null) {
+const apiRequest = async (method, endpoint, data = null) => {
   if (!USE_API) return null;
 
   try {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 2000);
     const token = localStorage.getItem('clb.token');
     const headers = { 'Content-Type': 'application/json' };
     if (token) headers.Authorization = `Bearer ${token}`;
@@ -15,10 +15,7 @@ async function apiRequest(method, endpoint, data = null) {
       method,
       headers,
       body: data ? JSON.stringify(data) : undefined,
-      signal: controller.signal,
     });
-
-    clearTimeout(timeoutId);
 
     if (!response.ok) {
       if (response.status === 401) {

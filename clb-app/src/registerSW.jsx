@@ -3,6 +3,12 @@
  * Solo se activa en entorno de producción (no en desarrollo con Vite HMR)
  */
 
+let storeRef = null
+
+export function setStoreRef(store) {
+  storeRef = store
+}
+
 export function registerSW() {
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
@@ -32,6 +38,28 @@ export function registerSW() {
         })
     })
   }
+
+  // Detectar cambios de conectividad
+  window.addEventListener('online', () => {
+    console.log('Conexión restaurada - procesando cola offline')
+    if (storeRef) {
+      storeRef.current?.actions?.setOnline(true)
+      storeRef.current?.actions?.flushOfflineQueue()
+    }
+    // Registrar sync para background sync
+    if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+      navigator.serviceWorker.ready.then((reg) => {
+        reg.sync?.register('sync-electores').catch(() => {})
+      })
+    }
+  })
+
+  window.addEventListener('offline', () => {
+    console.log('Sin conexión - modo offline activado')
+    if (storeRef) {
+      storeRef.current?.actions?.setOnline(false)
+    }
+  })
 }
 
 export function unregisterSW() {

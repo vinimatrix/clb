@@ -21,7 +21,7 @@ export function BottomNav({ items }) {
   })
 
   return (
-    <nav className="fixed inset-x-0 bottom-0 z-40 bg-white/95 pb-safe shadow-[0_-2px_12px_rgba(0,0,0,0.05)] backdrop-blur-xl">
+    <nav className="fixed inset-x-0 bottom-0 z-40 bg-white/95 pb-safe shadow-[0_-2px_12px_rgba(0,0,0,0.05)] backdrop-blur-xl block md:hidden" data-testid="bottom-nav">
       <div className="mx-auto flex h-16 max-w-[440px] items-center justify-around px-1">
         {visibleItems.map((item) => (
           <NavLink

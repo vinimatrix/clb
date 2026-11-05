@@ -2,6 +2,7 @@ import { createContext, useContext, useMemo, useRef, useSyncExternalStore } from
 import { createStoreLogic } from './actions.js'
 import { buildSeed } from '../data/seed.js'
 import { load } from '../lib/storage.js'
+import { setStoreRef } from '../registerSW.jsx'
 
 const AppContext = createContext(null)
 
@@ -22,6 +23,8 @@ function initialState() {
     incidencias: load('clb.incidencias', seed.incidencias),
     recinto: load('clb.recinto', seed.recinto),
     permisos: load('clb.permisos', seed.permisos),
+    offlineQueue: load('clb.offlineQueue', []),
+    online: load('clb.online', true),
   }
 }
 

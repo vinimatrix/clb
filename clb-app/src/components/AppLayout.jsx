@@ -1,6 +1,7 @@
 import { Outlet, useNavigate } from 'react-router-dom'
 import { MarcaCLB } from './AppHeader.jsx'
 import { BottomNav } from './BottomNav.jsx'
+import { Sidebar } from './Sidebar.jsx'
 import { useToast } from './Toast.jsx'
 import { Avatar } from './Avatar.jsx'
 import { iniciales } from '../lib/format.js'
@@ -15,7 +16,8 @@ const TABS = [
 ]
 
 /**
- * Layout de las rutas /app/*: header fijo, contenido con Outlet y bottom nav.
+ * Layout de las rutas /app/*: header fijo, contenido con Outlet y bottom nav (móvil)
+ * o sidebar (desktop).
  */
 export function AppLayout() {
   const navigate = useNavigate()
@@ -56,8 +58,11 @@ export function AppLayout() {
         </div>
       </header>
 
-      <main className="mx-auto min-h-dvh w-full max-w-[440px] pb-24 pt-16">
-        <Outlet />
+      <main className="mx-auto min-h-dvh w-full max-w-[440px] pb-24 pt-16 md:max-w-none md:px-0 md:pl-[240px]">
+        <Sidebar items={TABS} />
+        <div className="flex-1">
+          <Outlet />
+        </div>
       </main>
 
       <BottomNav items={TABS} />

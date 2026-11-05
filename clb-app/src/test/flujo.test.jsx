@@ -27,18 +27,22 @@ describe('flujo integral de la app', () => {
     render(<AppRouter initialEntries={['/app']} />)
     expect(screen.getByTestId('page-dashboard')).toBeInTheDocument()
 
-    fireEvent.click(screen.getByRole('link', { name: /Inscripción/ }))
+    // Tab: Inscripción (usar el del BottomNav - índice 1, el sidebar es 0)
+    fireEvent.click(screen.getAllByRole('link', { name: /Inscripción/ })[1])
     expect(screen.getByTestId('page-inscripcion')).toBeInTheDocument()
 
-    fireEvent.click(screen.getByRole('link', { name: /Recinto/ }))
+    // Tab: Mi Recinto
+    fireEvent.click(screen.getAllByRole('link', { name: /Recinto/ })[1])
     expect(screen.getByTestId('page-recinto')).toBeInTheDocument()
     fireEvent.click(screen.getByRole('button', { name: /Ver Padrón de Recinto/ }))
     expect(screen.getByTestId('page-padron')).toBeInTheDocument()
 
-    fireEvent.click(screen.getByRole('link', { name: /Mi Carpeta/ }))
+    // Tab: Mi Carpeta
+    fireEvent.click(screen.getAllByRole('link', { name: /Mi Carpeta/ })[1])
     expect(screen.getByTestId('page-carpeta')).toBeInTheDocument()
 
-    fireEvent.click(screen.getByRole('link', { name: /Más/, exact: true }))
+    // Tab: Más → Call Center (usar el del BottomNav - índice 1)
+    fireEvent.click(screen.getAllByRole('link', { name: /Más/, exact: true })[1])
     expect(screen.getByTestId('page-mas')).toBeInTheDocument()
     fireEvent.click(screen.getByRole('button', { name: /Call Center/ }))
     expect(screen.getByTestId('page-callcenter')).toBeInTheDocument()
@@ -60,10 +64,10 @@ describe('flujo integral de la app', () => {
     fireEvent.click(screen.getByRole('button', { name: /Fidelizados/ }))
     expect(screen.getByTestId('page-fidelizados')).toBeInTheDocument()
 
-    fireEvent.click(screen.getByRole('link', { name: /Inicio/ }))
+    fireEvent.click(screen.getAllByRole('link', { name: /Inicio/ })[1])
     expect(screen.getByTestId('page-dashboard')).toBeInTheDocument()
 
-    fireEvent.click(screen.getByRole('link', { name: /Más/ }))
+    fireEvent.click(screen.getAllByRole('link', { name: /Más/, exact: true })[1])
     fireEvent.click(screen.getByRole('button', { name: /Ir a Mi Perfil/ }))
     expect(screen.getByTestId('page-perfil')).toBeInTheDocument()
     fireEvent.click(screen.getByRole('button', { name: /Cerrar sesión/ }))

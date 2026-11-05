@@ -67,9 +67,10 @@ describe('AppLayout', () => {
 
   it('las pestañas navegan (Inicio → Mi Carpeta → Recinto)', () => {
     render(<AppRouterCubre />)
-    fireEvent.click(screen.getByText('Mi Carpeta'))
+    // Usar los links del BottomNav (índice 1, el sidebar es 0)
+    fireEvent.click(screen.getAllByRole('link', { name: /Mi Carpeta/ })[1])
     expect(screen.getByTestId('ruta-carpeta')).toBeInTheDocument()
-    fireEvent.click(screen.getByText('Recinto'))
+    fireEvent.click(screen.getAllByRole('link', { name: /Recinto/ })[1])
     expect(screen.getByTestId('ruta-recinto')).toBeInTheDocument()
   })
 })
@@ -124,8 +125,8 @@ describe('Dashboard', () => {
         </ToastProvider>
       </AppProvider>,
     )
-    // El tab del bottom nav también navega al mismo lugar.
-    fireEvent.click(screen.getByRole('link', { name: /Inscripción/ }))
+    // El tab del bottom nav también navega al mismo lugar (índice 1).
+    fireEvent.click(screen.getAllByRole('link', { name: /Inscripción/ })[1])
     expect(screen.getByTestId('ruta-inscripcion')).toBeInTheDocument()
   })
 })

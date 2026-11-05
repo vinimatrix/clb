@@ -22,6 +22,8 @@ const SLICE_KEYS = {
   incidencias: 'clb.incidencias',
   recinto: 'clb.recinto',
   permisos: 'clb.permisos',
+  offlineQueue: 'clb.offlineQueue',
+  online: 'clb.online',
 }
 
 const passwordOk = (pw) =>
@@ -190,6 +192,13 @@ export function createStoreLogic(initialState, persist = true) {
         intento: null,
         reconfirmadoAt: null,
       }
+      
+      // Si estamos offline, agregar a la cola
+      if (state.online === false) {
+        this.addToOfflineQueue({ type: 'addElector', data })
+        return { ok: true, offline: true, elector }
+      }
+      
       const tareas = [...state.tareas]
       if (asignar && elector.estado !== 'fidelizado') {
         tareas.push({
@@ -201,13 +210,13 @@ export function createStoreLogic(initialState, persist = true) {
         })
       }
       const metricas = {
-        ...state.metricas,
-        inscritos: state.metricas.inscritos + 1,
-        fidelizados: state.metricas.fidelizados + (elector.estado === 'fidelizado' ? 1 : 0),
-        fidelizadosCirc: state.metricas.fidelizadosCirc + (elector.estado === 'fidelizado' ? 1 : 0),
+        ...(state.metricas || { inscritos: 0, fidelizados: 0, fidelizadosCirc: 0 }),
+        inscritos: (state.metricas?.inscritos ?? 0) + 1,
+        fidelizados: (state.metricas?.fidelizados ?? 0) + (elector.estado === 'fidelizado' ? 1 : 0),
+        fidelizadosCirc: (state.metricas?.fidelizadosCirc ?? 0) + (elector.estado === 'fidelizado' ? 1 : 0),
       }
       commit({ ...state, electores: [elector, ...state.electores], tareas, metricas })
-      return elector
+      return { ok: true, elector }
     },
 
     tipificarElector(electorId, intento) {
@@ -319,6 +328,64 @@ export function createStoreLogic(initialState, persist = true) {
       // 'miembro' legacy -> dirigente
       const mappedRole = normalizedRole === 'miembro' ? 'dirigente' : normalizedRole
       return state.permisos?.[mappedRole]?.[modulo] ?? false
+    },
+
+    // ——— PWA Offline ———
+    setOnline(isOnline) {
+      commit({ ...state, online: isOnline })
+    },
+
+    addToOfflineQueue(action) {
+      const queue = [...(state.offlineQueue ?? []), { ...action, timestamp: Date.now() }]
+      commit({ ...state, offlineQueue: queue })
+    },
+
+    async flushOfflineQueue() {
+      if (!state.online) return
+      const queue = state.offlineQueue ?? []
+      for (const item of queue) {
+        try {
+          // Procesar según el tipo de acción
+          switch (item.type) {
+            case 'addElector':
+              this.addElector(item.data)
+              break
+            case 'updateElector':
+              this.updateElector(item.data.id, item.data)
+              break
+            case 'deleteElector':
+              this.deleteElector(item.data.id)
+              break
+            case 'addComite':
+              this.addComite(item.data.tipo, item.data)
+              break
+            case 'updateComite':
+              this.updateComite(item.data.id, item.data)
+              break
+            case 'deleteComite':
+              this.deleteComite(item.data.id)
+              break
+            case 'addLlamada':
+              this.addLlamada(item.data)
+              break
+            case 'reportarIncidencia':
+              this.reportarIncidencia(item.data.colegio, item.data.texto)
+              break
+            case 'completarTarea':
+              this.completarTarea(item.data.tareaId)
+              break
+            case 'asignarSuplente':
+              this.asignarSuplente(item.data.comiteId, item.data.nombre)
+              break
+            default:
+              console.warn('Acción offline no reconocida:', item.type)
+          }
+        } catch (err) {
+          console.error('Error procesando cola offline:', err)
+        }
+      }
+      // Limpiar la cola después de procesar
+      commit({ ...state, offlineQueue: [] })
     },
   }
 
