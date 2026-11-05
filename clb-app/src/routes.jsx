@@ -21,6 +21,11 @@ import Cbe from './pages/app/Cbe.jsx'
 import Perfil from './pages/app/Perfil.jsx'
 import Mas from './pages/app/Mas.jsx'
 import AdminPanel from './pages/app/AdminPanel.jsx'
+import AdminUsers from './pages/app/AdminUsers.jsx'
+import AdminRoles from './pages/app/AdminRoles.jsx'
+import AdminElectores from './pages/app/AdminElectores.jsx'
+import AdminComites from './pages/app/AdminComites.jsx'
+import AdminReportes from './pages/app/AdminReportes.jsx'
 import CallCenter from './pages/app/CallCenter.jsx'
 
 /**
@@ -86,6 +91,11 @@ export function Rutas() {
         <Route path="/app/perfil" element={<Perfil />} />
         <Route path="/app/mas" element={<Mas />} />
         <Route element={<RequirePermiso modulo="admin"><AdminPanel /></RequirePermiso>} path="/app/admin" />
+        <Route element={<RequirePermiso modulo="admin"><AdminUsers /></RequirePermiso>} path="/app/admin/usuarios" />
+        <Route element={<RequirePermiso modulo="admin"><AdminRoles /></RequirePermiso>} path="/app/admin/roles" />
+        <Route element={<RequirePermiso modulo="admin"><AdminElectores /></RequirePermiso>} path="/app/admin/electores" />
+        <Route element={<RequirePermiso modulo="admin"><AdminComites /></RequirePermiso>} path="/app/admin/comites" />
+        <Route element={<RequirePermiso modulo="admin"><AdminReportes /></RequirePermiso>} path="/app/admin/reportes" />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

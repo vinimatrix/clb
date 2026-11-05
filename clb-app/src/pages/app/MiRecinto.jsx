@@ -109,7 +109,7 @@ export default function MiRecinto() {
       </section>
 
       {/* KPIs del recinto */}
-      <section aria-label="KPIs del recinto" className="grid grid-cols-2 gap-2.5">
+      <section aria-label="KPIs del recinto" className="grid grid-cols-2 gap-2.5 md:grid-cols-4">
         <MetricCard
           icon={<span className="material-symbols-outlined text-[18px]">grid_view</span>}
           tone="blue"
@@ -144,7 +144,7 @@ export default function MiRecinto() {
       <FilterPills options={TABS.map((t) => ({ ...t, count: t.id === 'incidencias' && incidencias.length ? incidencias.length : null }))} active={tab} onChange={setTab} />
 
       {tab === 'mesas' ? (
-        <section className="flex flex-col gap-2.5">
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
           {recinto.colegios.map((col) => {
             const pct = ((col.fidelizados / col.electores) * 100).toFixed(1)
             const badge = BADGE_ESTADO[col.estado] ?? { label: col.estado, tone: 'gray' }
@@ -175,7 +175,7 @@ export default function MiRecinto() {
       ) : null}
 
       {tab === 'equipo' ? (
-        <section className="flex flex-col gap-2.5">
+        <section className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
           {recinto.colegios.map((col) => {
             const badge = BADGE_ESTADO[col.estado] ?? { label: col.estado, tone: 'gray' }
             return (
@@ -195,7 +195,7 @@ export default function MiRecinto() {
       ) : null}
 
       {tab === 'incidencias' ? (
-        <section className="flex flex-col gap-2.5">
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
           {incidencias.length === 0 ? (
             <div className="flex flex-col items-center gap-2 rounded-xl bg-white p-6 text-center shadow-card">
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 text-slate-400">

@@ -118,7 +118,7 @@ export default function Padron() {
           <p className="text-xs text-slate-600">Ajusta la búsqueda o el filtro para encontrar al elector.</p>
         </div>
       ) : (
-        <section className="flex flex-col gap-2.5">
+        <section className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
           {filtrados.map((e) => {
             const badge = BADGE_ESTADO[e.estado] ?? { label: e.estado, tone: 'gray' }
             const fidelizable = e.estado && e.estado !== 'fidelizado'

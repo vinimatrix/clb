@@ -120,7 +120,7 @@ export default function CallCenter() {
       </section>
 
       {/* Métricas bento */}
-      <section aria-label="Métricas del call center" className="grid grid-cols-3 gap-2">
+      <section aria-label="Métricas del call center" className="grid grid-cols-3 gap-2 md:grid-cols-6">
         <div className="flex flex-col justify-between rounded-xl bg-white p-3 shadow-card">
           <div className="mb-1 flex h-7 w-7 items-center justify-center rounded-lg bg-emerald-50 text-emerald-600">
             <span className="material-symbols-outlined text-[18px]">verified</span>

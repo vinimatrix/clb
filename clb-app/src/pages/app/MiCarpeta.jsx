@@ -168,7 +168,7 @@ export default function MiCarpeta() {
       </section>
 
       {/* Acciones rápidas */}
-      <section className="grid grid-cols-2 gap-2.5">
+      <section className="grid grid-cols-2 gap-2.5 md:grid-cols-4">
         <button
           type="button"
           onClick={() => navigate('/app/inscripcion')}
@@ -207,7 +207,7 @@ export default function MiCarpeta() {
           <p className="text-xs text-slate-600">Ajusta el filtro o la búsqueda de tu carpeta.</p>
         </div>
       ) : (
-        <section className="flex flex-col gap-2.5">
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
           {filtrados.map((e) => {
             const badge = BADGE_ESTADO[e.estado] ?? { label: e.estado, tone: 'gray' }
             const tarea = tareaPorElector.get(e.id)

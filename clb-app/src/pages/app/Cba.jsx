@@ -102,7 +102,7 @@ export default function Cba() {
       </section>
 
       {/* KPIs */}
-      <section aria-label="KPIs CBA" className="grid grid-cols-2 gap-2.5">
+      <section aria-label="KPIs CBA" className="grid grid-cols-2 gap-2.5 md:grid-cols-4">
         <div className="flex flex-col justify-between rounded-xl bg-white p-3 shadow-card">
           <div className="mb-2 flex items-center gap-2">
             <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-clb-blueLight text-clb-primary">
@@ -144,7 +144,7 @@ export default function Cba() {
         onChange={setFiltro}
       />
 
-      <section className="flex flex-col gap-2.5">
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
         {filtrados.map((c) => {
           const badge = BADGE_ESTADO[c.estado] ?? BADGE_ESTADO.proceso
           const toneCls = badge.tone === 'green'

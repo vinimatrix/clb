@@ -73,7 +73,7 @@ export default function Perfil() {
       {/* Resumen de actividad */}
       <section className="rounded-xl bg-white p-4 shadow-card">
         <h3 className="font-display mb-3 text-sm font-bold text-clb-primary">Resumen de Actividad</h3>
-        <div className="grid grid-cols-2 gap-2.5">
+        <div className="grid grid-cols-2 gap-2.5 md:grid-cols-4">
           <div className="rounded-lg bg-clb-blueLight/50 p-3">
             <span className="font-display block text-lg font-bold text-clb-primary">{inscritosHoy.length}</span>
             <span className="text-[11px] text-slate-600">Inscritos por mí hoy</span>

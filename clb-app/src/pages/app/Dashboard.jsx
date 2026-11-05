@@ -72,7 +72,7 @@ export default function Dashboard() {
       </section>
 
       {/* Grid de módulos (ref 11) */}
-      <section aria-label="Módulos funcionales" className="grid grid-cols-2 gap-3">
+      <section aria-label="Módulos funcionales" className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {accesos.slice(0, 2).map((a) => (
           <button
             key={a.id}
@@ -103,7 +103,7 @@ export default function Dashboard() {
           </div>
           <span className="text-[10px] font-medium text-slate-600">Actualizado 09:30 AM</span>
         </div>
-        <div className="grid grid-cols-2 gap-2.5">
+        <div className="grid grid-cols-2 gap-2.5 md:grid-cols-4">
           <MetricCard
             icon={<span className="material-symbols-outlined text-[18px]">how_to_reg</span>}
             tone="blue"
