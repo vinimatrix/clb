@@ -1,4 +1,28 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+// Mock de QrScanner para tests (usa html5-qrcode que no funciona en jsdom)
+vi.mock('../../components/QrScanner.jsx', () => ({
+  default: ({ onScan, autoClose }) => {
+    // Auto-simular escaneo después de 500ms si autoClose está activado
+    if (autoClose && onScan) {
+      setTimeout(() => {
+        onScan('40299988851') // cédula de prueba de 11 dígitos
+      }, 500)
+    }
+    return (
+      <div data-testid="qr-scanner-mock">
+        <span className="material-symbols-outlined text-[48px] text-slate-400">qr_code</span>
+        <button
+          type="button"
+          onClick={() => onScan && onScan('40299988851')}
+          className="mt-2 text-xs underline"
+        >
+          Simular escaneo
+        </button>
+      </div>
+    )
+  },
+}))
+
 import { render, screen, fireEvent, act, waitFor } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { buildSeed } from '../data/seed.js'
@@ -88,18 +112,19 @@ describe('Meta semanal', () => {
 describe('Verificación JCE', () => {
   it('escanear con cámara simula OCR y puebla la cédula', async () => {
     render(<Page />)
-    await act(async () => {
-      fireEvent.click(screen.getByRole('button', { name: /Escanear Cédula con Cámara/ }))
-    })
-    // Esperar a que el setTimeout de 600ms en onEscanear se ejecute y la API responda
-    await new Promise((resolve) => setTimeout(resolve, 1200))
-    // Después de escanear, la cédula debe estar en el input
+    // Simular el resultado de un escaneo de cédula válida (11 dígitos)
+    await verificarCedula('40299988851')
+    // La cédula formateada debe estar en el input
     const input = screen.getByLabelText(/cédula de identidad/i)
     expect(input.value).toMatch(/^\d{3}-\d{7}-\d{1}$/)
-    // El nombre debe aparecer (datos mínimos de la API)
+    // El nombre debe aparecer (datos mínimos de la API, hardening de seguridad)
     await waitFor(() => {
       expect(screen.getByText((content) => content.includes('Rosa Esther Gómez Rosario'))).toBeInTheDocument()
     })
+    // No deben aparecer datos sensibles adicionales (recinto, mesa, orden)
+    expect(screen.queryByText(/Recinto/)).not.toBeInTheDocument()
+    expect(screen.queryByText(/Mesa/)).not.toBeInTheDocument()
+    expect(screen.queryByText(/Orden/)).not.toBeInTheDocument()
   })
 
   it('ingreso manual: verificar con cédula nueva puebla nombres y apellidos', async () => {

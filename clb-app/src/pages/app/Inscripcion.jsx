@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { ProgressBar, Avatar, ContactActions } from '../../components/index.js'
+import QrScanner from '../../components/QrScanner.jsx'
 import { maskCedula, maskTelefono, iniciales } from '../../lib/format.js'
 import { useAppState, useApp } from '../../store/AppContext.jsx'
 import { useToast } from '../../components/Toast.jsx'
@@ -19,7 +20,9 @@ const labelCls = 'text-xs font-semibold text-clb-primary'
 
 const esHoy = (iso) => new Date(iso).toDateString() === new Date().toDateString()
 
-/** Inscripción de Electores (ref: stitch-reference/14-inscripcion.html). */
+/** Inscripción de Electores (ref: stitch-reference/14-inscripcion.html).
+ *  Incluye escaneo de QR y código de barras de cédula mediante la cámara del dispositivo.
+ */
 export default function Inscripcion() {
   const toast = useToast()
   const { session, electores } = useAppState()
@@ -32,8 +35,8 @@ export default function Inscripcion() {
   const faltanBono = Math.max(0, META_SEMANAL - inscritosHoy.length)
 
   const [cedula, setCedula] = useState('')
-  const [habilitado, setHabilitado] = useState(null) // datos JCE
-  const [escaneando, setEscaneando] = useState(false)
+  const [habilitado, setHabilitado] = useState(null) // datos JCE (solo nombres y apellidos)
+  const [qrScannerVisible, setQrScannerVisible] = useState(false)
   const [telefono, setTelefono] = useState('')
   const [whatsapp, setWhatsapp] = useState(true)
   const [telefonoAlt, setTelefonoAlt] = useState('')
@@ -59,20 +62,33 @@ export default function Inscripcion() {
     setHabilitado(res.datos)
   }
 
-  async function onEscanear() {
-    setEscaneando(true)
-    // OCR simulado: genera una cédula que no existe en el padrón local.
-    const sufijo = String(100000 + electores.length + 1)
-    const digits = `40299${sufijo}`
-    const generada = maskCedula(digits)
-    window.setTimeout(async () => {
-      setEscaneando(false)
-      setCedula(generada)
-      const res = await verificarCedula(generada)
-      if (res.ok) {
-        setHabilitado(res.datos)
-      }
-    }, 600)
+  /** Abre el escáner de cámara para leer QR o código de barras de la cédula. */
+  function abrirEscaneo() {
+    setQrScannerVisible(true)
+  }
+
+  /** Cierra el escáner. */
+  function cerrarEscaneo() {
+    setQrScannerVisible(false)
+  }
+
+  /** Procesa el resultado del escaneo: formatea la cédula y verifica automáticamente. */
+  async function onQrScan(decodedText) {
+    cerrarEscaneo()
+    const digitos = String(decodedText ?? '').replace(/\D/g, '')
+    if (!/^\d{11}$/.test(digitos)) {
+      toast.show('El código escaneado no es una cédula válida (11 dígitos)')
+      return
+    }
+    const formateada = `${digitos.slice(0, 3)}-${digitos.slice(3, 10)}-${digitos.slice(10)}`
+    setCedula(formateada)
+    const res = await verificarCedula(digitos)
+    if (res.ok) {
+      setHabilitado(res.datos)
+      toast.show('Cédula verificada desde escaneo', 'green')
+    } else {
+      toast.show(res.error || 'No se pudo verificar la cédula escaneada')
+    }
   }
 
   function onSubmit(e) {
@@ -165,29 +181,49 @@ export default function Inscripcion() {
         </div>
       </section>
 
-      {/* Captura */}
+      {/* Captura de cédula */}
       <section className="flex flex-col gap-2.5">
-        <button
-          type="button"
-          onClick={onEscanear}
-          disabled={escaneando}
-          className="flex w-full items-center justify-between rounded-xl bg-clb-primary p-3.5 text-left text-white shadow-md transition-all hover:bg-clb-primaryDeep active:scale-[0.99] disabled:pointer-events-none disabled:opacity-80"
-        >
-          <div className="flex min-w-0 items-center gap-3">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white/15">
-              <span className={`material-symbols-outlined text-[26px] ${escaneando ? 'animate-pulse' : ''}`}>
-                {escaneando ? 'progress_activity' : 'document_scanner'}
-              </span>
+        <div className="flex flex-col gap-1.5 w-full">
+          <button
+            type="button"
+            onClick={abrirEscaneo}
+            data-testid="btn-escanear-cedula"
+            className="flex w-full items-center justify-between rounded-xl bg-clb-primary p-3.5 text-left text-white shadow-md transition-all hover:bg-clb-primaryDeep active:scale-[0.98]"
+          >
+            <div className="flex min-w-0 items-center gap-3">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white/15">
+                <span className="material-symbols-outlined text-[26px]">qr_code_scanner</span>
+              </div>
+              <div className="flex min-w-0 flex-col">
+                <span className="font-display text-sm font-bold leading-tight">Escanear Cédula o QR</span>
+                <span className="text-[10px] text-blue-100">Lee el código de barras o QR de la cédula</span>
+              </div>
             </div>
-            <div className="flex min-w-0 flex-col">
-              <span className="font-display text-sm font-bold leading-tight">{escaneando ? 'Escaneando cédula...' : 'Escanear Cédula con Cámara'}</span>
-              <span className="text-[10px] text-blue-100">Autocompletar datos biométricos en 2 seg</span>
+            <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
+          </button>
+        </div>
+
+        {/* Panel de escáner (modal inline) */}
+        {qrScannerVisible && (
+          <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 backdrop-blur-sm" onClick={cerrarEscaneo}>
+            <div className="mx-auto w-full max-w-md rounded-2xl bg-white p-5 shadow-2xl" onClick={(e) => e.stopPropagation()}>
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="font-display text-base font-bold text-clb-primary">Escanear Cédula</h3>
+                <button
+                  type="button"
+                  onClick={cerrarEscaneo}
+                  className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200"
+                >
+                  <span className="material-symbols-outlined text-[20px]">close</span>
+                </button>
+              </div>
+              <p className="text-[11px] text-slate-600 mb-3 text-center">
+                Posiciona la cédula dentro del recuadro. Se leerá automáticamente el código de barras o QR.
+              </p>
+              <QrScanner onScan={onQrScan} autoClose={true} facingMode="environment" />
             </div>
           </div>
-          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/20">
-            <span className="material-symbols-outlined text-[18px]">photo_camera</span>
-          </div>
-        </button>
+        )}
       </section>
 
       {/* Formulario */}
@@ -235,27 +271,9 @@ export default function Inscripcion() {
               <p className="mt-1 text-xs font-medium text-emerald-900">
                 {habilitado.nombres} {habilitado.apellidos} • {habilitado.edad} años
               </p>
-              <div className="mt-2 grid grid-cols-2 gap-1.5 text-[11px]">
-                <div className="rounded bg-white p-2">
-                  <span className="block font-bold text-slate-500">Recinto</span>
-                  <span className="block truncate font-semibold text-clb-ink">{habilitado.recinto}</span>
-                </div>
-                <div className="rounded bg-white p-2">
-                  <span className="block font-bold text-slate-500">Mesa</span>
-                  <span className="block font-semibold text-clb-ink">{habilitado.mesa}</span>
-                </div>
-                <div className="rounded bg-white p-2">
-                  <span className="block font-bold text-slate-500">Orden</span>
-                  <span className="block font-semibold text-clb-ink">{habilitado.orden}</span>
-                </div>
-                <div className="rounded bg-white p-2">
-                  <span className="block font-bold text-slate-500">Circ.</span>
-                  <span className="block font-semibold text-clb-ink">{habilitado.circunscripcion}</span>
-                </div>
-              </div>
             </div>
           ) : (
-            <p className="mt-2 text-[11px] text-slate-500">Escribe la cédula y presiona Verificar, o escanea con la cámara.</p>
+            <p className="mt-2 text-[11px] text-slate-500">Escribe la cédula, escanea con la cámara y presiona Verificar.</p>
           )}
         </section>
 
