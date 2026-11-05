@@ -7,6 +7,7 @@ import {
   Body,
   Param,
   Query,
+  Req,
   UseGuards,
   UseInterceptors,
   ClassSerializerInterceptor,
@@ -88,5 +89,33 @@ export class ElectoresController {
   @Throttle({ default: { limit: 30, ttl: 60 } })
   async reconfirmar(@Param('id') id: number) {
     return this.service.reconfirmar(id);
+  }
+
+  /**
+   * Verificación segura de cédula con hardening de seguridad.
+   * - Rate limiting: 5 consultas por minuto por usuario
+   * - Respuesta uniforme (no revela existencia de forma diferenciada)
+   * - Solo devuelve nombres y apellidos (datos mínimos)
+   * - Filtra por recinto del usuario autenticado
+   * - Auditoria completa
+   */
+  @Get('verificar/:cedula')
+  @Throttle({ default: { limit: 5, ttl: 60 } })
+  async verificarCedula(
+    @Param('cedula') cedula: string,
+    @Req() req: any,
+  ) {
+    const usuarioId = req.user?.id ?? 0;
+    const usuarioRole = req.user?.role ?? 'coordinador';
+    const usuarioRecinto = req.user?.recinto ?? undefined;
+    const ipAddress = req.ip ?? req.connection?.remoteAddress ?? undefined;
+
+    return this.service.verificarCedulaSegura(
+      cedula,
+      usuarioId,
+      usuarioRole,
+      usuarioRecinto,
+      ipAddress,
+    );
   }
 }

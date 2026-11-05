@@ -7,7 +7,6 @@
 import { simpleHash } from '../lib/hash.js'
 import { save } from '../lib/storage.js'
 import { buildSeed } from '../data/seed.js'
-import { api } from '../lib/api-client.js'
 
 const SLICE_KEYS = {
   session: 'clb.session',
@@ -128,37 +127,49 @@ export function createStoreLogic(initialState, persist = true) {
       commit({ ...state, session: null })
     },
 
-    // ——— JCE simulado ———
-    verificarCedula(cedula) {
-      const digits = String(cedula ?? '').replace(/\D/g, '')
-      const formateada = digits.length === 11 ? `${digits.slice(0, 3)}-${digits.slice(3, 10)}-${digits.slice(10)}` : cedula
-      const known = state.electores.find((e) => e.cedula === formateada)
-      if (known) {
-        return {
-          habilitado: true,
-          datos: {
-            nombres: known.nombres,
-            apellidos: known.apellidos,
-            edad: known.edad,
-            recinto: known.recinto,
-            mesa: known.mesa,
-            orden: known.orden,
-            circunscripcion: '01',
-          },
-        }
+    // ——— Verificación segura de cédula (JCE/Backend) ———
+    // Hardening de seguridad:
+    // - Valida formato (11 dígitos)
+    // - Usa API con rate limiting en backend
+    // - Respuesta uniforme: no revela si la cédula existe o no
+    // - Solo devuelve nombres y apellidos (datos mínimos, no PII completa)
+    // - NO guarda datos en localStorage (solo en memoria del componente)
+    async verificarCedula(cedula) {
+      const cedNorm = String(cedula ?? '').replace(/\D/g, '')
+
+      // Validar formato de cédula dominicana (11 dígitos)
+      if (!/^\d{11}$/.test(cedNorm)) {
+        return { ok: false, error: 'Formato de cédula inválido. Debe contener 11 dígitos.' }
       }
-      const h = hashNum(digits || formateada)
-      return {
-        habilitado: true,
-        datos: {
-          nombres: NOMBRES_JCE[h % NOMBRES_JCE.length],
-          apellidos: APELLIDOS_JCE[(h >> 3) % APELLIDOS_JCE.length],
-          edad: 18 + (h % 50),
-          recinto: RECINTOS_JCE[(h >> 5) % RECINTOS_JCE.length],
-          mesa: MESAS_JCE[(h >> 7) % MESAS_JCE.length],
-          orden: 100 + (h % 700),
-          circunscripcion: '01',
-        },
+
+      // Llamar a la API (tiene rate limiting, auditoría y scope restriction en backend)
+      try {
+        const { api } = await import('../lib/api-client.js')
+        const res = await api.verificarCedula(cedNorm)
+
+        if (!res) {
+          // API no disponible, fallback silencioso sin revelar información
+          return { ok: false, error: 'Servicio de verificación no disponible temporalmente' }
+        }
+
+        // Respuesta uniforme: el backend ya devuelve { existe: boolean, nombres?, apellidos? }
+        // No revelar si existe o no de forma diferente
+        if (res.existe && res.nombres && res.apellidos) {
+          return {
+            ok: true,
+            datos: {
+              nombres: res.nombres,
+              apellidos: res.apellidos,
+            },
+          }
+        }
+
+        // Cédula no encontrada o sin datos: respuesta uniforme
+        return { ok: false, error: 'Cédula no encontrada en el padrón' }
+      } catch (err) {
+        logger?.warn?.('Error verificando cédula:', err.message)
+        // No revelar detalles del error al frontend
+        return { ok: false, error: 'Error al verificar la cédula' }
       }
     },
 

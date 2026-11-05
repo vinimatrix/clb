@@ -49,6 +49,8 @@ export const api = {
   getUsuarios: () => apiRequest('GET', '/usuarios'),
   getPermisos: (rol) => apiRequest('GET', `/usuarios/permisos/${rol}`),
   updatePermiso: (rol, modulo, valor) => apiRequest('PUT', `/usuarios/permisos/${rol}/${modulo}`, { habilitado: valor }),
+  // Verificación segura de cédula (solo nombres y apellidos, con rate limiting en el backend)
+  verificarCedula: (cedula) => apiRequest('GET', `/electores/verificar/${cedula}`),
 };
 
 export default api;

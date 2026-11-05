@@ -30,4 +30,5 @@ export const REDIS_PREFIX = {
   CACHE: 'cache:',
   TOKEN_BLACKLIST: 'bl:',
   SESSION: 'sess:',
+  AUDITORIA: 'aud:',
 };

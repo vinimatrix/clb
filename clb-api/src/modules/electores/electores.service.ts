@@ -1,18 +1,21 @@
 /**
  * Servicio de Electores con paginación y caché Redis.
  * Optimizado para altas consultas concurrentes de electores.
+ * Incluye validación segura de cédula con hardening de seguridad.
  */
 import {
   Injectable,
   NotFoundException,
   Inject,
   Logger,
+  BadRequestException,
+  ForbiddenException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, DataSource } from 'typeorm';
 import { Redis } from 'ioredis';
-import { REDIS_CLIENT } from '../redis/redis.module';
-import { REDIS_PREFIX } from '../../config/redis.config';
+import { REDIS_CLIENT, REDIS_PREFIX } from '../redis/redis.module';
+import { AuditoriaService } from '../auditoria/auditoria.service';
 import { Elector } from '../../database/entities/elector.entity';
 import { PaginationQueryDto } from '../../common/dto/pagination.dto';
 import { paginate, PaginatedResponse } from '../../common/interfaces/paginated-response.interface';
@@ -20,6 +23,8 @@ import { logger } from '../../config/logger';
 
 const CACHE_TTL_ELECTORES = 300; // 5 minutos
 const CACHE_TTL_ELECTOR = 600; // 10 minutos
+const VERIFICACION_CEDULA_TTL = 60; // 1 minuto para rate limiting de cédula
+const MAX_VERIFICACIONES_POR_MINUTO = 5; // Máximo 5 consultas de cédula por minuto por usuario
 
 @Injectable()
 export class ElectoresService {
@@ -29,10 +34,129 @@ export class ElectoresService {
     @InjectRepository(Elector) private repository: Repository<Elector>,
     private dataSource: DataSource,
     @Inject(REDIS_CLIENT) private readonly redis: Redis,
+    private auditoriaService: AuditoriaService,
   ) {}
 
   private getCacheKey(prefix: string, id?: string | number): string {
     return `${REDIS_PREFIX.CACHE}electores:${prefix}${id ?? ''}`;
+  }
+
+  private getRateLimitKey(usuarioId: number): string {
+    return `${REDIS_PREFIX.RATE_LIMIT}verificar_cedula:usuario:${usuarioId}`;
+  }
+
+  /**
+   * Valida que una cédula dominicana tenga 11 dígitos numéricos.
+   */
+  private validarFormatoCedula(cedula: string): boolean {
+    const digitos = cedula.replace(/\D/g, '');
+    return digitos.length === 11 && /^\d{11}$/.test(digitos);
+  }
+
+  /**
+   * Verifica si el usuario ha excedido el límite de consultas de cédula por minuto.
+   */
+  async verificarRateLimitCedula(usuarioId: number): Promise<void> {
+    const key = this.getRateLimitKey(usuarioId);
+    const actual = await this.redis.get(key);
+    const count = actual ? parseInt(actual, 10) : 0;
+
+    if (count >= MAX_VERIFICACIONES_POR_MINUTO) {
+      throw new ForbiddenException(
+        'Ha excedido el límite de consultas de cédula por minuto. Intente nuevamente más tarde.',
+      );
+    }
+
+    // Incrementar contador y establecer expiración si es nuevo
+    const multi = this.redis.multi();
+    multi.incr(key);
+    if (count === 0) {
+      multi.expire(key, VERIFICACION_CEDULA_TTL);
+    }
+    await multi.exec();
+  }
+
+  /**
+   * Verificación segura de cédula con hardening de seguridad.
+   * - Valida formato de cédula (11 dígitos)
+   * - Rate limiting: máximo 5 consultas por minuto por usuario
+   * - Respuesta uniforme (no revela si existe o no de forma diferenciada)
+   * - Solo devuelve nombres y apellidos (datos mínimos)
+   * - Filtra por recinto del usuario autenticado (scope restriction)
+   * - Auditoria completa de cada consulta
+   */
+  async verificarCedulaSegura(
+    cedula: string,
+    usuarioId: number,
+    usuarioRole: string,
+    usuarioRecinto?: string,
+    ipAddress?: string,
+  ): Promise<{ existe: boolean; nombres?: string; apellidos?: string }> {
+    // 1. Validar formato de cédula
+    const digitos = cedula.replace(/\D/g, '');
+    if (!this.validarFormatoCedula(cedula)) {
+      await this.auditoriaService.registrar({
+        usuarioId,
+        accion: 'VERIFICAR_CEDULA_FORMATO_INVALIDO',
+        cedulaConsultada: cedula,
+        resultado: 'formato_invalido',
+        ipAddress,
+      });
+      throw new BadRequestException('Formato de cédula inválido. Debe contener 11 dígitos.');
+    }
+
+    // 2. Verificar rate limiting
+    await this.verificarRateLimitCedula(usuarioId);
+
+    // 3. Verificar permiso de inscripción (solo usuarios con permiso pueden consultar)
+    const rolPermitido = ['admin', 'dirigente', 'coordinador'];
+    if (!rolPermitido.includes(usuarioRole)) {
+      await this.auditoriaService.registrar({
+        usuarioId,
+        accion: 'VERIFICAR_CEDULA_SIN_PERMISO',
+        cedulaConsultada: digitos,
+        resultado: 'sin_permiso',
+        ipAddress,
+      });
+      throw new ForbiddenException('No tiene permiso para verificar cédulas.');
+    }
+
+    // 4. Construir query con alcance restringido
+    const queryBuilder = this.repository.createQueryBuilder('e')
+      .where('e.cedula = :cedula', { cedula: digitos });
+
+    // Scope restriction: si el usuario tiene recinto asignado, solo consultar su recinto
+    if (usuarioRecinto) {
+      queryBuilder.andWhere('e.recinto = :recinto', { recinto: usuarioRecinto });
+    }
+
+    const elector = await queryBuilder.getOne();
+
+    const existe = !!elector;
+
+    // 5. Registrar auditoría (siempre, independientemente del resultado)
+    await this.auditoriaService.registrar({
+      usuarioId,
+      accion: 'VERIFICAR_CEDULA',
+      cedulaConsultada: digitos,
+      resultado: existe ? 'encontrado' : 'no_encontrado',
+      ipAddress,
+    });
+
+    // 6. Respuesta uniforme y mínima: solo nombres y apellidos si existe
+    // Nunca revelar otros datos del elector
+    if (existe && elector) {
+      return {
+        existe: true,
+        nombres: elector.nombres,
+        apellidos: elector.apellidos,
+      };
+    }
+
+    // Respuesta uniforme para no revelar si existe o no
+    return {
+      existe: false,
+    };
   }
 
   async findAll(

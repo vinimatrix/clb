@@ -48,28 +48,30 @@ export default function Inscripcion() {
     [...electores].filter((e) => esHoy(e.createdAt)).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)),
   )
 
-  function onVerificar(e) {
+  async function onVerificar(e) {
     e.preventDefault()
     if (!cedula) return
-    const res = verificarCedula(cedula)
-    if (!res.habilitado) {
-      toast.show('Cédula no aparece en el padrón JCE')
+    const res = await verificarCedula(cedula)
+    if (!res.ok) {
+      toast.show(res.error || 'No se pudo verificar la cédula')
       return
     }
     setHabilitado(res.datos)
   }
 
-  function onEscanear() {
+  async function onEscanear() {
     setEscaneando(true)
     // OCR simulado: genera una cédula que no existe en el padrón local.
     const sufijo = String(100000 + electores.length + 1)
     const digits = `40299${sufijo}`
     const generada = maskCedula(digits)
-    window.setTimeout(() => {
+    window.setTimeout(async () => {
       setEscaneando(false)
       setCedula(generada)
-      const res = verificarCedula(generada)
-      setHabilitado(res.datos)
+      const res = await verificarCedula(generada)
+      if (res.ok) {
+        setHabilitado(res.datos)
+      }
     }, 600)
   }
 

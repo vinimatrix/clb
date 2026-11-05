@@ -20,6 +20,7 @@ import { UsuariosModule } from './modules/usuarios/usuarios.module';
 import { RedisModule } from './modules/redis/redis.module';
 import { ThrottlerConfigModule } from './modules/throttler/throttler.module';
 import { HealthModule } from './modules/health/health.module';
+import { AuditoriaModule } from './modules/auditoria/auditoria.module';
 import { HttpLoggingMiddleware } from './middleware/http-logging.middleware';
 import { MiddlewareConsumer, RequestMethod } from '@nestjs/common';
 
@@ -38,6 +39,7 @@ import { MiddlewareConsumer, RequestMethod } from '@nestjs/common';
     RedisModule,
     ThrottlerConfigModule,
     HealthModule,
+    AuditoriaModule,
   ],
   controllers: [AppController],
   providers: [AppService],

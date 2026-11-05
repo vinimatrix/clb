@@ -9,6 +9,7 @@ import { logger } from '../../config/logger';
 
 export const REDIS_CLIENT = 'REDIS_CLIENT';
 export const REDIS_PREFIX_TOKEN = 'REDIS_PREFIX';
+export { REDIS_PREFIX } from '../../config/redis.config';
 
 @Global()
 @Module({

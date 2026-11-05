@@ -1,5 +1,5 @@
-import { render, screen, fireEvent, act } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { render, screen, fireEvent, act, waitFor } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { buildSeed } from '../data/seed.js'
 import { save } from '../lib/storage.js'
@@ -7,13 +7,42 @@ import { AppProvider } from '../store/AppContext.jsx'
 import { ToastProvider } from '../components/Toast.jsx'
 import Inscripcion from '../pages/app/Inscripcion.jsx'
 
+// Mock de fetch para la API de verificación de cédula
+// Se asigna directamente a globalThis para que se resuelva en tiempo de ejecución
+const mockVerifyResponse = {
+  existe: true,
+  nombres: 'Rosa Esther',
+  apellidos: 'Gómez Rosario',
+}
+
 beforeEach(() => {
   localStorage.clear()
   const seed = buildSeed()
   save('clb.users', seed.users)
   save('clb.session', { cedula: '402-1234567-8', username: 'clbarcelo2026', role: 'Miembro', nombres: 'Juan', apellidos: 'Pérez' })
+
+  // Mock global de fetch para la API de verificación de cédula
+  globalThis.fetch = async (url) => {
+    const urlStr = String(url)
+    if (urlStr.includes('/electores/verificar/')) {
+      return {
+        ok: true,
+        status: 200,
+        json: async () => mockVerifyResponse,
+      }
+    }
+    // Para cualquier otra llamada a la API, retornar error (fallback a localStorage)
+    return {
+      ok: false,
+      status: 503,
+      json: async () => null,
+    }
+  }
 })
-afterEach(() => vi.useRealTimers())
+afterEach(() => {
+  vi.useRealTimers()
+  delete globalThis.fetch
+})
 
 function Page() {
   return (
@@ -37,10 +66,13 @@ function avanza(ms) {
   }
 }
 
-function verificarCedula(ced) {
+async function verificarCedula(ced) {
   fireEvent.change(screen.getByLabelText(/cédula de identidad/i), { target: { value: ced } })
-  fireEvent.click(screen.getByRole('button', { name: /Verificar/ }))
-  expect(screen.getByText('Elector Habilitado JCE')).toBeInTheDocument()
+  await act(async () => {
+    fireEvent.click(screen.getByRole('button', { name: /Verificar/ }))
+  })
+  // Esperar a que se resuelva la promesa async y React procese la actualización de estado
+  await new Promise((resolve) => setTimeout(resolve, 150))
 }
 
 describe('Meta semanal', () => {
@@ -54,24 +86,30 @@ describe('Meta semanal', () => {
 })
 
 describe('Verificación JCE', () => {
-  it('escanear con cámara simula OCR y puebla la cédula', () => {
-    vi.useFakeTimers()
+  it('escanear con cámara simula OCR y puebla la cédula', async () => {
     render(<Page />)
-    fireEvent.click(screen.getByRole('button', { name: /Escanear Cédula con Cámara/ }))
-    avanza(700)
-    expect(screen.getByText('Elector Habilitado JCE')).toBeInTheDocument()
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: /Escanear Cédula con Cámara/ }))
+    })
+    // Esperar a que el setTimeout de 600ms en onEscanear se ejecute y la API responda
+    await new Promise((resolve) => setTimeout(resolve, 1200))
+    // Después de escanear, la cédula debe estar en el input
     const input = screen.getByLabelText(/cédula de identidad/i)
     expect(input.value).toMatch(/^\d{3}-\d{7}-\d{1}$/)
+    // El nombre debe aparecer (datos mínimos de la API)
+    await waitFor(() => {
+      expect(screen.getByText((content) => content.includes('Rosa Esther Gómez Rosario'))).toBeInTheDocument()
+    })
   })
 
-  it('ingreso manual: verificar con cédula nueva puebla tarjeta JCE y grid de datos', () => {
+  it('ingreso manual: verificar con cédula nueva puebla nombres y apellidos', async () => {
     render(<Page />)
-    verificarCedula('402-9998885-1')
-    // Grid de datos poblado desde la JCE simulada
-    expect(screen.getAllByText('Recinto').length).toBeGreaterThanOrEqual(1)
-    expect(screen.getAllByText('Mesa').length).toBeGreaterThanOrEqual(1)
-    expect(screen.getAllByText('Orden').length).toBeGreaterThanOrEqual(1)
-    // El form de identificación quedó poblado
+    await verificarCedula('402-9998885-1')
+    // Solo nombres y apellidos (datos mínimos, hardening de seguridad)
+    await waitFor(() => {
+      expect(screen.getByText((content) => content.includes('Rosa Esther Gómez Rosario'))).toBeInTheDocument()
+    })
+    // El form de identificación quedó poblado con la cédula
     expect(screen.getByLabelText(/cédula de identidad/i).value).toBe('402-9998885-1')
   })
 })
@@ -90,11 +128,13 @@ describe('Chips de fidelización', () => {
 })
 
 describe('Alta al padrón', () => {
-  it('submit registra elector, suma métricas, muestra toast y aparece en Inscritos Recientemente', () => {
+  it('submit registra elector, suma métricas, muestra toast y aparece en Inscritos Recientemente', async () => {
     const seed = buildSeed()
     render(<Page />)
-    verificarCedula('402-9998885-1')
-    fireEvent.click(screen.getByRole('button', { name: /Registrar e Inscribir Elector/ }))
+    await verificarCedula('402-9998885-1')
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: /Registrar e Inscribir Elector/ }))
+    })
     expect(screen.getByText('¡Elector inscrito exitosamente!')).toBeInTheDocument()
     // Persistencia: +1 elector, +1 inscrito en métricas
     const guardados = JSON.parse(localStorage.getItem('clb.electores'))
