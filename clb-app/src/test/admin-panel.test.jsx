@@ -69,14 +69,14 @@ describe('Admin Panel - solo Admin', () => {
     const seed = buildSeed()
     save('clb.users', seed.users)
     localStorage.setItem('clb.session', JSON.stringify({ cedula: '402-1234567-0', username: 'admin2026', role: 'admin', nombres: 'Admin', apellidos: 'Sistema' }))
-    
+
     render(<AdminPage />)
-    
+
     // Verificar que se muestran los 3 roles (en las pestañas de rol)
     expect(screen.getAllByText('Coordinador')).toHaveLength(2) // tab + header
     expect(screen.getAllByText('Dirigente')).toHaveLength(2) // tab + header
     expect(screen.getAllByText('Admin')).toHaveLength(2) // tab + header
-    
+
     // Verificar que se muestran los 8 módulos
     expect(screen.getByText('Inscripción')).toBeInTheDocument()
     expect(screen.getByText('Mi Recinto')).toBeInTheDocument()
@@ -86,27 +86,27 @@ describe('Admin Panel - solo Admin', () => {
     expect(screen.getByText('CBE')).toBeInTheDocument()
     expect(screen.getByText('Call Center')).toBeInTheDocument()
     expect(screen.getByText('Admin Panel')).toBeInTheDocument()
-    
+
     // Verificar que hay toggles (switches) - 24 total (3 roles x 8 módulos)
     const toggles = screen.getAllByRole('switch')
-    expect(toggles.length).toBe(24) // 3 roles x 8 módulos
+    expect(toggles.length).toBe(24)
   })
 
   it('cambiar toggle persiste en localStorage clb.permisos', () => {
     const seed = buildSeed()
     save('clb.users', seed.users)
     localStorage.setItem('clb.session', JSON.stringify({ cedula: '402-1234567-0', username: 'admin2026', role: 'admin', nombres: 'Admin', apellidos: 'Sistema' }))
-    
+
     render(<AdminPage />)
-    
+
     // Cambiar el toggle de CBA para Dirigente (que está false por defecto)
     const cbaDirigenteToggle = screen.getByRole('switch', { name: /Dirigente.*CBA/ })
     fireEvent.click(cbaDirigenteToggle)
-    
+
     // Verificar que persiste en localStorage
     const stored = JSON.parse(localStorage.getItem('clb.permisos'))
     expect(stored.dirigente.cba).toBe(true)
-    
+
     // Verificar toast de confirmación
     expect(screen.getByTestId('toast')).toBeInTheDocument()
   })
