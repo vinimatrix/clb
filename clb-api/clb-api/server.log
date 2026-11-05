@@ -1,0 +1,52 @@
+
+> clb-api@1.0.0 start
+> nest start
+
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:01 PM [32m    LOG[39m [38;5;3m[NestFactory] [39m[32mStarting Nest application...[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:01 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAppModule dependencies initialized[39m[38;5;3m +29ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:01 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m[38;5;3m +2ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:01 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPassportModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:01 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mJwtModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:01 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmCoreModule dependencies initialized[39m[38;5;3m +86ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:01 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:01 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:01 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:01 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:01 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mUsuariosModule dependencies initialized[39m[38;5;3m +2ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:01 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mElectoresModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:01 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mComitesModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:01 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mLlamadasModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:01 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAuthModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:02 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mAuthController {/auth}:[39m[38;5;3m +598ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:02 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/auth/login, POST} route[39m[38;5;3m +5ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:02 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/auth/register, POST} route[39m[38;5;3m +2ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:02 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/auth/logout, POST} route[39m[38;5;3m +2ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:02 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/auth/me, GET} route[39m[38;5;3m +2ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:02 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mUsuariosController {/usuarios}:[39m[38;5;3m +1ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:02 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/usuarios, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:02 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/usuarios/:id, GET} route[39m[38;5;3m +2ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:02 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/usuarios, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:02 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/usuarios/:id, PUT} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:02 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/usuarios/:id, DELETE} route[39m[38;5;3m +2ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:02 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/usuarios/permisos/:rol, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:02 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/usuarios/permisos/:rol/:modulo, PUT} route[39m[38;5;3m +2ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:02 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mElectoresController {/electores}:[39m[38;5;3m +1ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:02 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/electores, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:02 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/electores/:id, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:02 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/electores, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:02 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/electores/:id, PUT} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:02 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/electores/:id, DELETE} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:02 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mComitesController {/comites}:[39m[38;5;3m +1ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:02 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/comites, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:02 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/comites/:id, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:02 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/comites, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:02 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/comites/:id, PUT} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:02 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/comites/:id, DELETE} route[39m[38;5;3m +2ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:02 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mLlamadasController {/llamadas}:[39m[38;5;3m +1ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:02 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/llamadas, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:02 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/llamadas/:id, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:02 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/llamadas, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:02 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/llamadas/:id, PUT} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:02 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/llamadas/:id, DELETE} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 31732  - [39m11/04/2026, 11:49:02 PM [32m    LOG[39m [38;5;3m[NestApplication] [39m[32mNest application successfully started[39m[38;5;3m +4ms[39m
+CLB API running on port 3001

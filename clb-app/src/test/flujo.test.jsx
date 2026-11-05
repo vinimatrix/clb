@@ -6,16 +6,15 @@ import { AppRouter } from '../App.jsx'
 
 vi.stubGlobal('confirm', () => true)
 
-beforeEach(function () {
+beforeEach(() => {
   localStorage.clear()
   const seed = buildSeed()
   save('clb.users', seed.users)
   save('clb.session', { cedula: '402-1234567-8', username: 'clbarcelo2026', role: 'Miembro', nombres: 'Juan', apellidos: 'Pérez' })
 })
 
-describe('flujo integral de la app', function () {
-  it('navega por las 5 tabs y los módulos del centro Más', async function () {
-    // Habilitar permiso de Call Center para Dirigente
+describe('flujo integral de la app', () => {
+  it('navega por las 5 tabs y los módulos del centro Más', async () => {
     const seed = buildSeed()
     const permisosConCallCenter = {
       ...seed.permisos,
@@ -24,33 +23,28 @@ describe('flujo integral de la app', function () {
     localStorage.setItem('clb.permisos', JSON.stringify(permisosConCallCenter))
     save('clb.users', seed.users)
     save('clb.session', { cedula: '402-1234567-8', username: 'clbarcelo2026', role: 'Miembro', nombres: 'Juan', apellidos: 'Pérez' })
-    
+
     render(<AppRouter initialEntries={['/app']} />)
     expect(screen.getByTestId('page-dashboard')).toBeInTheDocument()
 
-    // Tab: Inscripción
     fireEvent.click(screen.getByRole('link', { name: /Inscripción/ }))
     expect(screen.getByTestId('page-inscripcion')).toBeInTheDocument()
 
-    // Tab: Mi Recinto (y desde ahí el Padrón)
     fireEvent.click(screen.getByRole('link', { name: /Recinto/ }))
     expect(screen.getByTestId('page-recinto')).toBeInTheDocument()
     fireEvent.click(screen.getByRole('button', { name: /Ver Padrón de Recinto/ }))
     expect(screen.getByTestId('page-padron')).toBeInTheDocument()
 
-    // Tab: Mi Carpeta
     fireEvent.click(screen.getByRole('link', { name: /Mi Carpeta/ }))
     expect(screen.getByTestId('page-carpeta')).toBeInTheDocument()
 
-    // Tab: Más → Call Center
     fireEvent.click(screen.getByRole('link', { name: /Más/, exact: true }))
     expect(screen.getByTestId('page-mas')).toBeInTheDocument()
     fireEvent.click(screen.getByRole('button', { name: /Call Center/ }))
     expect(screen.getByTestId('page-callcenter')).toBeInTheDocument()
   })
 
-  it('desde Más acceso a Fidelizados, CBA y CBE, y el logout regresa a la portada', async function () {
-    // Usar Coordinador con permisos habilitados para Fidelizados, CBA, CBE
+  it('desde Más acceso a Fidelizados, CBA y CBE, y el logout regresa a la portada', async () => {
     const seed = buildSeed()
     const permisosModificados = {
       ...seed.permisos,
@@ -59,7 +53,7 @@ describe('flujo integral de la app', function () {
     localStorage.setItem('clb.permisos', JSON.stringify(permisosModificados))
     save('clb.users', seed.users)
     save('clb.session', { cedula: '402-1234567-9', username: 'coord1', role: 'coordinador', nombres: 'Ana', apellidos: 'García' })
-    
+
     render(<AppRouter initialEntries={['/app/mas']} />)
     expect(screen.getByTestId('page-mas')).toBeInTheDocument()
 
@@ -69,12 +63,11 @@ describe('flujo integral de la app', function () {
     fireEvent.click(screen.getByRole('link', { name: /Inicio/ }))
     expect(screen.getByTestId('page-dashboard')).toBeInTheDocument()
 
-    // Al Perfil vía selector de navegación / avatar y cerrar sesión
     fireEvent.click(screen.getByRole('link', { name: /Más/ }))
     fireEvent.click(screen.getByRole('button', { name: /Ir a Mi Perfil/ }))
     expect(screen.getByTestId('page-perfil')).toBeInTheDocument()
     fireEvent.click(screen.getByRole('button', { name: /Cerrar sesión/ }))
-    await waitFor(function () { return expect(screen.getByTestId('portada')).toBeInTheDocument() })
+    await waitFor(() => expect(screen.getByTestId('portada')).toBeInTheDocument())
     expect(load('clb.session', null)).toBeNull()
   })
 })

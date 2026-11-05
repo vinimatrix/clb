@@ -80,7 +80,7 @@ export function Rutas() {
         <Route element={<RequirePermiso modulo="cba"><Cba /></RequirePermiso>} path="/app/cba" />
         <Route element={<RequirePermiso modulo="cbe"><Cbe /></RequirePermiso>} path="/app/cbe" />
         <Route element={<RequirePermiso modulo="callcenter"><CallCenter /></RequirePermiso>} path="/app/callcenter" />
-        <Route element={<Fidelizados />} path="/app/fidelizados" />
+        <Route element={<RequirePermiso modulo="fidelizados"><Fidelizados /></RequirePermiso>} path="/app/fidelizados" />
         <Route path="/app" element={<Dashboard />} />
         <Route path="/app/padron" element={<Padron />} />
         <Route path="/app/perfil" element={<Perfil />} />

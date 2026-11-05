@@ -12,6 +12,12 @@ beforeEach(() => {
   localStorage.clear()
   const seed = buildSeed()
   save('clb.users', seed.users)
+  // Habilitar permiso Fidelizados para Dirigente
+  const permisosConFidelizados = {
+    ...seed.permisos,
+    dirigente: { ...seed.permisos.dirigente, fidelizados: true }
+  }
+  localStorage.setItem('clb.permisos', JSON.stringify(permisosConFidelizados))
   save('clb.session', { cedula: '402-1234567-8', username: 'clbarcelo2026', role: 'Miembro', nombres: 'Juan', apellidos: 'Pérez' })
 })
 

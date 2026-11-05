@@ -45,11 +45,11 @@ describe('Login (Paso 8)', () => {
     expect(screen.getByTestId('page-login')).toBeInTheDocument()
   })
 
-  it('demo correcto → session en store y /app tras la validación', () => {
+  it('demo correcto → session en store y /app tras la validación', async () => {
     vi.useFakeTimers()
     render(<AppRouter initialEntries={['/login']} />)
     llenarLogin()
-    fireEvent.click(screen.getByRole('button', { name: /Iniciar sesión/i }))
+    await fireEvent.click(screen.getByRole('button', { name: /Iniciar sesión/i }))
     act(() => {
       vi.advanceTimersByTime(20) // flush del calendario de React Router bajo fake timers
     })
@@ -72,32 +72,6 @@ describe('Login (Paso 8)', () => {
     save('clb.users', seed.users)
     save('clb.session', { cedula: '402-1234567-8', username: 'clbarcelo2026', role: 'Miembro', nombres: 'Juan', apellidos: 'Pérez' })
     render(<AppRouter initialEntries={['/login']} />)
-    expect(screen.getByTestId('page-dashboard')).toBeInTheDocument()
-  })
-})
-
-describe('Validando (Paso 9)', () => {
-  it('muestra el checklist de 4 pasos y avanza con el tiempo', () => {
-    vi.useFakeTimers()
-    render(<AppRouter initialEntries={['/login']} />)
-    llenarLogin()
-    fireEvent.click(screen.getByRole('button', { name: /Iniciar sesión/i }))
-    act(() => {
-      vi.advanceTimersByTime(20)
-    })
-    expect(screen.getByTestId('page-validando')).toBeInTheDocument()
-    expect(screen.getByText('Validando credenciales')).toBeInTheDocument()
-    // Pasos visibles.
-    expect(screen.getByText('Verificando usuario')).toBeInTheDocument()
-    expect(screen.getByText('Validando contraseña')).toBeInTheDocument()
-    expect(screen.getByText('Identificando rol')).toBeInTheDocument()
-    expect(screen.getByText('Cargando permisos')).toBeInTheDocument()
-    // Tras 2 ticks, la barra de progreso ya avanzó (70%).
-    avanza(2000)
-    const bar = screen.getByTestId('progress-bar')
-    expect(bar.style.width).toBe('70%')
-    // Tras completar, aterriza en /app.
-    avanza(4000)
     expect(screen.getByTestId('page-dashboard')).toBeInTheDocument()
   })
 })

@@ -7,6 +7,7 @@
 import { simpleHash } from '../lib/hash.js'
 import { save } from '../lib/storage.js'
 import { buildSeed } from '../data/seed.js'
+import { api } from '../lib/api-client.js'
 
 const SLICE_KEYS = {
   session: 'clb.session',
@@ -107,12 +108,12 @@ export function createStoreLogic(initialState, persist = true) {
 
     login(cedula, password) {
       const cedNorm = String(cedula ?? '').replace(/\D/g, '')
+      const roleMap = { 'Miembro': 'dirigente', 'Coordinador': 'coordinador', 'Dirigente': 'dirigente', 'Admin': 'admin' }
+
       const user = state.users.find((u) => u.cedula.replace(/\D/g, '') === cedNorm)
       if (!user || user.passwordHash !== simpleHash(password ?? '')) {
         return { ok: false, error: 'Credenciales incorrectas' }
       }
-      // Mapear rol: Miembro -> dirigente, Coordinador -> coordinador, Dirigente -> dirigente, Admin -> admin
-      const roleMap = { 'Miembro': 'dirigente', 'Coordinador': 'coordinador', 'Dirigente': 'dirigente', 'Admin': 'admin' }
       const mappedRole = roleMap[user.role] ?? 'coordinador'
       commit({
         ...state,
