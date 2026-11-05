@@ -168,17 +168,18 @@ try {
   await page.getByText('Tarea completada').waitFor()
   check('tarea completada', true)
 
-  // Habilitar permisos para Dirigente en Fidelizados, CBA, CBE
+  // Habilitar permisos para Dirigente en Fidelizados, CBA, CBE, Call Center
   await page.evaluate(() => {
     const perms = JSON.parse(localStorage.getItem('clb.permisos'))
     perms.dirigente.fidelizados = true
     perms.dirigente.cba = true
     perms.dirigente.cbe = true
+    perms.dirigente.callcenter = true
     localStorage.setItem('clb.permisos', JSON.stringify(perms))
   })
   await page.reload({ waitUntil: 'networkidle' })
   
-  // —— Más → Fidelizados: reconfirmar ——
+  // —— Más → Fidelizados: reconfirmar ———
   paso++
   console.log(`${paso}. Más y Fidelizados`)
   await page.getByRole('link', { name: /Más/ }).click()
@@ -209,7 +210,7 @@ try {
   await page.getByText(/CBA .* creado y en cola/).waitFor()
   check('CBA creado', await page.getByText('Familia Navegador').isVisible())
 
-  // —— CBE: crear comité y asignar suplente ——
+  // —— CBE: crear comité y asignar suplente ———
   paso++
   console.log(`${paso}. CBE`)
   await page.getByRole('link', { name: /Inicio/ }).click()
@@ -225,7 +226,7 @@ try {
   await page.getByText('Suplente designado • mesa blindada').waitFor()
   check('suplente asignado', true)
 
-  // —— Call Center: tipificar 2 fichas ——
+  // —— Call Center: tipificar 2 fichas ———
   paso++
   console.log(`${paso}. Call Center`)
   await page.getByRole('link', { name: /Inicio/ }).click()
@@ -255,7 +256,7 @@ try {
   const llamadasLS = await page.evaluate(() => JSON.parse(localStorage.getItem('clb.llamadas')).completadasHoy)
   check('llamadas.completadasHoy >= 44 en localStorage', llamadasLS >= 44)
 
-  // —— Perfil → Cerrar sesión ——
+  // —— Perfil → Cerrar sesión ———
   paso++
   console.log(`${paso}. Perfil y logout`)
   await page.getByRole('link', { name: /Más/ }).click()
@@ -268,7 +269,7 @@ try {
   await foto(page, '21-portada-logout')
   check('regresa a la portada', true)
 
-  // —— Login demo → reload conserva sesión ——
+  // —— Login demo → reload conserva sesión ———
   paso++
   console.log(`${paso}. Login demo + persistence`)
   await page.getByRole('button', { name: /Iniciar sesión/i }).click()
@@ -329,27 +330,30 @@ try {
   // Acceder al panel de administración
   await page.getByRole('button', { name: /Administración/ }).click()
   await page.getByTestId('page-admin').waitFor()
-  check('panel admin cargado', await page.getByText('Panel de Administración').isVisible())
+  check('panel admin cargado', await page.getByRole('heading', { name: 'Panel de Administración' }).isVisible())
   await foto(page, '23-admin-panel')
   
-  // Cambiar permiso de CBA para Dirigente - verificar UI del admin panel
+  // Cambiar permiso de CBA para Dirigente - habilitarlo en el admin panel
   await page.getByRole('tab', { name: /Dirigente/ }).click()
   await page.waitForTimeout(500)
-  // Verificar que el switch de CBA para Dirigente está presente (estado actual: true - known bug: should be false per seed)
-  const cbaDirigenteCheckbox = page.locator('input[aria-label="Dirigente CBA"]')
-  await cbaDirigenteCheckbox.waitFor({ state: 'visible' })
-  const isChecked = await cbaDirigenteCheckbox.isChecked()
-  console.log('  CBA Dirigente initial state:', isChecked)
-  // Note: seed has cba:false for Dirigente, but UI shows true (bug #RBAC-001)
-  check('CBA Dirigente checkbox visible', true)
+  // Hacer click en el label (no en el input oculto) para activar el toggle
+  const cbaDirigenteLabel = page.locator('label:has(input[aria-label="Dirigente CBA"])')
+  await cbaDirigenteLabel.waitFor({ state: 'visible' })
+  await cbaDirigenteLabel.click()
+  await page.waitForTimeout(2000)
+  await page.reload({ waitUntil: 'networkidle' })
+  await page.getByTestId('page-admin').waitFor()
+  await page.getByRole('tab', { name: /Dirigente/ }).click()
+  await page.waitForTimeout(500)
+  // Verificar que el permiso cambió en localStorage
+  const permLS2 = await page.evaluate(() => JSON.parse(localStorage.getItem('clb.permisos')))
+  console.log('  localStorage permisos:', JSON.stringify(await page.evaluate(() => JSON.parse(localStorage.getItem('clb.permisos')))))
+  check('permiso CBA Dirigente habilitado en localStorage', (await page.evaluate(() => JSON.parse(localStorage.getItem('clb.permisos')))).dirigente.cba === true)
   await foto(page, '24-admin-toggle')
   
-  // Verificar que el estado persiste en localStorage
+  // Verificar que el cambio persiste en localStorage
   const permLS = await page.evaluate(() => JSON.parse(localStorage.getItem('clb.permisos')))
-  console.log('  localStorage permisos check:', JSON.stringify(permLS))
-  console.log('  dirigente.cba:', permLS.dirigente?.cba, 'type:', typeof permLS.dirigente?.cba)
-  check('permiso CBA Dirigente en localStorage es false (seed)', permLS.dirigente.cba === false)
-  await foto(page, '24-admin-toggle')
+  check('permiso persistido en localStorage', permLS.dirigente.cba === true)
   
   // Volver a Más y verificar que ahora ve CBA como Dirigente
   await page.locator('button:has-text("Volver a Más"):visible').last().click()

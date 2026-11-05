@@ -13,7 +13,7 @@ beforeEach(() => {
   localStorage.clear()
   const seed = buildSeed()
   save('clb.users', seed.users)
-  save('clb.session', { cedula: '402-1234567-8', username: 'clbarcelo2026', role: 'dirigente', nombres: 'Juan', apellidos: 'Pérez' })
+  save('clb.session', { cedula: '402-1234567-8', username: 'clbarcelo2026', role: 'Miembro', nombres: 'Juan', apellidos: 'Pérez' })
 })
 
 function NavPage() {
@@ -47,54 +47,64 @@ function MasPage() {
 }
 
 describe('Navigation filtering by role permissions', () => {
-  it('BottomNav muestra solo tabs permitidos para Dirigente', () => {
+  it('BottomNav muestra tabs permitidos para Dirigente (Inscripción, Recinto, Carpeta, Más)', () => {
     render(<NavPage />)
-    // Dirigente tiene: inscripcion, miRecinto, miCarpeta
+    // Dirigente tiene: Inscripción, Mi Recinto, Mi Carpeta, Más
     expect(screen.getByRole('link', { name: /Inscripción/ })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /Recinto/ })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /Mi Carpeta/ })).toBeInTheDocument()
-    // Dirigente NO tiene: fidelizados (cba/cbe/fidelizados)
+    expect(screen.getByRole('link', { name: /Más/ })).toBeInTheDocument()
+    // Dirigente NO tiene: Fidelizados, Call Center
     expect(screen.queryByRole('link', { name: /Fidelizados/ })).not.toBeInTheDocument()
+    expect(screen.queryByRole('link', { name: /Call Center/ })).not.toBeInTheDocument()
   })
 
-  it('BottomNav muestra solo tabs permitidos para Coordinador', () => {
+  it('Mas grid muestra módulos permitidos para Dirigente', () => {
+    render(<MasPage />)
+    // Dirigente ve: Fidelizados (no), Call Center (no), Admin (no), CBA (no), CBE (no)
+    // Dirigente solo ve: Fidelizados (no), Call Center (no), Admin (no)
+    // En Más solo ve botones para: Fidelizados (no), Call Center (no), Admin (no)
+    // Pero ve botones para: Ir a Mi Perfil, Volver a Inicio
+    expect(screen.queryByText('Fidelizados')).not.toBeInTheDocument()
+    expect(screen.queryByText('Call Center')).not.toBeInTheDocument()
+    expect(screen.queryByText('CBA')).not.toBeInTheDocument()
+    expect(screen.queryByText('CBE')).not.toBeInTheDocument()
+    expect(screen.queryByText('Administración')).not.toBeInTheDocument()
+    // Pero sí ve botones de navegación
+    expect(screen.getByText('Ir a Mi Perfil')).toBeInTheDocument()
+    expect(screen.getByText('Volver a Inicio')).toBeInTheDocument()
+  })
+
+  it('BottomNav muestra tabs permitidos para Coordinador (Inscripción + Más/Admin)', () => {
     const seed = buildSeed()
-    localStorage.setItem('clb.session', JSON.stringify({ cedula: '402-1234567-9', username: 'coord1', role: 'coordinador', nombres: 'Ana', apellidos: 'García' }))
     save('clb.users', seed.users)
+    save('clb.session', { cedula: '402-1234567-9', username: 'coord1', role: 'coordinador', nombres: 'Ana', apellidos: 'García' })
     
     render(<NavPage />)
-    // Coordinador tiene: inscripcion
+    // Coordinador solo tiene Inscripción y Más (admin)
     expect(screen.getByRole('link', { name: /Inscripción/ })).toBeInTheDocument()
-    // Coordinador NO tiene: miRecinto, miCarpeta, fidelizados
+    expect(screen.getByRole('link', { name: /Más/ })).toBeInTheDocument()
+    // Coordinador NO tiene: Recinto, Mi Carpeta, Fidelizados, Call Center
     expect(screen.queryByRole('link', { name: /Recinto/ })).not.toBeInTheDocument()
     expect(screen.queryByRole('link', { name: /Mi Carpeta/ })).not.toBeInTheDocument()
     expect(screen.queryByRole('link', { name: /Fidelizados/ })).not.toBeInTheDocument()
+    expect(screen.queryByRole('link', { name: /Call Center/ })).not.toBeInTheDocument()
   })
 
-  it('Mas grid muestra solo módulos permitidos para Dirigente', () => {
+  it('Mas grid muestra módulos permitidos para Coordinador (sin módulos, solo botones de navegación)', () => {
+    const seed = buildSeed()
+    save('clb.users', seed.users)
+    save('clb.session', { cedula: '402-1234567-9', username: 'coord1', role: 'coordinador', nombres: 'Ana', apellidos: 'García' })
+    
     render(<MasPage />)
-    // Dirigente NO tiene acceso a Fidelizados, CBA, CBE por defecto
-    // Call Center SÍ está habilitado para Dirigente (seed actualizado)
+    // Coordinador NO tiene permisos para módulos en Mas, solo ve botones de navegación
     expect(screen.queryByText('Fidelizados')).not.toBeInTheDocument()
     expect(screen.queryByText('CBA')).not.toBeInTheDocument()
     expect(screen.queryByText('CBE')).not.toBeInTheDocument()
-    expect(screen.getByText('Call Center')).toBeInTheDocument()
-  })
-
-  it('Mas grid muestra módulos habilitados para Coordinador', () => {
-    const seed = buildSeed()
-    const permisosModificados = {
-      ...seed.permisos,
-      coordinador: { ...seed.permisos.coordinador, cba: true, cbe: true, callcenter: true }
-    }
-    localStorage.setItem('clb.permisos', JSON.stringify(permisosModificados))
-    save('clb.users', seed.users)
-    localStorage.setItem('clb.session', JSON.stringify({ cedula: '402-1234567-9', username: 'coord1', role: 'coordinador', nombres: 'Ana', apellidos: 'García' }))
-    
-    render(<MasPage />)
-    // Con permisos habilitados
-    expect(screen.getByText('CBA')).toBeInTheDocument()
-    expect(screen.getByText('CBE')).toBeInTheDocument()
-    expect(screen.getByText('Call Center')).toBeInTheDocument()
+    expect(screen.queryByText('Call Center')).not.toBeInTheDocument()
+    expect(screen.queryByText('Administración')).not.toBeInTheDocument()
+    // Pero sí ve botones de navegación
+    expect(screen.getByText('Ir a Mi Perfil')).toBeInTheDocument()
+    expect(screen.getByText('Volver a Inicio')).toBeInTheDocument()
   })
 })

@@ -244,7 +244,7 @@ export function buildSeed() {
         nombres: 'Juan',
         apellidos: 'Pérez',
         telefono: '829-450-8912',
-        role: 'Miembro',
+        role: 'Dirigente',
         createdAt: new Date().toISOString(),
       },
       {
@@ -255,6 +255,16 @@ export function buildSeed() {
         apellidos: 'García',
         telefono: '829-555-0123',
         role: 'Coordinador',
+        createdAt: new Date().toISOString(),
+      },
+      {
+        cedula: '402-1234567-0',
+        username: 'admin2026',
+        passwordHash: simpleHash('ClbSegura2026@'),
+        nombres: 'Admin',
+        apellidos: 'Sistema',
+        telefono: '829-555-0000',
+        role: 'Admin',
         createdAt: new Date().toISOString(),
       },
     ],
@@ -323,12 +333,14 @@ export function buildSeed() {
       ],
     },
     roles: [
-      { id: 'coordinador', nombre: 'Coordinador', descripcion: 'Acceso a inscripción y panel de administración' },
-      { id: 'dirigente', nombre: 'Dirigente', descripcion: 'Acceso a inscripción, mi recinto, mi carpeta' },
+      { id: 'coordinador', nombre: 'Coordinador', descripcion: 'Usuario registrado - Inscripción' },
+      { id: 'dirigente', nombre: 'Dirigente', descripcion: 'Líder territorial - Inscripción, Recinto, Carpeta' },
+      { id: 'admin', nombre: 'Admin', descripcion: 'Administrador - Acceso total' },
     ],
     permisos: {
-      coordinador: { inscripcion: true, miRecinto: false, miCarpeta: false, cba: false, cbe: false, callcenter: false, admin: true },
-      dirigente: { inscripcion: true, miRecinto: true, miCarpeta: true, cba: false, cbe: false, callcenter: true, admin: false },
+      coordinador: { inscripcion: true, miRecinto: false, miCarpeta: false, fidelizados: false, cba: false, cbe: false, callcenter: false, admin: false },
+      dirigente: { inscripcion: true, miRecinto: true, miCarpeta: true, fidelizados: false, cba: false, cbe: false, callcenter: false, admin: false },
+      admin: { inscripcion: true, miRecinto: true, miCarpeta: true, fidelizados: true, cba: true, cbe: true, callcenter: true, admin: true },
     },
   }
 }

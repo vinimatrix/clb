@@ -4,7 +4,7 @@ import { buildSeed } from '../data/seed.js'
 import { AppRouter } from '../App.jsx'
 import { save } from '../lib/storage.js'
 
-function conSesion(role = 'dirigente') {
+function conSesion(role = 'coordinador') {
   const seed = buildSeed()
   save('clb.users', seed.users)
   save('clb.session', { cedula: '402-1234567-8', username: 'clbarcelo2026', role, nombres: 'Juan', apellidos: 'Pérez' })
@@ -35,38 +35,52 @@ describe('guardas de permisos por rol', () => {
     save('clb.users', seed.users)
   })
 
-  it('redirige a /app si Dirigente intenta acceder a CBA sin permiso', () => {
-    save('clb.session', { cedula: '402-1234567-8', username: 'dirigente1', role: 'dirigente', nombres: 'Juan', apellidos: 'Pérez' })
+  it('redirige a /app si Coordinador sin permiso intenta acceder a CBA', () => {
+    const seed = buildSeed()
+    const permisosSinCBA = {
+      ...seed.permisos,
+      coordinador: { ...seed.permisos.coordinador, cba: false }
+    }
+    localStorage.setItem('clb.permisos', JSON.stringify(permisosSinCBA))
+    save('clb.users', seed.users)
+    save('clb.session', { cedula: '402-1234567-9', username: 'coord1', role: 'coordinador', nombres: 'Ana', apellidos: 'García' })
     render(<AppRouter initialEntries={['/app/cba']} />)
     expect(screen.getByTestId('page-dashboard')).toBeInTheDocument()
   })
 
-  it('permite acceso si Coordinador tiene permiso en CBA (tras habilitarlo en admin)', () => {
+  it('permite acceso si Coordinador tiene permiso en CBA', () => {
     const seed = buildSeed()
-    const permisosModificados = {
+    const permisosConCBA = {
       ...seed.permisos,
       coordinador: { ...seed.permisos.coordinador, cba: true }
     }
-    localStorage.setItem('clb.permisos', JSON.stringify(permisosModificados))
+    localStorage.setItem('clb.permisos', JSON.stringify(permisosConCBA))
     save('clb.users', seed.users)
     save('clb.session', { cedula: '402-1234567-9', username: 'coord1', role: 'coordinador', nombres: 'Ana', apellidos: 'García' })
     render(<AppRouter initialEntries={['/app/cba']} />)
     expect(screen.getByTestId('page-cba')).toBeInTheDocument()
   })
 
-  it('redirige a /app si Dirigente intenta acceder a CBE sin permiso', () => {
-    save('clb.session', { cedula: '402-1234567-8', username: 'dirigente1', role: 'dirigente', nombres: 'Juan', apellidos: 'Pérez' })
+  it('redirige a /app si Coordinador sin permiso intenta acceder a CBE', () => {
+    const seed = buildSeed()
+    const permisosSinCBE = {
+      ...seed.permisos,
+      coordinador: { ...seed.permisos.coordinador, cbe: false }
+    }
+    localStorage.setItem('clb.permisos', JSON.stringify(permisosSinCBE))
+    save('clb.users', seed.users)
+    save('clb.session', { cedula: '402-1234567-9', username: 'coord1', role: 'coordinador', nombres: 'Ana', apellidos: 'García' })
     render(<AppRouter initialEntries={['/app/cbe']} />)
     expect(screen.getByTestId('page-dashboard')).toBeInTheDocument()
   })
 
-  it('permite acceso si Coordinador tiene permiso en CBE (tras habilitarlo en admin)', () => {
+  it('permite acceso si Coordinador tiene permiso en CBE', () => {
     const seed = buildSeed()
-    const permisosModificados = {
+    const permisosConCBE = {
       ...seed.permisos,
       coordinador: { ...seed.permisos.coordinador, cbe: true }
     }
-    localStorage.setItem('clb.permisos', JSON.stringify(permisosModificados))
+    localStorage.setItem('clb.permisos', JSON.stringify(permisosConCBE))
     save('clb.users', seed.users)
     save('clb.session', { cedula: '402-1234567-9', username: 'coord1', role: 'coordinador', nombres: 'Ana', apellidos: 'García' })
     render(<AppRouter initialEntries={['/app/cbe']} />)
@@ -74,19 +88,19 @@ describe('guardas de permisos por rol', () => {
   })
 
   it('Dirigente puede acceder a Mi Recinto (tiene permiso)', () => {
-    save('clb.session', { cedula: '402-1234567-8', username: 'dirigente1', role: 'dirigente', nombres: 'Juan', apellidos: 'Pérez' })
+    save('clb.session', { cedula: '402-1234567-8', username: 'clbarcelo2026', role: 'Miembro', nombres: 'Juan', apellidos: 'Pérez' })
     render(<AppRouter initialEntries={['/app/recinto']} />)
     expect(screen.getByTestId('page-recinto')).toBeInTheDocument()
   })
 
   it('Dirigente puede acceder a Mi Carpeta (tiene permiso)', () => {
-    save('clb.session', { cedula: '402-1234567-8', username: 'dirigente1', role: 'dirigente', nombres: 'Juan', apellidos: 'Pérez' })
+    save('clb.session', { cedula: '402-1234567-8', username: 'clbarcelo2026', role: 'Miembro', nombres: 'Juan', apellidos: 'Pérez' })
     render(<AppRouter initialEntries={['/app/carpeta']} />)
     expect(screen.getByTestId('page-carpeta')).toBeInTheDocument()
   })
 
   it('Dirigente puede acceder a Inscripción (tiene permiso)', () => {
-    save('clb.session', { cedula: '402-1234567-8', username: 'dirigente1', role: 'dirigente', nombres: 'Juan', apellidos: 'Pérez' })
+    save('clb.session', { cedula: '402-1234567-8', username: 'clbarcelo2026', role: 'Miembro', nombres: 'Juan', apellidos: 'Pérez' })
     render(<AppRouter initialEntries={['/app/inscripcion']} />)
     expect(screen.getByTestId('page-inscripcion')).toBeInTheDocument()
   })

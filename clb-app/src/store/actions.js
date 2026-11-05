@@ -111,9 +111,9 @@ export function createStoreLogic(initialState, persist = true) {
       if (!user || user.passwordHash !== simpleHash(password ?? '')) {
         return { ok: false, error: 'Credenciales incorrectas' }
       }
-      // Mapear rol legacy (Miembro) al nuevo sistema de roles
-      const roleMap = { 'Miembro': 'dirigente', 'Admin': 'coordinador' }
-      const mappedRole = roleMap[user.role] ?? user.role
+      // Mapear rol: Miembro -> dirigente, Coordinador -> coordinador, Dirigente -> dirigente, Admin -> admin
+      const roleMap = { 'Miembro': 'dirigente', 'Coordinador': 'coordinador', 'Dirigente': 'dirigente', 'Admin': 'admin' }
+      const mappedRole = roleMap[user.role] ?? 'coordinador'
       commit({
         ...state,
         session: { cedula: user.cedula, username: user.username, role: mappedRole, nombres: user.nombres, apellidos: user.apellidos },
@@ -313,8 +313,9 @@ export function createStoreLogic(initialState, persist = true) {
     },
 
     tienePermiso(modulo, roleOverride) {
-      const role = roleOverride ?? state.session?.role ?? 'dirigente'
+      const role = roleOverride ?? state.session?.role ?? 'coordinador'
       const normalizedRole = role.toLowerCase()
+      // 'miembro' legacy -> dirigente
       const mappedRole = normalizedRole === 'miembro' ? 'dirigente' : normalizedRole
       return state.permisos?.[mappedRole]?.[modulo] ?? false
     },

@@ -39,54 +39,63 @@ function AdminPage() {
   )
 }
 
-describe('Admin Panel - solo Coordinador', () => {
+describe('Admin Panel - solo Admin', () => {
   beforeEach(() => {
     localStorage.clear()
     const seed = buildSeed()
     save('clb.users', seed.users)
   })
 
-  it('solo Coordinador ve la tarjeta Administración en Más', () => {
+  it('solo Admin ve la tarjeta Administración en Más', () => {
     // Dirigente no ve la tarjeta
-    save('clb.session', { cedula: '402-1234567-8', username: 'clbarcelo2026', role: 'dirigente', nombres: 'Juan', apellidos: 'Pérez' })
+    save('clb.session', { cedula: '402-1234567-8', username: 'clbarcelo2026', role: 'Miembro', nombres: 'Juan', apellidos: 'Pérez' })
     render(<MasPage />)
     expect(screen.queryByText('Administración')).not.toBeInTheDocument()
 
-    // Coordinador sí ve la tarjeta
+    // Coordinador no ve la tarjeta (admin: false)
     const seed = buildSeed()
     save('clb.users', seed.users)
     localStorage.setItem('clb.session', JSON.stringify({ cedula: '402-1234567-9', username: 'coord1', role: 'coordinador', nombres: 'Ana', apellidos: 'García' }))
+    render(<MasPage />)
+    expect(screen.queryByText('Administración')).not.toBeInTheDocument()
+
+    // Admin sí ve la tarjeta
+    localStorage.setItem('clb.session', JSON.stringify({ cedula: '402-1234567-0', username: 'admin2026', role: 'admin', nombres: 'Admin', apellidos: 'Sistema' }))
     render(<MasPage />)
     expect(screen.getByText('Administración')).toBeInTheDocument()
   })
 
-  it('AdminPanel muestra matriz de 2 roles x 5 módulos con toggles', () => {
+  it('AdminPanel muestra matriz de 3 roles x 8 módulos con toggles', () => {
     const seed = buildSeed()
     save('clb.users', seed.users)
-    localStorage.setItem('clb.session', JSON.stringify({ cedula: '402-1234567-9', username: 'coord1', role: 'coordinador', nombres: 'Ana', apellidos: 'García' }))
+    localStorage.setItem('clb.session', JSON.stringify({ cedula: '402-1234567-0', username: 'admin2026', role: 'admin', nombres: 'Admin', apellidos: 'Sistema' }))
     
     render(<AdminPage />)
     
-    // Verificar que se muestran los 2 roles (en las pestañas de rol)
+    // Verificar que se muestran los 3 roles (en las pestañas de rol)
     expect(screen.getAllByText('Coordinador')).toHaveLength(2) // tab + header
     expect(screen.getAllByText('Dirigente')).toHaveLength(2) // tab + header
+    expect(screen.getAllByText('Admin')).toHaveLength(2) // tab + header
     
-    // Verificar que se muestran los 5 módulos
+    // Verificar que se muestran los 8 módulos
     expect(screen.getByText('Inscripción')).toBeInTheDocument()
     expect(screen.getByText('Mi Recinto')).toBeInTheDocument()
     expect(screen.getByText('Mi Carpeta')).toBeInTheDocument()
+    expect(screen.getByText('Fidelizados')).toBeInTheDocument()
     expect(screen.getByText('CBA')).toBeInTheDocument()
     expect(screen.getByText('CBE')).toBeInTheDocument()
+    expect(screen.getByText('Call Center')).toBeInTheDocument()
+    expect(screen.getByText('Admin Panel')).toBeInTheDocument()
     
-    // Verificar que hay toggles (switches) - 10 total (2 roles x 5 módulos)
+    // Verificar que hay toggles (switches) - 24 total (3 roles x 8 módulos)
     const toggles = screen.getAllByRole('switch')
-    expect(toggles.length).toBe(10) // 2 roles x 5 módulos
+    expect(toggles.length).toBe(24) // 3 roles x 8 módulos
   })
 
   it('cambiar toggle persiste en localStorage clb.permisos', () => {
     const seed = buildSeed()
     save('clb.users', seed.users)
-    localStorage.setItem('clb.session', JSON.stringify({ cedula: '402-1234567-9', username: 'coord1', role: 'coordinador', nombres: 'Ana', apellidos: 'García' }))
+    localStorage.setItem('clb.session', JSON.stringify({ cedula: '402-1234567-0', username: 'admin2026', role: 'admin', nombres: 'Admin', apellidos: 'Sistema' }))
     
     render(<AdminPage />)
     

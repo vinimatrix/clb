@@ -7,16 +7,20 @@ const MODULOS = [
   { id: 'inscripcion', label: 'Inscripción', descripcion: 'Registro de electores y verificación JCE' },
   { id: 'miRecinto', label: 'Mi Recinto', descripcion: 'Gestión de recinto, padrón e incidencias' },
   { id: 'miCarpeta', label: 'Mi Carpeta', descripcion: 'Tareas de llamada y visita, fidelización' },
+  { id: 'fidelizados', label: 'Fidelizados', descripcion: 'Red de fidelizados y reconfirmación' },
   { id: 'cba', label: 'CBA', descripcion: 'Comités de Base Afectivos' },
   { id: 'cbe', label: 'CBE', descripcion: 'Comités de Base Electorales' },
+  { id: 'callcenter', label: 'Call Center', descripcion: 'Tele-validación y tipificación' },
+  { id: 'admin', label: 'Admin Panel', descripcion: 'Panel de administración de roles y permisos' },
 ]
 
 const ROLES = [
   { id: 'coordinador', label: 'Coordinador' },
   { id: 'dirigente', label: 'Dirigente' },
+  { id: 'admin', label: 'Admin' },
 ]
 
-/** Panel de Administración - Solo Coordinador (Task 5). */
+/** Panel de Administración - Solo Admin (Task 5). */
 export default function AdminPanel() {
   const navigate = useNavigate()
   const toast = useToast()
@@ -79,6 +83,7 @@ export default function AdminPanel() {
                 <th className="text-left py-2 px-3 font-bold text-slate-600" scope="col">Módulo</th>
                 <th className="text-center py-2 px-3 font-bold text-slate-600" scope="col">Coordinador</th>
                 <th className="text-center py-2 px-3 font-bold text-slate-600" scope="col">Dirigente</th>
+                <th className="text-center py-2 px-3 font-bold text-slate-600" scope="col">Admin</th>
               </tr>
             </thead>
             <tbody>
@@ -110,6 +115,20 @@ export default function AdminPanel() {
                         aria-label={`Dirigente ${MODULOS.find((m) => m.id === modulo.id)?.label ?? modulo.id}`}
                         checked={permisos.dirigente?.[modulo.id] ?? false}
                         onChange={(e) => handleToggle('dirigente', modulo.id, e.target.checked)}
+                        className="sr-only"
+                      />
+                      <span className="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-slate-300 bg-slate-200 transition-colors after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:bg-white after:transition-all peer-checked:border-clb-primary peer-checked:bg-clb-primary peer-checked:after:translate-x-full">
+                      </span>
+                    </label>
+                  </td>
+                  <td className="py-3 px-3 text-center">
+                    <label className="inline-flex items-center justify-center">
+                      <input
+                        type="checkbox"
+                        role="switch"
+                        aria-label={`Admin ${MODULOS.find((m) => m.id === modulo.id)?.label ?? modulo.id}`}
+                        checked={permisos.admin?.[modulo.id] ?? false}
+                        onChange={(e) => handleToggle('admin', modulo.id, e.target.checked)}
                         className="sr-only"
                       />
                       <span className="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-slate-300 bg-slate-200 transition-colors after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:bg-white after:transition-all peer-checked:border-clb-primary peer-checked:bg-clb-primary peer-checked:after:translate-x-full">

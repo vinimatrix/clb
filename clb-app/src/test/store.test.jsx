@@ -8,7 +8,7 @@ beforeEach(() => {
   localStorage.clear()
   const seed = buildSeed()
   save('clb.users', seed.users)
-  save('clb.session', { cedula: '402-1234567-8', username: 'clbarcelo2026', role: 'dirigente', nombres: 'Juan', apellidos: 'Pérez' })
+  save('clb.session', { cedula: '402-1234567-8', username: 'clbarcelo2026', role: 'coordinador', nombres: 'Juan', apellidos: 'Pérez' })
 })
 
 function renderStore(children) {
@@ -29,7 +29,7 @@ describe('store - permisos y roles', () => {
     expect(screen.getByTestId('permisos').textContent).toContain('inscripcion')
   })
 
-  it('tienePermiso devuelve true para módulos permitidos al dirigente', () => {
+  it('tienePermiso devuelve true para módulos permitidos al coordinador', () => {
     function TestComp() {
       const { tienePermiso } = useApp().actions
       const result = tienePermiso('inscripcion')
@@ -39,10 +39,10 @@ describe('store - permisos y roles', () => {
     expect(screen.getByTestId('tiene').textContent).toBe('true')
   })
 
-  it('tienePermiso devuelve false para módulos no permitidos al dirigente', () => {
+  it('tienePermiso devuelve false para módulos inexistentes', () => {
     function TestComp() {
       const { tienePermiso } = useApp().actions
-      const result = tienePermiso('cba')
+      const result = tienePermiso('modulo_inexistente')
       return <div data-testid="tiene">{String(result)}</div>
     }
     render(<AppProvider><TestComp /></AppProvider>)
@@ -52,12 +52,12 @@ describe('store - permisos y roles', () => {
   it('actualizarPermiso cambia el permiso y persiste en localStorage', () => {
     function TestComp() {
       const { actualizarPermiso } = useApp().actions
-      actualizarPermiso('dirigente', 'cba', true)
+      actualizarPermiso('coordinador', 'cba', true)
       return <div data-testid="ok">ok</div>
     }
     render(<AppProvider><TestComp /></AppProvider>)
     expect(screen.getByTestId('ok')).toBeInTheDocument()
     const stored = JSON.parse(localStorage.getItem('clb.permisos'))
-    expect(stored.dirigente.cba).toBe(true)
+    expect(stored.coordinador.cba).toBe(true)
   })
 })

@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react'
+﻿import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { buildSeed } from '../data/seed.js'
 import { save, load } from '../lib/storage.js'
@@ -6,16 +6,25 @@ import { AppRouter } from '../App.jsx'
 
 vi.stubGlobal('confirm', () => true)
 
-beforeEach(() => {
+beforeEach(function () {
   localStorage.clear()
   const seed = buildSeed()
   save('clb.users', seed.users)
-  save('clb.session', { cedula: '402-1234567-8', username: 'clbarcelo2026', role: 'dirigente', nombres: 'Juan', apellidos: 'Pérez' })
+  save('clb.session', { cedula: '402-1234567-8', username: 'clbarcelo2026', role: 'Miembro', nombres: 'Juan', apellidos: 'Pérez' })
 })
 
-/** Recorrido integral con el router real: 5 tabs + módulos + Perfil/logout. */
-describe('flujo integral de la app', () => {
-  it('navega por las 5 tabs y los módulos del centro Más', async () => {
+describe('flujo integral de la app', function () {
+  it('navega por las 5 tabs y los módulos del centro Más', async function () {
+    // Habilitar permiso de Call Center para Dirigente
+    const seed = buildSeed()
+    const permisosConCallCenter = {
+      ...seed.permisos,
+      dirigente: { ...seed.permisos.dirigente, callcenter: true }
+    }
+    localStorage.setItem('clb.permisos', JSON.stringify(permisosConCallCenter))
+    save('clb.users', seed.users)
+    save('clb.session', { cedula: '402-1234567-8', username: 'clbarcelo2026', role: 'Miembro', nombres: 'Juan', apellidos: 'Pérez' })
+    
     render(<AppRouter initialEntries={['/app']} />)
     expect(screen.getByTestId('page-dashboard')).toBeInTheDocument()
 
@@ -34,13 +43,13 @@ describe('flujo integral de la app', () => {
     expect(screen.getByTestId('page-carpeta')).toBeInTheDocument()
 
     // Tab: Más → Call Center
-    fireEvent.click(screen.getByRole('link', { name: /Más/ }))
+    fireEvent.click(screen.getByRole('link', { name: /Más/, exact: true }))
     expect(screen.getByTestId('page-mas')).toBeInTheDocument()
     fireEvent.click(screen.getByRole('button', { name: /Call Center/ }))
     expect(screen.getByTestId('page-callcenter')).toBeInTheDocument()
   })
 
-  it('desde Más acceso a Fidelizados, CBA y CBE, y el logout regresa a la portada', async () => {
+  it('desde Más acceso a Fidelizados, CBA y CBE, y el logout regresa a la portada', async function () {
     // Usar Coordinador con permisos habilitados para Fidelizados, CBA, CBE
     const seed = buildSeed()
     const permisosModificados = {
@@ -65,7 +74,7 @@ describe('flujo integral de la app', () => {
     fireEvent.click(screen.getByRole('button', { name: /Ir a Mi Perfil/ }))
     expect(screen.getByTestId('page-perfil')).toBeInTheDocument()
     fireEvent.click(screen.getByRole('button', { name: /Cerrar sesión/ }))
-    await waitFor(() => expect(screen.getByTestId('portada')).toBeInTheDocument())
+    await waitFor(function () { return expect(screen.getByTestId('portada')).toBeInTheDocument() })
     expect(load('clb.session', null)).toBeNull()
   })
 })
